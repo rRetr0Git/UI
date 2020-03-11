@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "echarts": "^4.6.0",
+    "echarts-gl": "^1.1.1",
     "element-ui": "^2.13.0",
+    "jquery": "^3.4.1",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

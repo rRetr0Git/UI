@@ -44,11 +44,10 @@ export default {
         ]
       };
       myCharts.setOption(option);
-      window.addEventListener('resize',function() {myChart.resize()});
+      window.addEventListener('resize',function() {myCharts.resize()});
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #myCharts{
