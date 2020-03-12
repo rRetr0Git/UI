@@ -1,6 +1,5 @@
 <template>
     <div id="myCharts" ref="myCharts"></div>
-  </div>
 </template>
 
 <script>
@@ -13,15 +12,13 @@ export default {
     }
   },
   mounted(){
-        const  myCharts = this.$echarts.init(this.$refs.myCharts);
+        const  myCharts = this.$echarts.init(this.$refs.myCharts,'dark');
 
         // 指定图表的配置项和数据
         var uploadedDataURL = "../static/json/data-1482909784051-BJgwuy-Sl.json";
-        console.log(this)
         var _this = this
         $.getJSON(uploadedDataURL, function(geoJson) {
-            console.log(this)
-            _this.$echarts.registerMap('geojson', geoJson); //注册 地图
+            _this.$echarts.registerMap('', geoJson); //注册 地图
 
             // 各区中心点经纬度
             var geoCoordMap = {};
@@ -79,7 +76,8 @@ export default {
                     title: {
                         subtext: ''
                     },
-                    tooltip: {},
+                    tooltip: {
+                    },
                     calculable: true,
                     grid: {
                         top: 80,
@@ -339,7 +337,7 @@ a {
 
   #myCharts{
     width: 100%;
-    height: 800px;
+    height: 900px;
     margin: 0 auto;
   }
 </style>

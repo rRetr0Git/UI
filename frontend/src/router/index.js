@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import View3 from '@/components/View3'
 import View1 from '@/components/View1'
 import App from '../App'
 
@@ -11,7 +11,7 @@ export default new Router({
   routes: [
     {
       path: '/view3',
-      component: HelloWorld
+      component: View3
     },
     {
       path: '/view1',
