@@ -15,7 +15,7 @@ export default {
         const  myCharts = this.$echarts.init(this.$refs.myCharts,'dark');
 
         // 指定图表的配置项和数据
-        var uploadedDataURL = "../static/json/data-1482909784051-BJgwuy-Sl.json";
+        var uploadedDataURL = "../static/testApi/graph.json";
         var _this = this
         $.getJSON(uploadedDataURL, function(geoJson) {
             _this.$echarts.registerMap('', geoJson); //注册 地图
@@ -25,12 +25,11 @@ export default {
 
             // 柱状图纵坐标
             var barType = []
-            var excludeCity = ["茂名市", "阳江市", "湛江市", "揭阳市", "梅州市", "潮州市", "汕头市", "汕尾市"]
             var geoData = JSON.parse(JSON.stringify(geoJson))
-            geoData.features.forEach(e => {
-                if(excludeCity.includes(e.properties.name)) return;
-                barType.push(e.properties.name)
-                geoCoordMap[e.properties.name] = e.properties.cp
+            geoData.visualization.nodes.forEach(e => {
+                if(e.categories.toString()===(["CE"]).toString()) return;
+                barType.push(e.data.名称)
+                geoCoordMap[e.data.名称] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
             })
             // 数据梯度或类别
             var dataType = ["总览", "节点信息", "通路信息", "特殊信息"]
@@ -161,7 +160,7 @@ export default {
                         top: '2%',
                         textStyle: {
                             color: '#fff',
-                            fontSize: 22
+                            fontSize: 12
                         }
                     }],
                     xAxis: {

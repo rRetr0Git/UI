@@ -1,0 +1,4070 @@
+{
+  "visualization": {
+    "id": "1",
+    "title": "Terra Core",
+    "folder": -1,
+    "nodes": [
+      {
+        "id": "a4d65e7b-3413-41e0-9a1b-3230d212d0af",
+        "nodelink": {
+          "x": -31.426,
+          "y": -80.175
+        },
+        "geo": {
+          "latitude": "39.822931",
+          "longitude": "116.524730",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "流服务器A3-专线组-韶关:10.64.192.18",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "9960b614-0d0a-49d1-a87b-8bdc8d1c28eb",
+        "nodelink": {
+          "x": -135.4,
+          "y": -40
+        },
+        "geo": {
+          "latitude": "39.822931",
+          "longitude": "116.524730",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "演示大屏A2-专线组-深圳:10.64.192.10",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_VPE",
+              "nodeCategories": [
+                "VPE"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "be39b84e-c07b-49d5-8299-8c9219076306",
+        "nodelink": {
+          "x": -96.8,
+          "y": -60.2
+        },
+        "geo": {
+          "latitude": "39.822931",
+          "longitude": "116.524730",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "控制接入:10.64.192.26",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_VPE",
+              "nodeCategories": [
+                "VPE"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "geo": {
+          "longitude": "116.524730",
+          "latitude": "39.822931",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        },
+        "nodelink": {
+          "x": 9.5,
+          "y": -15.6
+        },
+        "version": 1,
+        "id": "c53cc50f-d052-41aa-b682-44ecdd4ef12b",
+        "type": "circle",
+        "data": {
+          "名称": "韶关-测试接入:10.64.192.38",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ]
+      },
+      {
+        "id": "b95b54de-558e-4f0f-b06b-8d8221944b50",
+        "nodelink": {
+          "x": 23.706,
+          "y": -80.692
+        },
+        "geo": {
+          "latitude": "39.822931",
+          "longitude": "116.524730",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "流服务器B3-Internet组-韶关:10.64.192.22",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "74a054bb-e5de-425f-840b-c1cc7cffc2d8",
+        "nodelink": {
+          "x": 0.343,
+          "y": 0.194
+        },
+        "geo": {
+          "latitude": "39.822931",
+          "longitude": "116.524730",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "广州-测试接入:10.64.192.30",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "geo": {
+          "longitude": "116.524730",
+          "latitude": "39.822931",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        },
+        "nodelink": {
+          "x": 0.331,
+          "y": 0.309
+        },
+        "version": 1,
+        "id": "7ead8c9e-75df-4264-8095-c2ecde4854a9",
+        "type": "circle",
+        "data": {
+          "名称": "深圳-测试接入:10.64.192.34",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ]
+      },
+      {
+        "geo": {
+          "longitude": "116.524730",
+          "latitude": "39.822931",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_VPE",
+              "nodeCategories": [
+                "VPE"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        },
+        "nodelink": {
+          "x": -117.8,
+          "y": -51.2
+        },
+        "version": 1,
+        "id": "8815b378-1edd-4530-a0ae-9f2cd6ff47f1",
+        "type": "circle",
+        "data": {
+          "名称": "演示大屏B2-Internet组-深圳:10.64.192.14",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ]
+      },
+      {
+        "id": "192225d0-5963-485f-8aa3-c2b45646aba4",
+        "nodelink": {
+          "x": 105,
+          "y": -31.4
+        },
+        "geo": {
+          "latitude": "39.822931",
+          "longitude": "116.524730",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "4K摄像头A1-专线组-广州:10.64.192.2",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "09cf6a36-6325-4c13-81b3-bfe9f5a55479",
+        "nodelink": {
+          "x": 105.4,
+          "y": 11.4
+        },
+        "geo": {
+          "latitude": "39.822931",
+          "longitude": "116.524730",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "4K摄像头B1-Internet组-广州:10.64.192.6",
+          "状态": "UP",
+          "地点": ""
+        },
+        "categories": [
+          "CE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "3-PE-LHFSK",
+        "nodelink": {
+          "x": -144.8,
+          "y": -18
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "3-PE-LHFSK:10.1.1.9 - 龙华富士康",
+          "状态": "UP",
+          "地点": "深圳",
+          "ports": [
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000
+            }
+          ]
+        },
+        "categories": [
+          "VPE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "VPE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "3-PE-DCW",
+        "nodelink": {
+          "x": -123,
+          "y": 40
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "3-PE-DCW:10.1.1.3 - 大铲湾",
+          "状态": "UP",
+          "地点": "深圳",
+          "ports": [
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000
+            }
+          ]
+        },
+        "categories": [
+          "VPE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "VPE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "3-PE-DXC",
+        "nodelink": {
+          "x": -146.2,
+          "y": 11.2
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "3-PE-DXC:10.1.1.6 - 大学城",
+          "状态": "UP",
+          "地点": "深圳",
+          "ports": [
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000
+            }
+          ]
+        },
+        "categories": [
+          "VPE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "VPE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "3-PE-QH",
+        "nodelink": {
+          "x": -145.8,
+          "y": -6
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "3-PE-QH:10.1.1.4 - 前海",
+          "状态": "UP",
+          "地点": "深圳",
+          "ports": [
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000
+            }
+          ]
+        },
+        "categories": [
+          "VPE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "VPE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "3-PE-PCL",
+        "nodelink": {
+          "x": -96.6,
+          "y": -34
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "3-PE-PCL:10.1.1.5 - 鹏城实验室",
+          "状态": "UP",
+          "地点": "深圳",
+          "ports": [
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000
+            }
+          ]
+        },
+        "categories": [
+          "VPE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "VPE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            },
+            {
+              "edgeType": "CE_VPE",
+              "nodeCategories": [
+                "CE"
+              ],
+              "nodes": 3,
+              "edges": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "3-PE-CS",
+        "nodelink": {
+          "x": -138.8,
+          "y": 28.6
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "3-PE-CS:10.1.1.7 - 超算",
+          "状态": "UP",
+          "地点": "深圳",
+          "ports": [
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000
+            }
+          ]
+        },
+        "categories": [
+          "VPE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "VPE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "3-PE-FT",
+        "nodelink": {
+          "x": -95.8,
+          "y": 30.4
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "3-PE-FT:10.1.1.8 - 福田",
+          "状态": "UP",
+          "地点": "深圳",
+          "ports": [
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000
+            }
+          ]
+        },
+        "categories": [
+          "VPE"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "VPE_PEA",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-FS",
+        "nodelink": {
+          "x": -35.6,
+          "y": 34.8
+        },
+        "geo": {
+          "latitude": "23.021548",
+          "longitude": "113.121416",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-FS:10.1.1.120 - 佛山",
+          "状态": "UP",
+          "地点": "佛山",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.5"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.55.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.4.1"
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.3.1"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.120"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-JM",
+        "nodelink": {
+          "x": -19.8,
+          "y": 43.6
+        },
+        "geo": {
+          "latitude": "22.578738",
+          "longitude": "113.081901",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-JM:10.1.1.130 - 江门",
+          "状态": "UP",
+          "地点": "江门",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.6"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.66.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.6.1"
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.5.1"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.130"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-DG",
+        "nodelink": {
+          "x": -49.8,
+          "y": 28.2
+        },
+        "geo": {
+          "latitude": "23.020536",
+          "longitude": "113.751765",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-DG:10.1.1.110 - 东莞",
+          "状态": "UP",
+          "地点": "东莞",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.4"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "171.17.44.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.2.1"
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.1.1"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.110"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-DXC",
+        "nodelink": {
+          "x": -77.427,
+          "y": -6.264
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-DXC:10.1.1.2 - 大学城",
+          "状态": "UP",
+          "地点": "广东-深圳",
+          "ports": [
+            {
+              "name": "HundredGigE1/1/5.1914",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1914,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.14"
+            },
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.3"
+            },
+            {
+              "name": "HundredGigE1/1/5.1921",
+              "type": "SUB-INTERFACE",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.33.1"
+            },
+            {
+              "name": "HundredGigE1/1/5.1913",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1913,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.10"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "12.3.3.1"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.2"
+            },
+            {
+              "name": "HundredGigE1/1/5.1920",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1920,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.26"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 1,
+              "edges": 1
+            },
+            {
+              "edgeType": "VPE_PEA",
+              "nodeCategories": [
+                "VPE"
+              ],
+              "nodes": 7,
+              "edges": 7
+            },
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "CE"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-ZS",
+        "nodelink": {
+          "x": 18.6,
+          "y": 45.4
+        },
+        "geo": {
+          "latitude": "22.517645",
+          "longitude": "113.392782",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-ZS:10.1.1.140 - 中山",
+          "状态": "UP",
+          "地点": "中山",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.7"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.77.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.7.1"
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.8.1"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.140"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-ZH",
+        "nodelink": {
+          "x": 54.2,
+          "y": 32.2
+        },
+        "geo": {
+          "latitude": "22.270715",
+          "longitude": "113.576726",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-ZH:10.1.1.160 - 珠海",
+          "状态": "UP",
+          "地点": "珠海",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.9"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.99.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.11.1"
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.12.1"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.160"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-GZ",
+        "nodelink": {
+          "x": 93,
+          "y": -9
+        },
+        "geo": {
+          "latitude": "23.129162",
+          "longitude": "113.264434",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-GZ:10.1.1.22 - 广州",
+          "状态": "UP",
+          "地点": "广东-广州",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.2"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.22.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "12.4.1.1"
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/1.1911",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1911,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.2"
+            },
+            {
+              "name": "HundredGigE1/1/1.1910",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1910,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.30"
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/1.1912",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1912,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.6"
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.22"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 1,
+              "edges": 1
+            },
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "CE"
+              ],
+              "nodes": 3,
+              "edges": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-HZ",
+        "nodelink": {
+          "x": 35.8,
+          "y": 38.6
+        },
+        "geo": {
+          "latitude": "23.111847",
+          "longitude": "114.416196",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-HZ:10.1.1.150 - 惠州",
+          "状态": "UP",
+          "地点": "惠州",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.8"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.88.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.9.1"
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.10.1"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.150"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            }
+          ]
+        }
+      },
+      {
+        "id": "2-PE-SG",
+        "nodelink": {
+          "x": 0.447,
+          "y": -53.643
+        },
+        "geo": {
+          "latitude": "24.810403",
+          "longitude": "113.597522",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "2-PE-SG:10.1.1.32 - 韶关",
+          "状态": "UP",
+          "地点": "广东-韶关",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "1.1.1.1"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.11.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7.1916",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1916,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.22"
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7.1915",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1915,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.18"
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7.1924",
+              "type": "SUB-INTERFACE",
+              "vlanId": 1924,
+              "bandwidth": 100000,
+              "localIp": "",
+              "remoteIp": "10.64.192.38"
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "12.1.1.1"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.32"
+            }
+          ]
+        },
+        "categories": [
+          "PEA"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 1,
+              "edges": 1
+            },
+            {
+              "edgeType": "CE_PEA",
+              "nodeCategories": [
+                "CE"
+              ],
+              "nodes": 3,
+              "edges": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": "1-P-DXC",
+        "nodelink": {
+          "x": -31.943,
+          "y": -5.747
+        },
+        "geo": {
+          "latitude": "22.543099",
+          "longitude": "114.057868",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "1-P-DXC:10.1.1.1 - 深圳",
+          "状态": "UP",
+          "地点": "广东-深圳",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "2.2.2.3"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.3.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/2/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.9.2"
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "12.3.3.2"
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.2.2"
+            },
+            {
+              "name": "HundredGigE1/2/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.11.2"
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/2/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "11.1.3.2"
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.6.2"
+            },
+            {
+              "name": "HundredGigE1/2/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/2/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.7.2"
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.4.2"
+            },
+            {
+              "name": "HundredGigE1/2/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/2/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "11.2.1.2"
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/2/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.1"
+            }
+          ]
+        },
+        "categories": [
+          "PEB"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEB_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            },
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 7,
+              "edges": 7
+            }
+          ]
+        }
+      },
+      {
+        "id": "1-P-GZ",
+        "nodelink": {
+          "x": 37.489,
+          "y": -7.815
+        },
+        "geo": {
+          "latitude": "23.129162",
+          "longitude": "113.264434",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "1-P-GZ:10.1.1.21 - 广州",
+          "状态": "UP",
+          "地点": "广东-广州",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "2.2.2.2"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.2.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "11.2.1.1"
+            },
+            {
+              "name": "HundredGigE1/2/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.12.2"
+            },
+            {
+              "name": "HundredGigE1/2/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.1.2"
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "11.3.1.1"
+            },
+            {
+              "name": "HundredGigE1/2/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.5.2"
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.8.2"
+            },
+            {
+              "name": "HundredGigE1/2/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/2/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.3.2"
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "12.4.1.2"
+            },
+            {
+              "name": "HundredGigE1/2/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "13.14.10.2"
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/2/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/2/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.21"
+            },
+            {
+              "name": "LoopBack10",
+              "type": "LOOPBACK",
+              "localIp": "22.1.1.1"
+            }
+          ]
+        },
+        "categories": [
+          "PEB"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEB_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            },
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 7,
+              "edges": 7
+            }
+          ]
+        }
+      },
+      {
+        "id": "1-P-SG",
+        "nodelink": {
+          "x": 0.275,
+          "y": -32.107
+        },
+        "geo": {
+          "latitude": "24.810403",
+          "longitude": "113.597522",
+          "latitudeDiff": 0,
+          "longitudeDiff": 0
+        },
+        "type": "circle",
+        "data": {
+          "名称": "1-P-SG:10.1.1.31 - 韶关",
+          "状态": "UP",
+          "地点": "广东-韶关",
+          "ports": [
+            {
+              "name": "LoopBack0",
+              "type": "LOOPBACK",
+              "localIp": "2.2.2.1"
+            },
+            {
+              "name": "LoopBack1",
+              "type": "LOOPBACK",
+              "localIp": "172.17.1.1"
+            },
+            {
+              "name": "Vlan-interface1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/2",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "GigabitEthernet1/0/1",
+              "type": "PHYSICAL",
+              "bandwidth": 1000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/2",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "11.1.3.1"
+            },
+            {
+              "name": "HundredGigE1/1/3",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "12.1.1.2"
+            },
+            {
+              "name": "HundredGigE1/1/1",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": "11.3.1.2"
+            },
+            {
+              "name": "HundredGigE1/1/6",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/7",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/4",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/5",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "HundredGigE1/1/8",
+              "type": "PHYSICAL",
+              "bandwidth": 100000,
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/1",
+              "type": "PHYSICAL",
+              "localIp": ""
+            },
+            {
+              "name": "M-GigabitEthernet0/0/0",
+              "type": "PHYSICAL",
+              "localIp": "10.1.1.31"
+            },
+            {
+              "name": "LoopBack10",
+              "type": "LOOPBACK",
+              "localIp": "33.1.1.1"
+            }
+          ]
+        },
+        "categories": [
+          "PEB"
+        ],
+        "statistics": {
+          "digest": [
+            {
+              "edgeType": "PEB_PEB",
+              "nodeCategories": [
+                "PEB"
+              ],
+              "nodes": 2,
+              "edges": 2
+            },
+            {
+              "edgeType": "PEA_PEB",
+              "nodeCategories": [
+                "PEA"
+              ],
+              "nodes": 1,
+              "edges": 1
+            }
+          ]
+        }
+      }
+    ],
+    "edges": [
+      {
+        "id": "MS1QLVNHOkh1bmRyZWRHaWdFMS8xLzE6MS1QLUdaOkh1bmRyZWRHaWdFMS8xLzE=",
+        "lineType": "dashed",
+        "color": "#ccc",
+        "source": "1-P-SG",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 1,
+          "丢包": 0,
+          "当前带宽": 34714,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/1"
+        },
+        "type": "PEB_PEB"
+      },
+      {
+        "id": "MS1QLVNHOkh1bmRyZWRHaWdFMS8xLzI6MS1QLURYQzpIdW5kcmVkR2lnRTEvMS82",
+        "source": "1-P-SG",
+        "target": "1-P-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 46668,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/2",
+          "目的端口": "HundredGigE1/1/6"
+        },
+        "type": "PEB_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "MS1QLURYQzpIdW5kcmVkR2lnRTEvMS84OjEtUC1HWjpIdW5kcmVkR2lnRTEvMS8y",
+        "lineType": "dashed",
+        "color": "#ccc",
+        "source": "1-P-DXC",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 24096,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/8",
+          "目的端口": "HundredGigE1/1/2"
+        },
+        "type": "PEB_PEB"
+      },
+      {
+        "id": "Mi1QRS1TRzpIdW5kcmVkR2lnRTEvMS8xOjEtUC1TRzpIdW5kcmVkR2lnRTEvMS8z",
+        "source": "2-PE-SG",
+        "target": "1-P-SG",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 1,
+          "丢包": 0,
+          "当前带宽": 13346,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/3"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1IWjpIdW5kcmVkR2lnRTEvMS8xOjEtUC1HWjpIdW5kcmVkR2lnRTEvMS84",
+        "source": "2-PE-HZ",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 9616,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/8"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1GUzpIdW5kcmVkR2lnRTEvMS8zOjEtUC1EWEM6SHVuZHJlZEdpZ0UxLzEvNQ==",
+        "source": "2-PE-FS",
+        "target": "1-P-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 4976,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/3",
+          "目的端口": "HundredGigE1/1/5"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1aUzpIdW5kcmVkR2lnRTEvMS8yOjEtUC1EWEM6SHVuZHJlZEdpZ0UxLzEvNA==",
+        "source": "2-PE-ZS",
+        "target": "1-P-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 4809,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/2",
+          "目的端口": "HundredGigE1/1/4"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1ERzpIdW5kcmVkR2lnRTEvMS8xOjEtUC1HWjpIdW5kcmVkR2lnRTEvMS8z",
+        "source": "2-PE-DG",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 1,
+          "丢包": 0,
+          "当前带宽": 4811,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/3"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1IWjpIdW5kcmVkR2lnRTEvMS8yOjEtUC1EWEM6SHVuZHJlZEdpZ0UxLzIvMQ==",
+        "source": "2-PE-HZ",
+        "target": "1-P-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 4808,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/2",
+          "目的端口": "HundredGigE1/2/1"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1aSDpIdW5kcmVkR2lnRTEvMS8yOjEtUC1EWEM6SHVuZHJlZEdpZ0UxLzIvMg==",
+        "source": "2-PE-ZH",
+        "target": "1-P-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 9783,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/2",
+          "目的端口": "HundredGigE1/2/2"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1KTTpIdW5kcmVkR2lnRTEvMS8zOjEtUC1EWEM6SHVuZHJlZEdpZ0UxLzEvNw==",
+        "source": "2-PE-JM",
+        "target": "1-P-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 5011,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/3",
+          "目的端口": "HundredGigE1/1/7"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1HWjpIdW5kcmVkR2lnRTEvMS83OjEtUC1HWjpIdW5kcmVkR2lnRTEvMS81",
+        "source": "2-PE-GZ",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 8567,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/7",
+          "目的端口": "HundredGigE1/1/5"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1aSDpIdW5kcmVkR2lnRTEvMS8xOjEtUC1HWjpIdW5kcmVkR2lnRTEvMi8x",
+        "source": "2-PE-ZH",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 4808,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/2/1"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1ERzpIdW5kcmVkR2lnRTEvMS8zOjEtUC1EWEM6SHVuZHJlZEdpZ0UxLzEvMw==",
+        "source": "2-PE-DG",
+        "target": "1-P-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 9788,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/3",
+          "目的端口": "HundredGigE1/1/3"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1GUzpIdW5kcmVkR2lnRTEvMS8xOjEtUC1HWjpIdW5kcmVkR2lnRTEvMS80",
+        "source": "2-PE-FS",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 1,
+          "丢包": 0,
+          "当前带宽": 9621,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/4"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1aUzpIdW5kcmVkR2lnRTEvMS8xOjEtUC1HWjpIdW5kcmVkR2lnRTEvMS83",
+        "source": "2-PE-ZS",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 9618,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/7"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1EWEM6SHVuZHJlZEdpZ0UxLzEvMToxLVAtRFhDOkh1bmRyZWRHaWdFMS8xLzI=",
+        "source": "2-PE-DXC",
+        "target": "1-P-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 11957,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/2"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "Mi1QRS1KTTpIdW5kcmVkR2lnRTEvMS8xOjEtUC1HWjpIdW5kcmVkR2lnRTEvMS82",
+        "source": "2-PE-JM",
+        "target": "1-P-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 4846,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/6"
+        },
+        "type": "PEA_PEB",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "My1QRS1DUzpIdW5kcmVkR2lnRTEvMS8xOjItUEUtRFhDOkh1bmRyZWRHaWdFMS8xLzg=",
+        "source": "3-PE-CS",
+        "target": "2-PE-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 0,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/8"
+        },
+        "type": "VPE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "My1QRS1RSDpIdW5kcmVkR2lnRTEvMS8xOjItUEUtRFhDOkh1bmRyZWRHaWdFMS8xLzU=",
+        "source": "3-PE-QH",
+        "target": "2-PE-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 0,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/5"
+        },
+        "type": "VPE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "My1QRS1GVDpIdW5kcmVkR2lnRTEvMS8xOjItUEUtRFhDOkh1bmRyZWRHaWdFMS8yLzE=",
+        "source": "3-PE-FT",
+        "target": "2-PE-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 0,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/2/1"
+        },
+        "type": "VPE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "My1QRS1EQ1c6SHVuZHJlZEdpZ0UxLzEvMToyLVBFLURYQzpIdW5kcmVkR2lnRTEvMS80",
+        "source": "3-PE-DCW",
+        "target": "2-PE-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 0,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/4"
+        },
+        "type": "VPE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "My1QRS1QQ0w6SHVuZHJlZEdpZ0UxLzEvMToyLVBFLURYQzpIdW5kcmVkR2lnRTEvMS82",
+        "source": "3-PE-PCL",
+        "target": "2-PE-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 0,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/6"
+        },
+        "type": "VPE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "My1QRS1MSEZTSzpIdW5kcmVkR2lnRTEvMS8xOjItUEUtRFhDOkh1bmRyZWRHaWdFMS8yLzI=",
+        "source": "3-PE-LHFSK",
+        "target": "2-PE-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 0,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/2/2"
+        },
+        "type": "VPE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "My1QRS1EWEM6SHVuZHJlZEdpZ0UxLzEvMToyLVBFLURYQzpIdW5kcmVkR2lnRTEvMS83",
+        "source": "3-PE-DXC",
+        "target": "2-PE-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": 0,
+          "丢包": 0,
+          "当前带宽": 0,
+          "链路带宽": "100000000000",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "HundredGigE1/1/1",
+          "目的端口": "HundredGigE1/1/7"
+        },
+        "type": "VPE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "a4d65e7b-3413-41e0-9a1b-3230d212d0af:2-PE-SG",
+        "source": "a4d65e7b-3413-41e0-9a1b-3230d212d0af",
+        "target": "2-PE-SG",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "c53cc50f-d052-41aa-b682-44ecdd4ef12b:2-PE-SG",
+        "source": "c53cc50f-d052-41aa-b682-44ecdd4ef12b",
+        "target": "2-PE-SG",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "b95b54de-558e-4f0f-b06b-8d8221944b50:2-PE-SG",
+        "source": "b95b54de-558e-4f0f-b06b-8d8221944b50",
+        "target": "2-PE-SG",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "74a054bb-e5de-425f-840b-c1cc7cffc2d8:2-PE-GZ",
+        "source": "74a054bb-e5de-425f-840b-c1cc7cffc2d8",
+        "target": "2-PE-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "7ead8c9e-75df-4264-8095-c2ecde4854a9:2-PE-DXC",
+        "source": "7ead8c9e-75df-4264-8095-c2ecde4854a9",
+        "target": "2-PE-DXC",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "192225d0-5963-485f-8aa3-c2b45646aba4:2-PE-GZ",
+        "source": "192225d0-5963-485f-8aa3-c2b45646aba4",
+        "target": "2-PE-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "09cf6a36-6325-4c13-81b3-bfe9f5a55479:2-PE-GZ",
+        "source": "09cf6a36-6325-4c13-81b3-bfe9f5a55479",
+        "target": "2-PE-GZ",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_PEA",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "9960b614-0d0a-49d1-a87b-8bdc8d1c28eb:3-PE-PCL",
+        "source": "9960b614-0d0a-49d1-a87b-8bdc8d1c28eb",
+        "target": "3-PE-PCL",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_VPE",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "be39b84e-c07b-49d5-8299-8c9219076306:3-PE-PCL",
+        "source": "be39b84e-c07b-49d5-8299-8c9219076306",
+        "target": "3-PE-PCL",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_VPE",
+        "lineType": "dashed",
+        "color": "#ccc"
+      },
+      {
+        "id": "8815b378-1edd-4530-a0ae-9f2cd6ff47f1:3-PE-PCL",
+        "source": "8815b378-1edd-4530-a0ae-9f2cd6ff47f1",
+        "target": "3-PE-PCL",
+        "properties": {
+          "链路状态": "UP",
+          "延迟": "",
+          "丢包": "",
+          "当前带宽": "",
+          "链路带宽": "",
+          "丢包采样": "",
+          "延迟采样": "",
+          "流量采样": "",
+          "租户采样": "",
+          "源端口": "",
+          "目的端口": ""
+        },
+        "type": "CE_VPE",
+        "lineType": "dashed",
+        "color": "#ccc"
+      }
+    ],
+    "nodeFields": {
+      "fields": [
+        {
+          "name": "名称",
+          "active": true
+        },
+        {
+          "name": "Vendor",
+          "active": true
+        },
+        {
+          "name": "状态",
+          "active": true
+        },
+        {
+          "name": "name",
+          "active": true
+        },
+        {
+          "name": "properties",
+          "active": true
+        },
+        {
+          "name": "ports",
+          "active": true
+        },
+        {
+          "name": "厂商",
+          "active": true
+        },
+        {
+          "name": "地点",
+          "active": true
+        }
+      ],
+      "captions": {
+        "No category": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "P": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "CE": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "VPE": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "VPE_P": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_VPE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P_PE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "DC": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "VR": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "白牌机1G": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "白牌机10G": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "Mininet": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "CPE": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "PEA": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "PEB": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "PEA_PEA": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PEA_PEB": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PEB_PEB": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_PEA": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_PEB": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CPE_PEA": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CPE_PEB": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_PEA": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_PEB": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_CPE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "SWITCH": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "SWITCH_CE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "SWITCH_PE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P_P": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_PE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "POP": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "CPE_VPE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_PE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE_POP": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CPE_POP": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "POP_CLOUD": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CLOUD": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "LEASEDLINE": {
+          "active": true,
+          "displayName": true,
+          "properties": [
+            "名称"
+          ]
+        },
+        "VPE_VPE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE_PE": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE_P": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE_L2": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P_PEA": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P_PEB": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_P": {
+          "active": true,
+          "displayName": true,
+          "properties": []
+        }
+      }
+    },
+    "edgeFields": {
+      "fields": [
+        {
+          "name": "预留带宽",
+          "active": true
+        },
+        {
+          "name": "预留带宽使用率",
+          "active": true
+        },
+        {
+          "name": "带宽",
+          "active": true
+        }
+      ],
+      "captions": {
+        "VPE_P": {
+          "name": "VPE_P",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_VPE": {
+          "name": "CE_VPE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE": {
+          "name": "PE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P": {
+          "name": "P",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE": {
+          "name": "CE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE": {
+          "name": "VPE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P_PE": {
+          "name": "P_PE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "DC": {
+          "name": "DC",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VR": {
+          "name": "VR",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "白牌机1G": {
+          "name": "白牌机1G",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "白牌机10G": {
+          "name": "白牌机10G",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "Mininet": {
+          "name": "Mininet",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CPE": {
+          "name": "CPE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PEA": {
+          "name": "PEA",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PEB": {
+          "name": "PEB",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PEA_PEA": {
+          "name": "PEA_PEA",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PEB_PEB": {
+          "name": "PEB_PEB",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PEA_PEB": {
+          "name": "PEA_PEB",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_PEA": {
+          "name": "VPE_PEA",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_PEB": {
+          "name": "VPE_PEB",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CPE_PEA": {
+          "name": "CPE_PEA",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CPE_PEB": {
+          "name": "CPE_PEB",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_PEA": {
+          "name": "CE_PEA",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_PEB": {
+          "name": "CE_PEB",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_CPE": {
+          "name": "VPE_CPE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "SWITCH": {
+          "name": "SWITCH",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "SWITCH_CE": {
+          "name": "SWITCH_CE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "SWITCH_PE": {
+          "name": "SWITCH_PE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P_P": {
+          "name": "P_P",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_PE": {
+          "name": "CE_PE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "POP": {
+          "name": "POP",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CPE_VPE": {
+          "name": "CPE_VPE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_PE": {
+          "name": "VPE_PE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE_POP": {
+          "name": "PE_POP",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CPE_POP": {
+          "name": "CPE_POP",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "POP_CLOUD": {
+          "name": "POP_CLOUD",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CLOUD": {
+          "name": "CLOUD",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "LEASEDLINE": {
+          "name": "LEASEDLINE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "VPE_VPE": {
+          "name": "VPE_VPE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE_PE": {
+          "name": "PE_PE",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE_P": {
+          "name": "PE_P",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "PE_L2": {
+          "name": "PE_L2",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P_PEA": {
+          "name": "P_PEA",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "P_PEB": {
+          "name": "P_PEB",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        },
+        "CE_P": {
+          "name": "CE_P",
+          "active": true,
+          "displayName": true,
+          "properties": []
+        }
+      }
+    },
+    "design": {
+      "styles": {
+        "nodes": {
+          "color": {
+            "by": "data.categories",
+            "scheme": "nodes.qualitative.categories",
+            "active": true
+          },
+          "icon": {
+            "by": "data.categories",
+            "scheme": "nodes.icons.categories",
+            "active": true
+          },
+          "size": {
+            "by": "data.properties.status",
+            "bins": 7,
+            "min": 5,
+            "max": 6,
+            "active": true
+          }
+        },
+        "edges": {}
+      },
+      "palette": {
+        "nodes": {
+          "qualitative": {
+            "linkurious_def": {
+              "12": [
+                "#701E30",
+                "#00D745",
+                "#FA5AE3",
+                "#EB9104",
+                "#25623B",
+                "#3C4382",
+                "#E885A2",
+                "#9391ED",
+                "#2F9539",
+                "#C9B528",
+                "#8B2E0B",
+                "#7BA273"
+              ],
+              "15": [
+                "#CE83CA",
+                "#C0DC43",
+                "#67D5AA",
+                "#CE7C32",
+                "#D5B5B5",
+                "#5D8D42",
+                "#88CBD8",
+                "#637F7B",
+                "#C6D396",
+                "#73DA68",
+                "#7E8BC1",
+                "#BF6481",
+                "#9A7A4E",
+                "#CBAF43",
+                "#D16255"
+              ],
+              "20": [
+                "#D6C1B0",
+                "#9DDD5A",
+                "#D06D34",
+                "#D28FD8",
+                "#5D8556",
+                "#71D4C6",
+                "#CDCF79",
+                "#D8A836",
+                "#5E8084",
+                "#738ECD",
+                "#D36565",
+                "#61DC7B",
+                "#9B7168",
+                "#97C4DE",
+                "#A57E42",
+                "#D5DA41",
+                "#D06B97",
+                "#917097",
+                "#689534",
+                "#90D59B"
+              ],
+              "40": [
+                "#D6C1B0",
+                "#9DDD5A",
+                "#D06D34",
+                "#D28FD8",
+                "#5D8556",
+                "#71D4C6",
+                "#CDCF79",
+                "#D8A836",
+                "#5E8084",
+                "#738ECD",
+                "#D36565",
+                "#61DC7B",
+                "#9B7168",
+                "#97C4DE",
+                "#A57E42",
+                "#D5DA41",
+                "#D06B97",
+                "#917097",
+                "#689534",
+                "#90D59B",
+                "#538245",
+                "#D7C19B",
+                "#DB9B5F",
+                "#ABD4A2",
+                "#8D9F2C",
+                "#67D8C8",
+                "#577C94",
+                "#E8A22E",
+                "#C792DF",
+                "#65E175",
+                "#A26238",
+                "#ABDD7E",
+                "#AFC2DD",
+                "#A65A59",
+                "#DABD3A",
+                "#6DCBDB",
+                "#AEA45A",
+                "#E088AD",
+                "#B09898",
+                "#7793CD"
+              ]
+            },
+            "linkurious_categories": {},
+            "categories": {
+              "PE": "#8DD3C7",
+              "P": "#4EA4D4",
+              "PEA": "#8DD3C7",
+              "PEB": "#4EA4D4",
+              "CE": "#7b79cf",
+              "VPE": "#7ECAFC",
+              "DC": "green",
+              "VR": "#8FB2EA",
+              "白牌机1G": "#CDCF79",
+              "白牌机10G": "#D8A836",
+              "Mininet": "#8DD3C7",
+              "CPE": "#CDCF79",
+              "POP": "#7ECAFC",
+              "CLOUD": "#8FB2EA",
+              "LEASEDLINE": "orange"
+            },
+            "type": {}
+          },
+          "sequential": {
+            "7": [
+              "#161344",
+              "#3f1c4c",
+              "#632654",
+              "#86315b",
+              "#a93c63",
+              "#cd476a",
+              "#f35371"
+            ]
+          },
+          "icons": {
+            "linkurious_categories": {},
+            "categories": {
+              "CE": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "P": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "PE": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "VPE": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "DC": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "VR": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "Mininet": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "白牌机10G": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "白牌机1G": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "CPE": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "POP": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "CLOUD": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "LEASEDLINE": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "PEA": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              },
+              "PEB": {
+                "font": "FontAwesome",
+                "scale": 1,
+                "color": "#fff",
+                "content": ""
+              }
+            }
+          }
+        },
+        "edges": {
+          "qualitative": {
+            "linkurious_def": {
+              "12": [
+                "#701E30",
+                "#00D745",
+                "#FA5AE3",
+                "#EB9104",
+                "#25623B",
+                "#3C4382",
+                "#E885A2",
+                "#9391ED",
+                "#2F9539",
+                "#C9B528",
+                "#8B2E0B",
+                "#7BA273"
+              ],
+              "15": [
+                "#CE83CA",
+                "#C0DC43",
+                "#67D5AA",
+                "#CE7C32",
+                "#D5B5B5",
+                "#5D8D42",
+                "#88CBD8",
+                "#637F7B",
+                "#C6D396",
+                "#73DA68",
+                "#7E8BC1",
+                "#BF6481",
+                "#9A7A4E",
+                "#CBAF43",
+                "#D16255"
+              ],
+              "20": [
+                "#D6C1B0",
+                "#9DDD5A",
+                "#D06D34",
+                "#D28FD8",
+                "#5D8556",
+                "#71D4C6",
+                "#CDCF79",
+                "#D8A836",
+                "#5E8084",
+                "#738ECD",
+                "#D36565",
+                "#61DC7B",
+                "#9B7168",
+                "#97C4DE",
+                "#A57E42",
+                "#D5DA41",
+                "#D06B97",
+                "#917097",
+                "#689534",
+                "#90D59B"
+              ],
+              "40": [
+                "#5FDAA2",
+                "#DE6FBC",
+                "#D4742C",
+                "#4EA4D4",
+                "#DBE345",
+                "#807757",
+                "#C9DCD0",
+                "#5BA943",
+                "#E39084",
+                "#816B9F",
+                "#DEDA83",
+                "#DDB5D0",
+                "#897121",
+                "#D85573",
+                "#8294E9",
+                "#508A7A",
+                "#92E13E",
+                "#D95B4B",
+                "#816772",
+                "#A75781",
+                "#538245",
+                "#D7C19B",
+                "#DB9B5F",
+                "#ABD4A2",
+                "#8D9F2C",
+                "#67D8C8",
+                "#577C94",
+                "#E8A22E",
+                "#C792DF",
+                "#65E175",
+                "#A26238",
+                "#ABDD7E",
+                "#AFC2DD",
+                "#A65A59",
+                "#DABD3A",
+                "#6DCBDB",
+                "#AEA45A",
+                "#E088AD",
+                "#B09898",
+                "#7793CD"
+              ]
+            },
+            "type": {}
+          },
+          "sequential": {
+            "3": [
+              "#132b43",
+              "#326896",
+              "#54aef3"
+            ],
+            "5": [
+              "#132b43",
+              "#22486b",
+              "#326896",
+              "#438ac3",
+              "#54aef3"
+            ],
+            "7": [
+              "#132b43",
+              "#1d3f5d",
+              "#27547a",
+              "#326896",
+              "#3d7fb5",
+              "#4897d4",
+              "#54aef3"
+            ]
+          }
+        }
+      }
+    },
+    "filters": [],
+    "sourceKey": "dms",
+    "user": {
+      "id": 1443,
+      "username": "dev@tethrnet.com",
+      "email": "dev@tethrnet.com",
+      "source": "local",
+      "preferences": {
+        "pinOnDrag": true
+      }
+    },
+    "userId": 1443,
+    "sandbox": false,
+    "createdAt": "2016-12-08T15:52:01.323Z",
+    "updatedAt": "2016-12-21T11:08:19.541Z",
+    "alternativeIds": {},
+    "mode": "nodelink",
+    "layout": {
+      "incremental": true,
+      "algorithm": "force",
+      "mode": "best"
+    },
+    "geo": {
+      "layers": [
+        "天地图",
+        "Stamen Toner Lines"
+      ]
+    },
+    "right": "owner",
+    "widgetKey": "02293d2f"
+  },
+  "status": 200
+}

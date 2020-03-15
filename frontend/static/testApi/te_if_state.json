@@ -1,0 +1,93 @@
+[
+  {
+    "host": "1-P-SG",
+    "ifname": "Register-Tunnel0",
+    "rx_bps": 0,
+    "rx_pps": 0,
+    "rx_errs_pps": 0,
+    "rx_drops_pps": 0,
+    "tx_bps": 0,
+    "tx_pps": 0,
+    "tx_errs_pps": 0,
+    "tx_drops_pps": 0,
+    "ts": 1578983820
+  },
+  {
+    "host": "1-P-SG",
+    "ifname": "Tunnel1000",
+    "rx_bps": 0,
+    "rx_pps": 0,
+    "rx_errs_pps": 0,
+    "rx_drops_pps": 0,
+    "tx_bps": 0,
+    "tx_pps": 0,
+    "tx_errs_pps": 0,
+    "tx_drops_pps": 0,
+    "ts": 1578983820
+  },
+  {
+    "host": "1-P-SG",
+    "ifname": "Tunnel1003",
+    "rx_bps": 0,
+    "rx_pps": 0,
+    "rx_errs_pps": 0,
+    "rx_drops_pps": 0,
+    "tx_bps": 0,
+    "tx_pps": 0,
+    "tx_errs_pps": 0,
+    "tx_drops_pps": 0,
+    "ts": 1578983820
+  },
+  {
+    "host": "1-P-SG",
+    "ifname": "Tunnel1004",
+    "rx_bps": 0,
+    "rx_pps": 0,
+    "rx_errs_pps": 0,
+    "rx_drops_pps": 0,
+    "tx_bps": 0,
+    "tx_pps": 0,
+    "tx_errs_pps": 0,
+    "tx_drops_pps": 0,
+    "ts": 1578983820
+  },
+  {
+    "host": "1-P-SG",
+    "ifname": "Tunnel1016",
+    "rx_bps": 0,
+    "rx_pps": 0,
+    "rx_errs_pps": 0,
+    "rx_drops_pps": 0,
+    "tx_bps": 0,
+    "tx_pps": 0,
+    "tx_errs_pps": 0,
+    "tx_drops_pps": 0,
+    "ts": 1578983820
+  },
+  {
+    "host": "1-P-SG",
+    "ifname": "Tunnel1019",
+    "rx_bps": 0,
+    "rx_pps": 0,
+    "rx_errs_pps": 0,
+    "rx_drops_pps": 0,
+    "tx_bps": 0,
+    "tx_pps": 0,
+    "tx_errs_pps": 0,
+    "tx_drops_pps": 0,
+    "ts": 1578983820
+  },
+  {
+    "host": "1-P-SG",
+    "ifname": "Tunnel1020",
+    "rx_bps": 0,
+    "rx_pps": 0,
+    "rx_errs_pps": 0,
+    "rx_drops_pps": 0,
+    "tx_bps": 0,
+    "tx_pps": 0,
+    "tx_errs_pps": 0,
+    "tx_drops_pps": 0,
+    "ts": 1578983820
+  }
+]

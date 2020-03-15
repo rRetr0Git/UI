@@ -1,0 +1,137 @@
+{
+  "page": 1,
+  "records": 3,
+  "results": {
+    "item": [
+      {
+        "id": "b9652a55-c29c-4459-90f6-39860a66d47f",
+        "name": "Tunnel1003",
+        "pathId": "1-P-SG:HundredGigE1/1/2:1-P-DXC:HundredGigE1/1/6>$default",
+        "type": "AUTO",
+        "serviceClass": "",
+        "bfdInterval": 100,
+        "bfdMultiplier": 3,
+        "delay": 0,
+        "jitter": 0,
+        "loss": 0,
+        "autoTunnel": true,
+        "shutdown": false,
+        "shortestPath": true,
+        "destination": "2.2.2.3",
+        "cfgStatus": "COMPLETED",
+        "cfgAction": "add",
+        "operStatus": "UP",
+        "srcPe": "1-P-SG",
+        "dstPe": "1-P-DXC",
+        "teTunnelPaths": [
+          {
+            "name": "tp_Tunnel1003_p",
+            "preference": 10,
+            "pathOptionName": "p",
+            "paths": [
+              {
+                "hopIndex": 0,
+                "nextAddress": "11.1.3.2",
+                "nextLabel": 10001,
+                "peId": "1-P-DXC",
+                "ifName": "HundredGigE1/1/6"
+              }
+            ]
+          }
+        ],
+        "connectedFlows": [
+          "2-PE-SG:1.1.1.1 -> 2-PE-DXC:1.1.1.3"
+        ]
+      },
+      {
+        "id": "cd67a5b1-6144-440b-84d8-cf77848d776f",
+        "name": "Tunnel1000",
+        "pathId": "1-P-SG:HundredGigE1/1/1:1-P-GZ:HundredGigE1/1/1>$default",
+        "type": "AUTO",
+        "serviceClass": "",
+        "bfdInterval": 100,
+        "bfdMultiplier": 3,
+        "delay": 1,
+        "jitter": 0,
+        "loss": 0,
+        "autoTunnel": true,
+        "shutdown": false,
+        "shortestPath": true,
+        "destination": "2.2.2.2",
+        "cfgStatus": "COMPLETED",
+        "cfgAction": "add",
+        "operStatus": "UP",
+        "srcPe": "1-P-SG",
+        "dstPe": "1-P-GZ",
+        "teTunnelPaths": [
+          {
+            "name": "tp_Tunnel1000_p",
+            "preference": 10,
+            "pathOptionName": "p",
+            "paths": [
+              {
+                "hopIndex": 0,
+                "nextAddress": "11.3.1.1",
+                "nextLabel": 10000,
+                "peId": "1-P-GZ",
+                "ifName": "HundredGigE1/1/1"
+              }
+            ]
+          }
+        ],
+        "connectedFlows": [
+          "2-PE-SG:1.1.1.1 -> 2-PE-GZ:1.1.1.2"
+        ]
+      },
+      {
+        "id": "b5de3852-1c0f-4d34-b2f0-9e8d0ea0f590",
+        "name": "Tunnel1004",
+        "pathId": "1-P-SG:HundredGigE1/1/2:1-P-DXC:HundredGigE1/1/6>1-P-DXC:HundredGigE1/1/8:1-P-GZ:HundredGigE1/1/2>$default",
+        "type": "AUTO",
+        "serviceClass": "",
+        "bfdInterval": 100,
+        "bfdMultiplier": 3,
+        "delay": 0,
+        "jitter": 0,
+        "loss": 0,
+        "autoTunnel": true,
+        "shutdown": false,
+        "shortestPath": true,
+        "destination": "2.2.2.2",
+        "cfgStatus": "COMPLETED",
+        "cfgAction": "add",
+        "operStatus": "UP",
+        "srcPe": "1-P-SG",
+        "dstPe": "1-P-GZ",
+        "teTunnelPaths": [
+          {
+            "name": "tp_Tunnel1004_p",
+            "preference": 10,
+            "pathOptionName": "p",
+            "paths": [
+              {
+                "hopIndex": 0,
+                "nextAddress": "11.1.3.2",
+                "nextLabel": 10001,
+                "peId": "1-P-DXC",
+                "ifName": "HundredGigE1/1/6"
+              },
+              {
+                "hopIndex": 1,
+                "nextAddress": "11.2.1.1",
+                "nextLabel": 10000,
+                "peId": "1-P-GZ",
+                "ifName": "HundredGigE1/1/2"
+              }
+            ]
+          }
+        ],
+        "connectedFlows": [
+          "2-PE-SG:1.1.1.1 -> 2-PE-GZ:1.1.1.2"
+        ]
+      }
+    ]
+  },
+  "rows": 3,
+  "total": 1
+}

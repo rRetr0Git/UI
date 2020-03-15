@@ -7,12 +7,7 @@
       text-color="#fff"
       active-text-color="#ffd04b">
       <el-menu-item index="1" @click="toView1">View 1</el-menu-item>
-      <el-submenu index="2">
-        <template slot="title">View 2</template>
-        <el-menu-item index="2-1">Sub 1</el-menu-item>
-        <el-menu-item index="2-2">Sub 2</el-menu-item>
-        <el-menu-item index="2-3">Sub 3</el-menu-item>
-      </el-submenu>
+      <el-menu-item index="2" @click="toView2">View 2</el-menu-item>
       <el-menu-item index="3" @click="toView3">View 3</el-menu-item>
       <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">View 4</a></el-menu-item>
     </el-menu>
@@ -31,6 +26,9 @@ export default {
   methods: {
     toView1(){
       this.$router.push({ path: '/view1' })
+    },
+    toView2(){
+      this.$router.push({ path: '/view2' })
     },
     toView3(){
       this.$router.push({ path: '/view3' })
