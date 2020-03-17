@@ -32,10 +32,11 @@ export default {
                 barType.push(e.properties.name)
                 geoCoordMap[e.properties.name] = e.properties.cp
             })
+            barType=["1-P-DXC:10.1.1.1 - 深圳", "1-P-GZ:10.1.1.21 - 广州", "1-P-SG:10.1.1.31 - 韶关"]
+            geoCoordMap={"1-P-DXC:10.1.1.1 - 深圳": [114.057868, 22.543099], "1-P-GZ:10.1.1.21 - 广州": [113.264434, 23.129162], "1-P-SG:10.1.1.31 - 韶关": [113.597522, 24.810403]}
             // 数据梯度或类别
             var dataType = ["总览", "节点信息", "通路信息", "特殊信息"]
             var colorType = ['#00ffea', '#00ff8c', '#f9ff00', '#ff5500']
-
             var option = {
                 // 时间轴样式
                 backgroundColor: '#2c343c',
@@ -151,7 +152,6 @@ export default {
                     }])
                 })
 
-
                 // change options
                 option.options.push({
                     title: [{
@@ -161,7 +161,7 @@ export default {
                         top: '2%',
                         textStyle: {
                             color: '#fff',
-                            fontSize: 22
+                            fontSize: 12
                         }
                     }],
                     xAxis: {
@@ -297,7 +297,6 @@ export default {
                     ]
                 })
             })
-
 
             myCharts.setOption(option)
 
