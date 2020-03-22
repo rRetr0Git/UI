@@ -25,13 +25,28 @@ export default {
   },
   methods: {
     toView1(){
-      this.$router.push({ path: '/view1' })
+      if(location.pathname==='/view1'){
+        location.reload();
+      }
+      else{
+        this.$router.push({ path: '/view1' })
+      }
     },
     toView2(){
-      this.$router.push({ path: '/view2' })
+      if(location.pathname==='/view2'){
+        location.reload();
+      }
+      else{
+        this.$router.push({ path: '/view2' })
+      }
     },
     toView3(){
-      this.$router.push({ path: '/view3' })
+      if(location.pathname==='/view3'){
+        location.reload();
+      }
+      else{
+        this.$router.push({ path: '/view3' })
+      }
     }
   }
 }

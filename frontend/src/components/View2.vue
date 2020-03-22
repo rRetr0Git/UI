@@ -1,5 +1,5 @@
 <template>
-    <div id="myCharts" ref="myCharts"></div>
+        <div id="myCharts" ref="myCharts"></div>
 </template>
 
 <script>
@@ -22,23 +22,33 @@ export default {
             _this.$echarts.registerMap('', geoJson); //注册 地图
 
             // 各区中心点经纬度
-            var geoCoordMap = {};
-
+            var geoCoordMap = {}
+            var fullName = {}
+            var status = {}
+            var categories = {}
             // 柱状图纵坐标
             var barType = []
+            var partMap = {}
+            var partMapLink = {}
             var geoInfoUrl = "../static/testApi/graph.json";
             $.getJSON(geoInfoUrl, function(geo) {
               var geoData = JSON.parse(JSON.stringify(geo))
               geoData.visualization.nodes.forEach(e => {
                   if(e.categories.toString()===(["CE"]).toString()) return;
                   if(e.categories.toString()===(["VPE"]).toString()) return;
-                  barType.push(e.data.名称)
-                  geoCoordMap[e.data.名称] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
+                  let left = e.data.名称.lastIndexOf("\:")
+                  let right = e.data.名称.lastIndexOf("\-")
+                  let name = e.data.名称.substring(0,left)
+                  barType.push(name)
+                  geoCoordMap[name] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
+                  fullName[name] = e.data.名称
+                  status[name] = e.data.状态
+                  categories[name] = e.categories[0]
               })
             })
 
             // 数据梯度或类别
-            var dataType = ["总览", "节点信息", "通路信息", "特殊信息"]
+            var dataType = ["总览"]
             var colorType = ['#00ffea', '#00ff8c', '#f9ff00', '#ff5500']
 
             var option = {
@@ -80,7 +90,17 @@ export default {
                     title: {
                         subtext: ''
                     },
+
                     tooltip: {
+                      trigger: 'item',
+                      formatter:function (params) {
+                          var res = '';
+                          if(params.componentSubType==="lines") return;
+                          res+=fullName[params['data'].name]+'</br>';
+                          res+='状态:'+status[params['data'].name]+'</br>';
+                          res+='类别:'+categories[params['data'].name]+'</br>';
+                          return res;
+                      }
                     },
                     calculable: true,
                     grid: {
@@ -94,7 +114,7 @@ export default {
                         mapType: 'shanghai',
                         roam: true,
                         top: "0%",
-                        left: "10%",
+
                         label: {
                             normal: {
                                 show: false
@@ -133,7 +153,7 @@ export default {
                 var mapFlyLinesData = [];
 
                 barType.forEach(res => {
-                    var value = _random(100, 800);
+                    var value = _random(400, 800);
                     barData.push({
                         'name': res,
                         'value': value
@@ -145,74 +165,38 @@ export default {
                         'name': res,
                         'value': point
                     })
+                })
 
-                    var endPoint = barType[_random(0, barType.length - 1)]
-
-                    if (endPoint === res) return;
-                    mapFlyLinesData.push([{
-                        coord: geoCoordMap[res]
-                    }, {
-                        coord: geoCoordMap[endPoint]
-                    }])
+                $.getJSON(geoInfoUrl, function(geo) {
+                      var geoData = JSON.parse(JSON.stringify(geo))
+                      geoData.visualization.edges.forEach(e => {
+                          if(e.type==="PEB_PEB" || e.type=='PEA_PEB'){}
+                          else{
+                            if(e.target in partMap){
+                                partMap[e.target].push({name:e.source})
+                                partMapLink[e.target].push({source:e.source,target:e.target,lineStyle:{width: 5,curveness: 0.2}})
+                            }
+                            else{
+                                partMap[e.target]=[]
+                                partMap[e.target].push({name:e.source})
+                                partMap[e.target].push({name:e.target})
+                                partMapLink[e.target]=[]
+                                partMapLink[e.target].push({source:e.source,target:e.target,lineStyle:{width: 5,curveness: 0.2}})
+                            }
+                          }
+                          if(e.type==="VPE_PEA") return;
+                          if(e.type==="CE_PEA") return;
+                          if(e.type==="CE_VPE") return;
+                          mapFlyLinesData.push([{
+                              coord: geoCoordMap[e.source]
+                          }, {
+                              coord: geoCoordMap[e.target]
+                          }])
+                      })
                 })
 
                 // change options
                 option.options.push({
-                    title: [{
-                        id: 'title1',
-                        text: e + "统计",
-                        right: '10%',
-                        top: '2%',
-                        textStyle: {
-                            color: '#fff',
-                            fontSize: 12
-                        }
-                    }],
-                    xAxis: {
-                        type: 'value',
-                        scale: true,
-                        position: 'top',
-                        min: 0,
-                        boundaryGap: false,
-                        splitLine: {
-                            show: false
-                        },
-                        axisLine: {
-                            show: false
-                        },
-                        axisTick: {
-                            show: false
-                        },
-                        axisLabel: {
-                            margin: 2,
-                            textStyle: {
-                                color: '#aaa'
-                            }
-                        },
-                    },
-                    yAxis: {
-                        type: 'category',
-                        nameGap: 16,
-                        axisLine: {
-                            show: true,
-                            lineStyle: {
-                                color: '#ddd'
-                            }
-                        },
-                        axisTick: {
-                            show: false,
-                            lineStyle: {
-                                color: '#ddd'
-                            }
-                        },
-                        axisLabel: {
-                            interval: 0,
-                            textStyle: {
-                                color: '#ddd'
-                            }
-                        },
-                        data: barType
-                    },
                     series: [
                         // scatter 数据映射
                         {
@@ -220,9 +204,7 @@ export default {
                             type: 'scatter',
                             coordinateSystem: 'geo',
                             data: mapData,
-                            symbolSize: function(val) {
-                                return val[2] / 30;
-                            },
+                            symbolSize: 20,
                             itemStyle: {
                                 normal: {
                                     color: colorType[i]
@@ -234,9 +216,7 @@ export default {
                             type: 'effectScatter',
                             coordinateSystem: 'geo',
                             data: mapData,
-                            symbolSize: function(val) {
-                                return val[2] / 30;
-                            },
+                            symbolSize: 20,
                             showEffectOn: 'render',
                             rippleEffect: {
                                 brushType: 'stroke'
@@ -278,25 +258,6 @@ export default {
                                 }
                             },
                             data: mapFlyLinesData
-                        },
-                        //柱状图
-                        {
-                            zlevel: 1.5,
-                            type: 'bar',
-                            symbol: 'none',
-                            itemStyle: {
-                                normal: {
-                                    color: colorType[i],
-                                    label: {
-                                        show: true,
-                                        position: 'right',
-                                        textStyle: {
-                                            color: 'white'
-                                        }
-                                    }
-                                }
-                            },
-                            data: barData
                         }
                     ]
                 })
@@ -308,8 +269,67 @@ export default {
             window.onresize = function(){
                 myCharts.resize();
             }
+
             myCharts.on('click', function (params) {
                 console.log(params);
+                if(params.componentSubType=='effectScatter'){
+                    console.log(partMap[params.data.name])
+                    console.log(partMapLink[params.data.name])
+                    let option={
+                      color: ['#f44'],
+                      tooltip : {
+                        trigger: 'axis',
+                        axisPointer : {
+                          type : 'shadow'
+                        }
+                      },
+                      //
+                      toolbox: {
+                        itemSize:50,
+                        left:200,
+                        top:50,
+                        feature: {
+                            myTool1: {
+                                show: true,
+                                title: 'Return',
+                                icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                                onclick: function (){
+                                    location.reload();
+                                }
+                            }
+                        }
+                      },
+                      title: {
+                          text: 'Graph 简单示例'
+                      },
+                      animationDurationUpdate: 1500,
+                      animationEasingUpdate: 'quinticInOut',
+                      series: [
+                          {
+                              type: 'graph',
+                              layout: 'circular',
+                              symbolSize: 50,
+                              roam: true,
+                              label: {
+                                  show: true
+                              },
+                              edgeSymbol: ['circle', 'arrow'],
+                              edgeSymbolSize: [4, 10],
+                              edgeLabel: {
+                                  fontSize: 20
+                              },
+                              data: partMap[params.data.name],
+                              links: partMapLink[params.data.name],
+                          }
+                      ],
+                      lineStyle: {
+                          color: 'source',
+                          curveness: 2
+                      }
+                    }
+                    myCharts.resize();
+                    myCharts.setOption(option,{notMerge:true,lazyUpdate:false});
+                }
             });
         })
 
@@ -343,4 +363,5 @@ a {
     height: 900px;
     margin: 0 auto;
   }
+
 </style>
