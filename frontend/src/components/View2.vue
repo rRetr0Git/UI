@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div id="bar" ref="bar"></div>
         <div id="myCharts" ref="myCharts"></div>
     </div>
 </template>
@@ -20,6 +19,21 @@ export default {
         // 指定图表的配置项和数据
         var uploadedDataURL = "../static/json/data-1482909784051-BJgwuy-Sl.json";
         var _this = this
+
+        var weatherIcons = {
+            'Sunny': '../static/return.png',
+            'Cloudy': '../static/return.png',
+            'Showers': '../static/return.png',
+        };
+
+        var seriesLabel = {
+            normal: {
+                show: true,
+                textBorderColor: '#ccc',
+                textBorderWidth: 2
+            }
+        };
+
         $.ajaxSetup({async:false});
         $.getJSON(uploadedDataURL, function(geoJson) {
             _this.$echarts.registerMap('', geoJson); //注册 地图
@@ -90,15 +104,67 @@ export default {
                             }
                         }
                     },
-                    title: {
-                        subtext: ''
+                    title: [
+                        {
+                            text:'Overview',
+                            left:'12%',
+                            top:'3%',                        }
+                    ],
+                    xAxis: {
+                        type: 'value',
+                        name: 'Number',
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
                     },
-
+                    yAxis: {
+                        type: 'category',
+                        name: 'Category',
+                        inverse: true,
+                        data: ['Tenant', 'POP', 'CPE','VPE','PE'],
+                        axisLabel: {
+                            formatter: function (value) {
+                                return '{' + value + '| }\n{value|' + value + '}';
+                            },
+                            margin: 20,
+                            rich: {
+                                value: {
+                                    lineHeight: 30,
+                                    align: 'center'
+                                },
+                                Sunny: {
+                                    height: 40,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: weatherIcons.Sunny
+                                    }
+                                },
+                                Cloudy: {
+                                    height: 40,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: weatherIcons.Cloudy
+                                    }
+                                },
+                                Showers: {
+                                    height: 40,
+                                    align: 'center',
+                                    backgroundColor: {
+                                        image: weatherIcons.Showers
+                                    }
+                                }
+                            }
+                        }
+                    },
                     tooltip: {
                       trigger: 'item',
                       formatter:function (params) {
                           var res = '';
                           if(params.componentSubType==="lines"||params.componentSubType==="graph") return;
+                          if(params.componentSubType==="bar"){
+                            res+=params.name+'数:'+params.data+'</br>';
+                            return res;
+                          }
                           res+=fullName[params['data'].name]+'</br>';
                           res+='状态:'+status[params['data'].name]+'</br>';
                           res+='类别:'+categories[params['data'].name]+'</br>';
@@ -110,17 +176,27 @@ export default {
                     },
                     calculable: true,
                     grid: {
-                        top: 80,
-                        bottom: 80,
-                        right: '3%',
-                        width: '20%'
+                          x:"7%",
+                          top: 80,
+                          bottom: 80,
+                          right: '3%',
+                          height: "25%",
+                          width: '15%'
+                    },
+                    series: {
+                            name: 'Current',
+                            xAxisIndex:0,
+                            yAxisIndex:0,
+                            type: 'bar',
+                            data: [5, 7, 3,6,2],
+                            label: seriesLabel
                     },
                     geo: {
                         type: 'map',
-                        mapType: 'shanghai',
-                        roam: true,
+                        mapType: 'guangdong',
+                        roam: false,
                         top: "0%",
-
+                        left: "30%",
                         label: {
                             normal: {
                                 show: false
@@ -201,6 +277,17 @@ export default {
                       })
                 })
 
+                var countInfoUrl = "../static/testApi/overview.json";
+                var overviewData = {}
+                $.getJSON(countInfoUrl, function(count) {
+                      var countData = JSON.parse(JSON.stringify(count))
+                      overviewData.cpeCount = countData['cpeCount']
+                      overviewData.vpeCount = countData['vpeCount']
+                      overviewData.peCount = countData['peCount']
+                      overviewData.popCount = countData['popCount']
+                      overviewData.tenantCount = countData['tenantCount']
+                })
+
                 // change options
                 option.options.push({
 
@@ -265,6 +352,14 @@ export default {
                                 }
                             },
                             data: mapFlyLinesData
+                        },
+                        {
+                            name: 'Current',
+                            xAxisIndex:0,
+                            yAxisIndex:0,
+                            type: 'bar',
+                            data: [overviewData.tenantCount,overviewData.popCount,overviewData.cpeCount,overviewData.vpeCount,overviewData.peCount],
+                            label: seriesLabel
                         }
                     ]
                 })
@@ -339,107 +434,8 @@ export default {
                     myCharts.resize();
                     myCharts.setOption(option,{notMerge:true,lazyUpdate:false});
                 }
-                else{
-                    alert('无可展开拓扑')
-                }
             });
         })
-
-
-
-        var weatherIcons = {
-            'Sunny': '../static/return.png',
-            'Cloudy': '../static/return.png',
-            'Showers': '../static/return.png',
-        };
-
-        var seriesLabel = {
-            normal: {
-                show: true,
-                textBorderColor: '#ccc',
-                textBorderWidth: 2
-            }
-        };
-        const  myBar = this.$echarts.init(this.$refs.bar,'dark');
-        var option = {
-            title: {
-                text: 'Overview'
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'shadow'
-                }
-            },
-            legend: {
-                data: ['Current']
-            },
-            grid: {
-                left: 100
-            },
-            toolbox: {
-                show: true,
-                feature: {
-                    saveAsImage: {}
-                }
-            },
-            xAxis: {
-                type: 'value',
-                name: 'Days',
-                axisLabel: {
-                    formatter: '{value}'
-                }
-            },
-            yAxis: {
-                type: 'category',
-                inverse: true,
-                data: ['Tenant', 'POP', 'CPE','VPE','PE'],
-                axisLabel: {
-                    formatter: function (value) {
-                        return '{' + value + '| }\n{value|' + value + '}';
-                    },
-                    margin: 20,
-                    rich: {
-                        value: {
-                            lineHeight: 30,
-                            align: 'center'
-                        },
-                        Sunny: {
-                            height: 40,
-                            align: 'center',
-                            backgroundColor: {
-                                image: weatherIcons.Sunny
-                            }
-                        },
-                        Cloudy: {
-                            height: 40,
-                            align: 'center',
-                            backgroundColor: {
-                                image: weatherIcons.Cloudy
-                            }
-                        },
-                        Showers: {
-                            height: 40,
-                            align: 'center',
-                            backgroundColor: {
-                                image: weatherIcons.Showers
-                            }
-                        }
-                    }
-                }
-            },
-            series: [
-                {
-                    name: 'Current',
-                    type: 'bar',
-                    data: [5, 7, 3,6,2],
-                    label: seriesLabel
-                }
-            ]
-        };
-
-        myBar.setOption(option);
-
         function _random(a, b) {
             return Math.round(Math.random() * Math.abs(b - a) + a)
         }
@@ -467,12 +463,6 @@ a {
   #myCharts{
     width: 100%;
     height: 900px;
-    margin: 0 auto;
-  }
-
-  #bar{
-    width: 25%;
-    height: 300px;
     margin: 0 auto;
   }
 
