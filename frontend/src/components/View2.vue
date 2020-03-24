@@ -1,5 +1,8 @@
 <template>
+    <div>
+        <div id="bar" ref="bar"></div>
         <div id="myCharts" ref="myCharts"></div>
+    </div>
 </template>
 
 <script>
@@ -95,10 +98,13 @@ export default {
                       trigger: 'item',
                       formatter:function (params) {
                           var res = '';
-                          if(params.componentSubType==="lines") return;
+                          if(params.componentSubType==="lines"||params.componentSubType==="graph") return;
                           res+=fullName[params['data'].name]+'</br>';
                           res+='状态:'+status[params['data'].name]+'</br>';
                           res+='类别:'+categories[params['data'].name]+'</br>';
+                          if(params.data.name in partMap){
+                              res+='点击查看下层拓扑'+'</br>';
+                          }
                           return res;
                       }
                     },
@@ -173,15 +179,15 @@ export default {
                           if(e.type==="PEB_PEB" || e.type=='PEA_PEB'){}
                           else{
                             if(e.target in partMap){
-                                partMap[e.target].push({name:e.source})
-                                partMapLink[e.target].push({source:e.source,target:e.target,lineStyle:{width: 5,curveness: 0.2}})
+                                partMap[e.target].push({name:e.source,itemStyle:{color: '#00ffea'}})
+                                partMapLink[e.target].push({source:e.source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                             }
                             else{
                                 partMap[e.target]=[]
-                                partMap[e.target].push({name:e.source})
-                                partMap[e.target].push({name:e.target})
+                                partMap[e.target].push({name:e.source,itemStyle:{color: '#00ffea'}})
+                                partMap[e.target].push({name:e.target,itemStyle:{color: '#00ffea'}})
                                 partMapLink[e.target]=[]
-                                partMapLink[e.target].push({source:e.source,target:e.target,lineStyle:{width: 5,curveness: 0.2}})
+                                partMapLink[e.target].push({source:e.source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                             }
                           }
                           if(e.type==="VPE_PEA") return;
@@ -197,6 +203,7 @@ export default {
 
                 // change options
                 option.options.push({
+
                     series: [
                         // scatter 数据映射
                         {
@@ -272,9 +279,9 @@ export default {
 
             myCharts.on('click', function (params) {
                 console.log(params);
-                if(params.componentSubType=='effectScatter'){
-                    console.log(partMap[params.data.name])
-                    console.log(partMapLink[params.data.name])
+                if(params.componentSubType=='effectScatter'&&params.data.name in partMap){
+                    //console.log(partMap[params.data.name])
+                    //console.log(partMapLink[params.data.name])
                     let option={
                       color: ['#f44'],
                       tooltip : {
@@ -292,7 +299,7 @@ export default {
                             myTool1: {
                                 show: true,
                                 title: 'Return',
-                                icon: 'path://M432.45,595.444c0,2.177-4.661,6.82-11.305,6.82c-6.475,0-11.306-4.567-11.306-6.82s4.852-6.812,11.306-6.812C427.841,588.632,432.452,593.191,432.45,595.444L432.45,595.444z M421.155,589.876c-3.009,0-5.448,2.495-5.448,5.572s2.439,5.572,5.448,5.572c3.01,0,5.449-2.495,5.449-5.572C426.604,592.371,424.165,589.876,421.155,589.876L421.155,589.876z M421.146,591.891c-1.916,0-3.47,1.589-3.47,3.549c0,1.959,1.554,3.548,3.47,3.548s3.469-1.589,3.469-3.548C424.614,593.479,423.062,591.891,421.146,591.891L421.146,591.891zM421.146,591.891',
+                                icon: 'image://../static/return.png',
                                 onclick: function (){
                                     location.reload();
                                 }
@@ -300,7 +307,7 @@ export default {
                         }
                       },
                       title: {
-                          text: 'Graph 简单示例'
+
                       },
                       animationDurationUpdate: 1500,
                       animationEasingUpdate: 'quinticInOut',
@@ -311,7 +318,9 @@ export default {
                               symbolSize: 50,
                               roam: true,
                               label: {
-                                  show: true
+                                  show: true,
+                                  position:'top',
+                                  fontStyle:'oblique'
                               },
                               edgeSymbol: ['circle', 'arrow'],
                               edgeSymbolSize: [4, 10],
@@ -330,9 +339,106 @@ export default {
                     myCharts.resize();
                     myCharts.setOption(option,{notMerge:true,lazyUpdate:false});
                 }
+                else{
+                    alert('无可展开拓扑')
+                }
             });
         })
 
+
+
+        var weatherIcons = {
+            'Sunny': '../static/return.png',
+            'Cloudy': '../static/return.png',
+            'Showers': '../static/return.png',
+        };
+
+        var seriesLabel = {
+            normal: {
+                show: true,
+                textBorderColor: '#ccc',
+                textBorderWidth: 2
+            }
+        };
+        const  myBar = this.$echarts.init(this.$refs.bar,'dark');
+        var option = {
+            title: {
+                text: 'Overview'
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow'
+                }
+            },
+            legend: {
+                data: ['Current']
+            },
+            grid: {
+                left: 100
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'value',
+                name: 'Days',
+                axisLabel: {
+                    formatter: '{value}'
+                }
+            },
+            yAxis: {
+                type: 'category',
+                inverse: true,
+                data: ['Tenant', 'POP', 'CPE','VPE','PE'],
+                axisLabel: {
+                    formatter: function (value) {
+                        return '{' + value + '| }\n{value|' + value + '}';
+                    },
+                    margin: 20,
+                    rich: {
+                        value: {
+                            lineHeight: 30,
+                            align: 'center'
+                        },
+                        Sunny: {
+                            height: 40,
+                            align: 'center',
+                            backgroundColor: {
+                                image: weatherIcons.Sunny
+                            }
+                        },
+                        Cloudy: {
+                            height: 40,
+                            align: 'center',
+                            backgroundColor: {
+                                image: weatherIcons.Cloudy
+                            }
+                        },
+                        Showers: {
+                            height: 40,
+                            align: 'center',
+                            backgroundColor: {
+                                image: weatherIcons.Showers
+                            }
+                        }
+                    }
+                }
+            },
+            series: [
+                {
+                    name: 'Current',
+                    type: 'bar',
+                    data: [5, 7, 3,6,2],
+                    label: seriesLabel
+                }
+            ]
+        };
+
+        myBar.setOption(option);
 
         function _random(a, b) {
             return Math.round(Math.random() * Math.abs(b - a) + a)
@@ -361,6 +467,12 @@ a {
   #myCharts{
     width: 100%;
     height: 900px;
+    margin: 0 auto;
+  }
+
+  #bar{
+    width: 25%;
+    height: 300px;
     margin: 0 auto;
   }
 
