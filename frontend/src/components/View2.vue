@@ -35,6 +35,37 @@ export default {
         };
 
         $.ajaxSetup({async:false});
+
+        var countInfoUrl = "../static/testApi/overview.json";
+        var overviewData = {}
+        $.getJSON(countInfoUrl, function(count) {
+            var countData = JSON.parse(JSON.stringify(count))
+            overviewData.cpeCount = countData['cpeCount']
+            overviewData.vpeCount = countData['vpeCount']
+            overviewData.peCount = countData['peCount']
+            overviewData.popCount = countData['popCount']
+            overviewData.tenantCount = countData['tenantCount']
+        })
+
+        var topTenInfoUrl = "../static/testApi/top_10_if.json";
+        var topTenRxData = {host:[],ifname:[],usage:[]}
+        var topTenTxData = {host:[],ifname:[],usage:[]}
+        $.getJSON(topTenInfoUrl, function(topTen) {
+            var topTenData = JSON.parse(JSON.stringify(topTen))
+            topTenData.rx.forEach(e => {
+                topTenRxData.host.push(e.host)
+                topTenRxData.ifname.push(e.ifname)
+                topTenRxData.usage.push(e.usage)
+            })
+
+            topTenData.tx.forEach(e => {
+                topTenTxData.host.push(e.host)
+                topTenTxData.ifname.push(e.ifname)
+                topTenTxData.usage.push(e.usage)
+            })
+        })
+
+
         $.getJSON(uploadedDataURL, function(geoJson) {
             _this.$echarts.registerMap('', geoJson); //注册 地图
 
@@ -108,16 +139,24 @@ export default {
                         {
                             text:'Overview',
                             left:'12%',
-                            top:'3%',                        }
+                            top:'3%',
+                        }
                     ],
-                    xAxis: {
+                    xAxis: [{
                         type: 'value',
                         name: 'Number',
                         axisLabel: {
                             formatter: '{value}'
                         }
-                    },
-                    yAxis: {
+                    },{
+                        gridIndex:1,
+                        type: 'value',
+                        name: 'Number',
+                        axisLabel: {
+                            formatter: '{value}'
+                        }
+                    }],
+                    yAxis: [{
                         type: 'category',
                         name: 'Category',
                         inverse: true,
@@ -155,14 +194,33 @@ export default {
                                 }
                             }
                         }
-                    },
+                    },{
+                        gridIndex: 1,
+                        type: 'category',
+                        name: 'Name',
+                        data: topTenRxData.host,
+                        inverse: true,
+                        axisLabel: {
+                            interval: 0,
+                            rotate: 30
+                        },
+                        splitLine: {
+                            show: false
+                        }
+                    }],
                     tooltip: {
                       trigger: 'item',
                       formatter:function (params) {
                           var res = '';
                           if(params.componentSubType==="lines"||params.componentSubType==="graph") return;
-                          if(params.componentSubType==="bar"){
+                          if(params.componentSubType==="bar"&&params.componentIndex===3){
                             res+=params.name+'数:'+params.data+'</br>';
+                            return res;
+                          }
+                          if(params.componentSubType==="bar"&&params.componentIndex==4){
+                            res+=topTenRxData.host[params.dataIndex]+'</br>';
+                            res+=topTenRxData.ifname[params.dataIndex]+'</br>';
+                            res+=topTenRxData.usage[params.dataIndex]+'</br>';
                             return res;
                           }
                           res+=fullName[params['data'].name]+'</br>';
@@ -175,22 +233,21 @@ export default {
                       }
                     },
                     calculable: true,
-                    grid: {
-                          x:"7%",
-                          top: 80,
+                    grid: [{
+                          x:"5%",
+                          top: '10%',
                           bottom: 80,
                           right: '3%',
                           height: "25%",
                           width: '15%'
-                    },
-                    series: {
-                            name: 'Current',
-                            xAxisIndex:0,
-                            yAxisIndex:0,
-                            type: 'bar',
-                            data: [5, 7, 3,6,2],
-                            label: seriesLabel
-                    },
+                    },{
+                          x:"5%",
+                          top: '55%',
+                          bottom: 80,
+                          right: '3%',
+                          height: "35%",
+                          width: '15%'
+                    }],
                     geo: {
                         type: 'map',
                         mapType: 'guangdong',
@@ -277,16 +334,6 @@ export default {
                       })
                 })
 
-                var countInfoUrl = "../static/testApi/overview.json";
-                var overviewData = {}
-                $.getJSON(countInfoUrl, function(count) {
-                      var countData = JSON.parse(JSON.stringify(count))
-                      overviewData.cpeCount = countData['cpeCount']
-                      overviewData.vpeCount = countData['vpeCount']
-                      overviewData.peCount = countData['peCount']
-                      overviewData.popCount = countData['popCount']
-                      overviewData.tenantCount = countData['tenantCount']
-                })
 
                 // change options
                 option.options.push({
@@ -354,12 +401,17 @@ export default {
                             data: mapFlyLinesData
                         },
                         {
-                            name: 'Current',
                             xAxisIndex:0,
                             yAxisIndex:0,
                             type: 'bar',
                             data: [overviewData.tenantCount,overviewData.popCount,overviewData.cpeCount,overviewData.vpeCount,overviewData.peCount],
                             label: seriesLabel
+                        },
+                        {
+                            xAxisIndex:1,
+                            yAxisIndex:1,
+                            type: 'bar',
+                            data: topTenRxData.usage,
                         }
                     ]
                 })
