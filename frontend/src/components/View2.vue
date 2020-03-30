@@ -198,7 +198,7 @@ export default {
                         gridIndex: 1,
                         type: 'category',
                         name: 'Name',
-                        data: topTenRxData.host,
+                        data: ['Top1','Top2','Top3','Top4','Top5','Top6','Top7','Top8','Top9','Top10'],
                         inverse: true,
                         axisLabel: {
                             interval: 0,
@@ -208,6 +208,11 @@ export default {
                             show: false
                         }
                     }],
+                    legend:{
+                        top:'50%',
+                        left:'8%',
+                        data:['RX','TX']
+                    },
                     tooltip: {
                       trigger: 'item',
                       formatter:function (params) {
@@ -221,6 +226,12 @@ export default {
                             res+=topTenRxData.host[params.dataIndex]+'</br>';
                             res+=topTenRxData.ifname[params.dataIndex]+'</br>';
                             res+=topTenRxData.usage[params.dataIndex]+'</br>';
+                            return res;
+                          }
+                          if(params.componentSubType==="bar"&&params.componentIndex==5){
+                            res+=topTenTxData.host[params.dataIndex]+'</br>';
+                            res+=topTenTxData.ifname[params.dataIndex]+'</br>';
+                            res+=topTenTxData.usage[params.dataIndex]+'</br>';
                             return res;
                           }
                           res+=fullName[params['data'].name]+'</br>';
@@ -408,11 +419,19 @@ export default {
                             label: seriesLabel
                         },
                         {
+                            name:'RX',
                             xAxisIndex:1,
                             yAxisIndex:1,
                             type: 'bar',
                             data: topTenRxData.usage,
-                        }
+                        },
+                        {
+                            name:'TX',
+                            xAxisIndex:1,
+                            yAxisIndex:1,
+                            type: 'bar',
+                            data: topTenTxData.usage,
+                        },
                     ]
                 })
             })
