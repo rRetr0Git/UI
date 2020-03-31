@@ -1,7 +1,7 @@
 {
-  "cpeCount": 0,
-  "vpeCount": 0,
+  "cpeCount": 15,
+  "vpeCount": 8,
   "peCount": 19,
   "popCount": 9,
-  "tenantCount": 2
+  "tenantCount": 20
 }
