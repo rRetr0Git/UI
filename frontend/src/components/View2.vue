@@ -65,6 +65,14 @@ export default {
             })
         })
 
+        var peInfoUrl = "../static/testApi/pe.json";
+        var peAllData = {}
+        $.getJSON(peInfoUrl, function(pe) {
+            var peData = JSON.parse(JSON.stringify(pe))
+            pe.forEach(e => {
+                peAllData[e.name] = e
+            })
+        })
 
         $.getJSON(uploadedDataURL, function(geoJson) {
             _this.$echarts.registerMap('', geoJson); //注册 地图
@@ -215,6 +223,7 @@ export default {
                     },
                     tooltip: {
                       trigger: 'item',
+                      enterable:true,
                       formatter:function (params) {
                           var res = '';
                           if(params.componentSubType==="lines"||params.componentSubType==="graph") return;
@@ -234,12 +243,7 @@ export default {
                             res+=topTenTxData.usage[params.dataIndex]+'</br>';
                             return res;
                           }
-                          res+=fullName[params['data'].name]+'</br>';
-                          res+='状态:'+status[params['data'].name]+'</br>';
-                          res+='类别:'+categories[params['data'].name]+'</br>';
-                          if(params.data.name in partMap){
-                              res+='点击查看下层拓扑'+'</br>';
-                          }
+
                           return res;
                       }
                     },
@@ -264,7 +268,7 @@ export default {
                         mapType: 'guangdong',
                         roam: false,
                         top: "0%",
-                        left: "30%",
+                        left: "22%",
                         label: {
                             normal: {
                                 show: false
@@ -288,7 +292,34 @@ export default {
                                 areaColor: 'rgba(0,81,138,.3)',
                             }
                         },
-                        animation: false
+                        animation: false,
+                        tooltip: {
+                          trigger: 'item',
+                          enterable:true,
+                          position:['80%','5%'],
+                          textStyle:{
+                            fontSize:20,
+                          },
+                          transitionDuration:0.4,
+                          hideDelay:0.5,
+                          borderColor:'#ffffff',
+                          borderWidth:'2',
+                          formatter:function (params) {
+                              var res = '';
+                              if(params.componentSubType==='effectScatter'){
+                                res+=peAllData[params['data'].name].name+'</br>';
+                                res+='City:'+peAllData[params['data'].name].city+'</br>';
+                                res+='Status:'+status[params['data'].name]+'</br>';
+                                res+='Categories:'+categories[params['data'].name]+'</br>';
+                                res+='ManageIp:'+peAllData[params['data'].name].manageIp+'</br>';
+                                res+='Number of Interface:'+peAllData[params['data'].name].peInterfaces.length+'</br>';
+                                if(params.data.name in partMap){
+                                    res+='点击查看下层拓扑'+'</br>';
+                                }
+                              }
+                              return res;
+                          }
+                        },
                     }
                 },
                 options: []
@@ -322,16 +353,37 @@ export default {
                       geoData.visualization.edges.forEach(e => {
                           if(e.type==="PEB_PEB" || e.type=='PEA_PEB'){}
                           else{
+                            var source = ''
                             if(e.target in partMap){
-                                partMap[e.target].push({name:e.source,itemStyle:{color: '#00ffea'}})
-                                partMapLink[e.target].push({source:e.source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
+                                if(e.source.length>16){
+                                  geoData.visualization.nodes.forEach(f=>{
+                                    if(e.source === f.id){
+                                      source = f.data.名称
+                                    }
+                                  })
+                                }
+                                else{
+                                  source = e.source
+                                }
+                                partMap[e.target].push({name:source,itemStyle:{color: '#00ffea'}})
+                                partMapLink[e.target].push({source:source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                             }
                             else{
+                                if(e.source.length>16){
+                                  geoData.visualization.nodes.forEach(f=>{
+                                    if(e.source === f.id){
+                                      source = f.data.名称
+                                    }
+                                  })
+                                }
+                                else{
+                                  source = e.source
+                                }
                                 partMap[e.target]=[]
-                                partMap[e.target].push({name:e.source,itemStyle:{color: '#00ffea'}})
+                                partMap[e.target].push({name:source,itemStyle:{color: '#00ffea'}})
                                 partMap[e.target].push({name:e.target,itemStyle:{color: '#00ffea'}})
                                 partMapLink[e.target]=[]
-                                partMapLink[e.target].push({source:e.source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
+                                partMapLink[e.target].push({source:source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                             }
                           }
                           if(e.type==="VPE_PEA") return;
@@ -452,6 +504,46 @@ export default {
                             type: 'bar',
                             data: topTenTxData.usage,
                         },
+                        {
+                            name: 'Alert',
+                            type: 'pie',
+                            radius: '30%',
+                            center: ['85%', '75%'],
+                            data: [
+                                {value: 4, name: '链路通路'},
+                                {value: 2, name: 'API下发失败'},
+                                {value: 2.5, name: 'Alert Type-1'},
+                                {value: 3.5, name: 'Alert Type-2'},
+                                {value: 3, name: 'Alert Type-3'},
+                            ].sort(function (a, b) { return a.value - b.value; }),
+                            roseType: 'radius',
+                            label: {
+                                color: 'rgba(255, 255, 255)'
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: '{a} <br/>{b} : {c} ({d}%)'
+                            },
+                            labelLine: {
+                                lineStyle: {
+                                    color: 'rgba(255, 255, 255)'
+                                },
+                                smooth: 0.2,
+                                length: 10,
+                                length2: 20
+                            },
+                            itemStyle: {
+                                color: '#c23531',
+                                shadowBlur: 200,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            },
+
+                            animationType: 'scale',
+                            animationEasing: 'elasticOut',
+                            animationDelay: function (idx) {
+                                return Math.random() * 200;
+                            }
+                        }
                     ]
                 })
             })
@@ -502,7 +594,7 @@ export default {
                               type: 'graph',
                               layout: 'circular',
                               symbolSize: 50,
-                              roam: true,
+                              roam: false,
                               label: {
                                   show: true,
                                   position:'top',
