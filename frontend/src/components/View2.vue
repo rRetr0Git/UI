@@ -298,23 +298,43 @@ export default {
                           enterable:true,
                           position:['80%','5%'],
                           textStyle:{
-                            fontSize:20,
+                            fontSize:16,
                           },
-                          transitionDuration:0.4,
-                          hideDelay:0.5,
                           borderColor:'#ffffff',
                           borderWidth:'2',
                           formatter:function (params) {
+                              var upMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#00ff00;\"></span>'
+                              var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
                               var res = '';
                               if(params.componentSubType==='effectScatter'){
-                                res+=peAllData[params['data'].name].name+'</br>';
-                                res+='City:'+peAllData[params['data'].name].city+'</br>';
-                                res+='Status:'+status[params['data'].name]+'</br>';
-                                res+='Categories:'+categories[params['data'].name]+'</br>';
-                                res+='ManageIp:'+peAllData[params['data'].name].manageIp+'</br>';
-                                res+='Number of Interface:'+peAllData[params['data'].name].peInterfaces.length+'</br>';
-                                if(params.data.name in partMap){
-                                    res+='点击查看下层拓扑'+'</br>';
+                                res+=params.marker+peAllData[params['data'].name].name+'</br><table>';
+                                res+='<tr><td>City</td><td>'+peAllData[params['data'].name].city+'</td></tr>';
+                                res+='<tr><td>Status</td><td>'+status[params['data'].name]+'</td></tr>';
+                                res+='<tr><td>Categories</td><td>'+categories[params['data'].name]+'</td></tr>';
+                                res+='<tr><td>ManageIp</td><td>'+peAllData[params['data'].name].manageIp+'</td></tr>';
+                                res+='<tr><td>Number of Interface</td><td>'+peAllData[params['data'].name].peInterfaces.length+'</td></tr>';
+                                var interfaces={}
+                                for(var i=0;i<peAllData[params['data'].name].peInterfaces.length;i++){
+                                  interfaces[peAllData[params['data'].name].peInterfaces[i].name] = peAllData[params['data'].name].peInterfaces[i].operStatus
+                                }
+                                var newData = {};
+                                Object.keys(interfaces).sort().map(key => {
+                                  newData[key]=interfaces[key]
+                                })
+                                for(let key in newData){
+                                  res+='<tr><td>'+key+'</td><td>'
+                                  if(newData[key]==='UP'){
+                                    res+=upMarker+newData[key]+'</td></tr>'
+                                  }
+                                  else{
+                                    res+=downMarker+newData[key]+'</td></tr>'
+                                  }
+                                }
+                                res+= '</table>'
+                                if(params.componentSubType==='effectScatter'){
+                                  if(params.data.name in partMap){
+                                      res+='点击查看下层拓扑'+'</br>';
+                                  }
                                 }
                               }
                               return res;
@@ -533,7 +553,7 @@ export default {
                                 length2: 20
                             },
                             itemStyle: {
-                                color: '#c23531',
+                                color: '#A7B4DE',
                                 shadowBlur: 200,
                                 shadowColor: 'rgba(0, 0, 0, 0.5)'
                             },
