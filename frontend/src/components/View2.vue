@@ -20,12 +20,6 @@ export default {
         var uploadedDataURL = "../static/json/data-1482909784051-BJgwuy-Sl.json";
         var _this = this
 
-        var weatherIcons = {
-            'Sunny': '../static/return.png',
-            'Cloudy': '../static/return.png',
-            'Showers': '../static/return.png',
-        };
-
         var seriesLabel = {
             normal: {
                 show: true,
@@ -74,6 +68,7 @@ export default {
             })
         })
 
+        var edgeInfo = []
         $.getJSON(uploadedDataURL, function(geoJson) {
             _this.$echarts.registerMap('', geoJson); //注册 地图
 
@@ -90,19 +85,19 @@ export default {
             $.getJSON(geoInfoUrl, function(geo) {
               var geoData = JSON.parse(JSON.stringify(geo))
               geoData.visualization.nodes.forEach(e => {
-                  if(e.categories.toString()===(["CE"]).toString()) return;
-                  if(e.categories.toString()===(["VPE"]).toString()) return;
                   let left = e.data.名称.lastIndexOf("\:")
                   let right = e.data.名称.lastIndexOf("\-")
                   let name = e.data.名称.substring(0,left)
-                  barType.push(name)
-                  geoCoordMap[name] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
+
                   fullName[name] = e.data.名称
                   status[name] = e.data.状态
                   categories[name] = e.categories[0]
+                  if(e.categories.toString()===(["CE"]).toString()) return;
+                  if(e.categories.toString()===(["VPE"]).toString()) return;
+                  barType.push(name)
+                  geoCoordMap[name] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
               })
             })
-
             // 数据梯度或类别
             var dataType = ["总览"]
             var colorType = ['#00ffea', '#00ff8c', '#f9ff00', '#ff5500']
@@ -170,37 +165,7 @@ export default {
                         inverse: true,
                         data: ['Tenant', 'POP', 'CPE','VPE','PE'],
                         axisLabel: {
-                            formatter: function (value) {
-                                return '{' + value + '| }\n{value|' + value + '}';
-                            },
                             margin: 20,
-                            rich: {
-                                value: {
-                                    lineHeight: 30,
-                                    align: 'center'
-                                },
-                                Sunny: {
-                                    height: 40,
-                                    align: 'center',
-                                    backgroundColor: {
-                                        image: weatherIcons.Sunny
-                                    }
-                                },
-                                Cloudy: {
-                                    height: 40,
-                                    align: 'center',
-                                    backgroundColor: {
-                                        image: weatherIcons.Cloudy
-                                    }
-                                },
-                                Showers: {
-                                    height: 40,
-                                    align: 'center',
-                                    backgroundColor: {
-                                        image: weatherIcons.Showers
-                                    }
-                                }
-                            }
                         }
                     },{
                         gridIndex: 1,
@@ -226,7 +191,8 @@ export default {
                       enterable:true,
                       formatter:function (params) {
                           var res = '';
-                          if(params.componentSubType==="lines"||params.componentSubType==="graph") return;
+                          if(params.componentSubType==="graph") return;
+
                           if(params.componentSubType==="bar"&&params.componentIndex===3){
                             res+=params.name+'数:'+params.data+'</br>';
                             return res;
@@ -243,7 +209,6 @@ export default {
                             res+=topTenTxData.usage[params.dataIndex]+'</br>';
                             return res;
                           }
-
                           return res;
                       }
                     },
@@ -337,6 +302,18 @@ export default {
                                   }
                                 }
                               }
+                              if(params.componentSubType==="lines"){
+                                 res+='<table>';
+                                 res+='<tr><td>Source</td><td>'+edgeInfo[params.dataIndex].source+'</td></tr>';
+                                 res+='<tr><td>Target</td><td>'+edgeInfo[params.dataIndex].target+'</td></tr>';
+                                 res+='<tr><td>Status</td><td>'+edgeInfo[params.dataIndex].properties.链路状态+'</td></tr>';
+                                 res+='<tr><td>Lag</td><td>'+edgeInfo[params.dataIndex].properties.延迟+'</td></tr>';
+                                 res+='<tr><td>Loss</td><td>'+edgeInfo[params.dataIndex].properties.丢包+'</td></tr>';
+                                 res+='<tr><td>S-Interface</td><td>'+edgeInfo[params.dataIndex].properties.源端口+'</td></tr>';
+                                 res+='<tr><td>T-Interface</td><td>'+edgeInfo[params.dataIndex].properties.目的端口+'</td></tr>';
+                                 res+='<tr><td>Bandwidth</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+edgeInfo[params.dataIndex].properties.当前带宽+'</td></tr>';
+                                 res+='</table>';
+                              }
                               return res;
                           }
                         },
@@ -424,7 +401,7 @@ export default {
                           if(e.properties.链路状态==='DOWN'){
                               colorStop='#ff5500'
                           }
-
+                          edgeInfo.push(e)
                           mapFlyLinesData.push([{
                               coord: geoCoordMap[e.source],
                               lineStyle:{
@@ -434,6 +411,7 @@ export default {
                               coord: geoCoordMap[e.target],
                           }])
                       })
+                      console.log(edgeInfo)
                 })
 
 
@@ -495,7 +473,7 @@ export default {
                             lineStyle: {
                                 normal: {
                                     color: colorType[i],
-                                    width: 1, //尾迹线条宽度
+                                    width: 2, //尾迹线条宽度
                                     opacity: 0.5, //尾迹线条透明度
                                     curveness: .1 //尾迹线条曲直度
                                 }
@@ -627,6 +605,50 @@ export default {
                               },
                               data: partMap[params.data.name],
                               links: partMapLink[params.data.name],
+                              tooltip: {
+                                trigger: 'item',
+                                enterable:true,
+                                position:['80%','5%'],
+                                textStyle:{
+                                  fontSize:16,
+                                },
+                                borderColor:'#ffffff',
+                                borderWidth:'2',
+                                formatter:function (params) {
+                                    var upMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#00ff00;\"></span>'
+                                    var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
+                                    var res = '';
+                                    if(params.componentSubType==='graph' && params.dataType==='node'){
+                                      if(params['data'].name in peAllData){
+                                        res+=params.marker+peAllData[params['data'].name].name+'</br><table>';
+                                        res+='<tr><td>City</td><td>'+peAllData[params['data'].name].city+'</td></tr>';
+                                        res+='<tr><td>Status</td><td>'+status[params['data'].name]+'</td></tr>';
+                                        res+='<tr><td>Categories</td><td>'+categories[params['data'].name]+'</td></tr>';
+                                        res+='<tr><td>ManageIp</td><td>'+peAllData[params['data'].name].manageIp+'</td></tr>';
+                                        res+='<tr><td>Number of Interface</td><td>'+peAllData[params['data'].name].peInterfaces.length+'</td></tr>';
+                                        var interfaces={}
+                                        for(var i=0;i<peAllData[params['data'].name].peInterfaces.length;i++){
+                                          interfaces[peAllData[params['data'].name].peInterfaces[i].name] = peAllData[params['data'].name].peInterfaces[i].operStatus
+                                        }
+                                        var newData = {};
+                                        Object.keys(interfaces).sort().map(key => {
+                                          newData[key]=interfaces[key]
+                                        })
+                                        for(let key in newData){
+                                          res+='<tr><td>'+key+'</td><td>'
+                                          if(newData[key]==='UP'){
+                                            res+=upMarker+newData[key]+'</td></tr>'
+                                          }
+                                          else{
+                                            res+=downMarker+newData[key]+'</td></tr>'
+                                          }
+                                        }
+                                        res+= '</table>'
+                                      }
+                                    }
+                                    return res;
+                                }
+                              },
                           }
                       ],
                       lineStyle: {
