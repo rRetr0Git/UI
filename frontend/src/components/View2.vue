@@ -68,6 +68,23 @@ export default {
             })
         })
 
+        var peInterfaceInfoUrl = "../static/testApi/pe_interface_stats.json";
+        var peInterfaceAllData = {}
+        $.getJSON(peInterfaceInfoUrl, function(peInterface) {
+            var peInterfaceData = JSON.parse(JSON.stringify(peInterface))
+            peInterface.forEach(e => {
+                if(e.host in peInterfaceAllData){
+                    peInterfaceAllData[e.host].push(e)
+                }
+                else{
+                    peInterfaceAllData[e.host] = []
+                    peInterfaceAllData[e.host].push(e)
+                }
+            })
+        })
+
+        console.log(peInterfaceAllData)
+
         var edgeInfo = []
         $.getJSON(uploadedDataURL, function(geoJson) {
             _this.$echarts.registerMap('', geoJson); //注册 地图
@@ -261,10 +278,11 @@ export default {
                         tooltip: {
                           trigger: 'item',
                           enterable:true,
-                          position:['80%','5%'],
+                          position:['75%','5%'],
                           textStyle:{
-                            fontSize:16,
+                            fontSize:14,
                           },
+                          hideDelay:100000,
                           borderColor:'#ffffff',
                           borderWidth:'2',
                           formatter:function (params) {
@@ -286,13 +304,25 @@ export default {
                                 Object.keys(interfaces).sort().map(key => {
                                   newData[key]=interfaces[key]
                                 })
+
+                                let rx_bps = null
+                                let tx_bps = null
                                 for(let key in newData){
+                                  if(params['data'].name in peInterfaceAllData){
+                                    for(let i = 0; i < peInterfaceAllData[params['data'].name].length; i++){
+                                      if(peInterfaceAllData[params['data'].name][i].ifname === key){
+                                        rx_bps = parseInt(peInterfaceAllData[params['data'].name][i].rx_bps)
+                                        tx_bps = parseInt(peInterfaceAllData[params['data'].name][i].tx_bps)
+                                      }
+                                    }
+                                  }
+
                                   res+='<tr><td>'+key+'</td><td>'
                                   if(newData[key]==='UP'){
-                                    res+=upMarker+newData[key]+'</td></tr>'
+                                    res+=upMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
                                   }
                                   else{
-                                    res+=downMarker+newData[key]+'</td></tr>'
+                                    res+=downMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
                                   }
                                 }
                                 res+= '</table>'
@@ -300,6 +330,7 @@ export default {
                                   if(params.data.name in partMap){
                                       res+='点击查看下层拓扑'+'</br>';
                                   }
+
                                 }
                               }
                               if(params.componentSubType==="lines"){
@@ -411,7 +442,6 @@ export default {
                               coord: geoCoordMap[e.target],
                           }])
                       })
-                      console.log(edgeInfo)
                 })
 
 
@@ -556,8 +586,6 @@ export default {
             myCharts.on('click', function (params) {
                 console.log(params);
                 if(params.componentSubType=='effectScatter'&&params.data.name in partMap){
-                    //console.log(partMap[params.data.name])
-                    //console.log(partMapLink[params.data.name])
                     let option={
                       color: ['#f44'],
                       tooltip : {
@@ -659,6 +687,9 @@ export default {
                     myCharts.resize();
                     myCharts.setOption(option,{notMerge:true,lazyUpdate:false});
                 }
+                else{
+                    console.log('make it deep')
+                }
             });
         })
         function _random(a, b) {
@@ -687,7 +718,7 @@ a {
 
   #myCharts{
     width: 100%;
-    height: 900px;
+    height:900px;
     margin: 0 auto;
   }
 
