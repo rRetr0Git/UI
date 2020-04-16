@@ -296,6 +296,7 @@ export default {
                                 res+='<tr><td>Categories</td><td>'+categories[params['data'].name]+'</td></tr>';
                                 res+='<tr><td>ManageIp</td><td>'+peAllData[params['data'].name].manageIp+'</td></tr>';
                                 res+='<tr><td>Number of Interface</td><td>'+peAllData[params['data'].name].peInterfaces.length+'</td></tr>';
+                                res+='<tr><td>Interface</td><td>Status</td><td>Rx_bps</td><td>Tx_bps</td></tr>'
                                 var interfaces={}
                                 for(var i=0;i<peAllData[params['data'].name].peInterfaces.length;i++){
                                   interfaces[peAllData[params['data'].name].peInterfaces[i].name] = peAllData[params['data'].name].peInterfaces[i].operStatus
@@ -316,13 +317,12 @@ export default {
                                       }
                                     }
                                   }
-
-                                  res+='<tr><td>'+key+'</td><td>'
                                   if(newData[key]==='UP'){
+                                    res+='<tr><td>'+key+'</td><td>'
                                     res+=upMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
                                   }
                                   else{
-                                    res+=downMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
+                                    //res+=downMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
                                   }
                                 }
                                 res+= '</table>'
