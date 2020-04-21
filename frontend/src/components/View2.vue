@@ -116,7 +116,7 @@ export default {
               })
             })
             // 数据梯度或类别
-            var dataType = ["总览"]
+            var dataType = ["总览1"]
             var colorType = ['#00ffea', '#00ff8c', '#f9ff00', '#ff5500']
 
             var option = {
