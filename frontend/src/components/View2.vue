@@ -17,7 +17,7 @@ export default {
         const  myCharts = this.$echarts.init(this.$refs.myCharts,'dark');
 
         // 指定图表的配置项和数据
-        var uploadedDataURL = "../static/json/data-1482909784051-BJgwuy-Sl.json";
+        var uploadedDataURL = "../../static/json/data-1482909784051-BJgwuy-Sl.json";
         var _this = this
 
         var seriesLabel = {
@@ -30,7 +30,7 @@ export default {
 
         $.ajaxSetup({async:false});
 
-        var countInfoUrl = "../static/testApi/overview.json";
+        var countInfoUrl = "../../static/testApi/overview.json";
         var overviewData = {}
         $.getJSON(countInfoUrl, function(count) {
             var countData = JSON.parse(JSON.stringify(count))
@@ -41,7 +41,7 @@ export default {
             overviewData.tenantCount = countData['tenantCount']
         })
 
-        var topTenInfoUrl = "../static/testApi/top_10_if.json";
+        var topTenInfoUrl = "../../static/testApi/top_10_if.json";
         var topTenRxData = {host:[],ifname:[],usage:[]}
         var topTenTxData = {host:[],ifname:[],usage:[]}
         $.getJSON(topTenInfoUrl, function(topTen) {
@@ -59,7 +59,7 @@ export default {
             })
         })
 
-        var peInfoUrl = "../static/testApi/pe.json";
+        var peInfoUrl = "../../static/testApi/pe.json";
         var peAllData = {}
         $.getJSON(peInfoUrl, function(pe) {
             var peData = JSON.parse(JSON.stringify(pe))
@@ -68,7 +68,7 @@ export default {
             })
         })
 
-        var peInterfaceInfoUrl = "../static/testApi/pe_interface_stats.json";
+        var peInterfaceInfoUrl = "../../static/testApi/pe_interface_stats.json";
         var peInterfaceAllData = {}
         $.getJSON(peInterfaceInfoUrl, function(peInterface) {
             var peInterfaceData = JSON.parse(JSON.stringify(peInterface))
@@ -98,7 +98,7 @@ export default {
             var barType = []
             var partMap = {}
             var partMapLink = {}
-            var geoInfoUrl = "../static/testApi/graph.json";
+            var geoInfoUrl = "../../static/testApi/graph.json";
             $.getJSON(geoInfoUrl, function(geo) {
               var geoData = JSON.parse(JSON.stringify(geo))
               geoData.visualization.nodes.forEach(e => {
@@ -603,7 +603,7 @@ export default {
                             myTool1: {
                                 show: true,
                                 title: 'Return',
-                                icon: 'image://../static/return.png',
+                                icon: 'image://../../static/return.png',
                                 onclick: function (){
                                     location.reload();
                                 }

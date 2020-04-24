@@ -67,7 +67,7 @@ import 'bootstrap/dist/css/bootstrap-table-fixed-columns.css'
 import 'bootstrap/dist/js/bootstrap-table-fixed-columns.js'
 
 var tenantAllData =[]
-var tenantInfoUrl = "../static/testApi/tenant_te_traffic.json";
+var tenantInfoUrl = "../../static/testApi/tenant_te_traffic.json";
 $.ajaxSetup({async:false});
 $.getJSON(tenantInfoUrl, function(tenant) {
   var tenantData = JSON.parse(JSON.stringify(tenant))
@@ -77,7 +77,7 @@ $.getJSON(tenantInfoUrl, function(tenant) {
 })
 
 var teAllData = []
-var teInfoUrl = "../static/testApi/te_if_state.json";
+var teInfoUrl = "../../static/testApi/te_if_state.json";
 $.getJSON(teInfoUrl, function(te) {
   var teData = JSON.parse(JSON.stringify(te))
   teData.forEach(e => {
@@ -86,14 +86,14 @@ $.getJSON(teInfoUrl, function(te) {
 })
 
 var tePathAllData = []
-var tePathInfoUrl = "../static/testApi/te_1.json";
+var tePathInfoUrl = "../../static/testApi/te_1.json";
 $.getJSON(tePathInfoUrl, function(tePath) {
   var tePathData = JSON.parse(JSON.stringify(tePath))
   tePathData.results.item.forEach(e => {
     tePathAllData.push(e)
   })
 })
-console.log(tePathAllData)
+
 export default {
   name: 'HelloWorld',
   data () {

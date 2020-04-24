@@ -11,15 +11,15 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/view3',
+      path: '/demo/view3/',
       component: View3
     },
     {
-      path: '/view2',
+      path: '/demo/view2/',
       component: View2
     },
     {
-      path: '/view1',
+      path: '/demo/view1/',
       component: View1
     }
   ],

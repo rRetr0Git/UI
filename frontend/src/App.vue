@@ -25,27 +25,27 @@ export default {
   },
   methods: {
     toView1(){
-      if(location.pathname==='/view1'){
+      if(location.pathname==='/demo/view1/'){
         location.reload();
       }
       else{
-        this.$router.push({ path: '/view1' })
+        this.$router.push({ path: '/demo/view1/' })
       }
     },
     toView2(){
-      if(location.pathname==='/view2'){
+      if(location.pathname==='/demo/view2/'){
         location.reload();
       }
       else{
-        this.$router.push({ path: '/view2' })
+        this.$router.push({ path: '/demo/view2/' })
       }
     },
     toView3(){
-      if(location.pathname==='/view3'){
+      if(location.pathname==='/demo/view3/'){
         location.reload();
       }
       else{
-        this.$router.push({ path: '/view3' })
+        this.$router.push({ path: '/demo/view3/' })
       }
     }
   }
