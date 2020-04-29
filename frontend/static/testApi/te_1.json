@@ -1,137 +1,61 @@
-{
-  "page": 1,
-  "records": 3,
-  "results": {
-    "item": [
-      {
-        "id": "b9652a55-c29c-4459-90f6-39860a66d47f",
-        "name": "Tunnel1003",
-        "pathId": "1-P-SG:HundredGigE1/1/2:1-P-DXC:HundredGigE1/1/6>$default",
-        "type": "AUTO",
-        "serviceClass": "",
-        "bfdInterval": 100,
-        "bfdMultiplier": 3,
-        "delay": 0,
-        "jitter": 0,
-        "loss": 0,
-        "autoTunnel": true,
-        "shutdown": false,
-        "shortestPath": true,
-        "destination": "2.2.2.3",
-        "cfgStatus": "COMPLETED",
-        "cfgAction": "add",
-        "operStatus": "UP",
-        "srcPe": "1-P-SG",
-        "dstPe": "1-P-DXC",
-        "teTunnelPaths": [
-          {
-            "name": "tp_Tunnel1003_p",
-            "preference": 10,
-            "pathOptionName": "p",
-            "paths": [
-              {
-                "hopIndex": 0,
-                "nextAddress": "11.1.3.2",
-                "nextLabel": 10001,
-                "peId": "1-P-DXC",
-                "ifName": "HundredGigE1/1/6"
-              }
-            ]
-          }
-        ],
-        "connectedFlows": [
-          "2-PE-SG:1.1.1.1 -> 2-PE-DXC:1.1.1.3"
-        ]
-      },
-      {
-        "id": "cd67a5b1-6144-440b-84d8-cf77848d776f",
-        "name": "Tunnel1000",
-        "pathId": "1-P-SG:HundredGigE1/1/1:1-P-GZ:HundredGigE1/1/1>$default",
-        "type": "AUTO",
-        "serviceClass": "",
-        "bfdInterval": 100,
-        "bfdMultiplier": 3,
-        "delay": 1,
-        "jitter": 0,
-        "loss": 0,
-        "autoTunnel": true,
-        "shutdown": false,
-        "shortestPath": true,
-        "destination": "2.2.2.2",
-        "cfgStatus": "COMPLETED",
-        "cfgAction": "add",
-        "operStatus": "UP",
-        "srcPe": "1-P-SG",
-        "dstPe": "1-P-GZ",
-        "teTunnelPaths": [
-          {
-            "name": "tp_Tunnel1000_p",
-            "preference": 10,
-            "pathOptionName": "p",
-            "paths": [
-              {
-                "hopIndex": 0,
-                "nextAddress": "11.3.1.1",
-                "nextLabel": 10000,
-                "peId": "1-P-GZ",
-                "ifName": "HundredGigE1/1/1"
-              }
-            ]
-          }
-        ],
-        "connectedFlows": [
-          "2-PE-SG:1.1.1.1 -> 2-PE-GZ:1.1.1.2"
-        ]
-      },
-      {
-        "id": "b5de3852-1c0f-4d34-b2f0-9e8d0ea0f590",
-        "name": "Tunnel1004",
-        "pathId": "1-P-SG:HundredGigE1/1/2:1-P-DXC:HundredGigE1/1/6>1-P-DXC:HundredGigE1/1/8:1-P-GZ:HundredGigE1/1/2>$default",
-        "type": "AUTO",
-        "serviceClass": "",
-        "bfdInterval": 100,
-        "bfdMultiplier": 3,
-        "delay": 0,
-        "jitter": 0,
-        "loss": 0,
-        "autoTunnel": true,
-        "shutdown": false,
-        "shortestPath": true,
-        "destination": "2.2.2.2",
-        "cfgStatus": "COMPLETED",
-        "cfgAction": "add",
-        "operStatus": "UP",
-        "srcPe": "1-P-SG",
-        "dstPe": "1-P-GZ",
-        "teTunnelPaths": [
-          {
-            "name": "tp_Tunnel1004_p",
-            "preference": 10,
-            "pathOptionName": "p",
-            "paths": [
-              {
-                "hopIndex": 0,
-                "nextAddress": "11.1.3.2",
-                "nextLabel": 10001,
-                "peId": "1-P-DXC",
-                "ifName": "HundredGigE1/1/6"
-              },
-              {
-                "hopIndex": 1,
-                "nextAddress": "11.2.1.1",
-                "nextLabel": 10000,
-                "peId": "1-P-GZ",
-                "ifName": "HundredGigE1/1/2"
-              }
-            ]
-          }
-        ],
-        "connectedFlows": [
-          "2-PE-SG:1.1.1.1 -> 2-PE-GZ:1.1.1.2"
-        ]
-      }
-    ]
-  },
-  "rows": 3,
-  "total": 1
-}
+{"total":1,
+  "records":10,
+  "page":1,
+  "rows":3,
+  "results": {"item":
+  [
+    {"autoTunnel":false,
+      "bfdInterval":0,
+      "bfdMultiplier":0,
+      "connectedFlows":["1-P-SG:1.1.1.1 -> 1-P-GZ:1.1.1.1"],
+      "delay":0,
+      "dstPe":"1-P-GZ",
+      "jitter":0,
+      "loss":0,
+      "name":"Tunnel1000",
+      "shortesPath":false,
+      "shutdown":false,
+      "srcPe":"1-P-SG",
+      "teTunnelPaths":
+      [{"name":"tp_Tunnel1000_p",
+        "pathOptionName":"",
+        "paths":
+        [{"hopIndex":0,
+          "ifName":"",
+          "nextAddress":"",
+          "nextLabel":0,
+          "peId":"1-P-GZ"}],
+        "preference":10}]},
+    {"autoTunnel":false,
+      "bfdInterval":0,
+      "bfdMultiplier":0,
+      "connectedFlows":["1-P-SG:1.1.1.1 -> 2-PE-FS:1.1.1.1"],
+      "delay":0,
+      "dstPe":"2-PE-FS",
+      "jitter":0,
+      "loss":0,
+      "name":"Tunnel1001",
+      "shortesPath":false,
+      "shutdown":false,
+      "srcPe":"1-P-SG",
+      "teTunnelPaths":
+      [{"name":"tp_Tunnel1001_p",
+        "pathOptionName":"",
+        "paths":
+        [{"hopIndex":0,
+          "ifName":"",
+          "nextAddress":"",
+          "nextLabel":0,
+          "peId":"1-P-GZ"},
+          {"hopIndex":1,
+            "ifName":"",
+            "nextAddress":"",
+            "nextLabel":0,
+            "peId":"1-P-DXC"},
+          {"hopIndex":2,
+            "ifName":"",
+            "nextAddress":"",
+            "nextLabel":0,
+            "peId":"2-PE-FS"}],
+        "preference":10}]},
+    {"autoTunnel":false,"bfdInterval":0,"bfdMultiplier":0,"connectedFlows":["2-PE-FS:1.1.1.1 -> 2-PE-JM:1.1.1.1"],"delay":0,"dstPe":"2-PE-JM","jitter":0,"loss":0,"name":"Tunnel1002","shortesPath":false,"shutdown":false,"srcPe":"2-PE-FS","teTunnelPaths":[{"name":"tp_Tunnel1002_p","pathOptionName":"","paths":[{"hopIndex":0,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-DXC"},{"hopIndex":1,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-SG"},{"hopIndex":2,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-GZ"},{"hopIndex":3,"ifName":"","nextAddress":"","nextLabel":0,"peId":"2-PE-JM"}],"preference":10}]},{"autoTunnel":false,"bfdInterval":0,"bfdMultiplier":0,"connectedFlows":["2-PE-DG:1.1.1.1 -> 1-P-GZ:1.1.1.1"],"delay":0,"dstPe":"1-P-GZ","jitter":0,"loss":0,"name":"Tunnel1003","shortesPath":false,"shutdown":false,"srcPe":"2-PE-DG","teTunnelPaths":[{"name":"tp_Tunnel1003_p","pathOptionName":"","paths":[{"hopIndex":0,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-GZ"}],"preference":10}]},{"autoTunnel":false,"bfdInterval":0,"bfdMultiplier":0,"connectedFlows":["2-PE-DXC:1.1.1.1 -> 1-P-GZ:1.1.1.1"],"delay":0,"dstPe":"1-P-GZ","jitter":0,"loss":0,"name":"Tunnel1004","shortesPath":false,"shutdown":false,"srcPe":"2-PE-DXC","teTunnelPaths":[{"name":"tp_Tunnel1004_p","pathOptionName":"","paths":[{"hopIndex":0,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-DXC"},{"hopIndex":1,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-SG"},{"hopIndex":2,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-GZ"}],"preference":10}]},{"autoTunnel":false,"bfdInterval":0,"bfdMultiplier":0,"connectedFlows":["1-P-SG:1.1.1.1 -> 2-PE-ZS:1.1.1.1"],"delay":0,"dstPe":"2-PE-ZS","jitter":0,"loss":0,"name":"Tunnel1005","shortesPath":false,"shutdown":false,"srcPe":"1-P-SG","teTunnelPaths":[{"name":"tp_Tunnel1005_p","pathOptionName":"","paths":[{"hopIndex":0,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-GZ"},{"hopIndex":1,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-DXC"},{"hopIndex":2,"ifName":"","nextAddress":"","nextLabel":0,"peId":"2-PE-ZS"}],"preference":10}]},{"autoTunnel":false,"bfdInterval":0,"bfdMultiplier":0,"connectedFlows":["2-PE-GZ:1.1.1.1 -> 2-PE-ZS:1.1.1.1"],"delay":0,"dstPe":"2-PE-ZS","jitter":0,"loss":0,"name":"Tunnel1006","shortesPath":false,"shutdown":false,"srcPe":"2-PE-GZ","teTunnelPaths":[{"name":"tp_Tunnel1006_p","pathOptionName":"","paths":[{"hopIndex":0,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-GZ"},{"hopIndex":1,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-SG"},{"hopIndex":2,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-DXC"},{"hopIndex":3,"ifName":"","nextAddress":"","nextLabel":0,"peId":"2-PE-ZS"}],"preference":10}]},{"autoTunnel":false,"bfdInterval":0,"bfdMultiplier":0,"connectedFlows":["2-PE-HZ:1.1.1.1 -> 1-P-DXC:1.1.1.1"],"delay":0,"dstPe":"1-P-DXC","jitter":0,"loss":0,"name":"Tunnel1007","shortesPath":false,"shutdown":false,"srcPe":"2-PE-HZ","teTunnelPaths":[{"name":"tp_Tunnel1007_p","pathOptionName":"","paths":[{"hopIndex":0,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-GZ"},{"hopIndex":1,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-SG"},{"hopIndex":2,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-DXC"}],"preference":10}]},{"autoTunnel":false,"bfdInterval":0,"bfdMultiplier":0,"connectedFlows":["1-P-SG:1.1.1.1 -> 2-PE-GZ:1.1.1.1"],"delay":0,"dstPe":"2-PE-GZ","jitter":0,"loss":0,"name":"Tunnel1008","shortesPath":false,"shutdown":false,"srcPe":"1-P-SG","teTunnelPaths":[{"name":"tp_Tunnel1008_p","pathOptionName":"","paths":[{"hopIndex":0,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-GZ"},{"hopIndex":1,"ifName":"","nextAddress":"","nextLabel":0,"peId":"2-PE-GZ"}],"preference":10}]},{"autoTunnel":false,"bfdInterval":0,"bfdMultiplier":0,"connectedFlows":["2-PE-ZS:1.1.1.1 -> 1-P-DXC:1.1.1.1"],"delay":0,"dstPe":"1-P-DXC","jitter":0,"loss":0,"name":"Tunnel1009","shortesPath":false,"shutdown":false,"srcPe":"2-PE-ZS","teTunnelPaths":[{"name":"tp_Tunnel1009_p","pathOptionName":"","paths":[{"hopIndex":0,"ifName":"","nextAddress":"","nextLabel":0,"peId":"1-P-DXC"}],"preference":10}]}]}}

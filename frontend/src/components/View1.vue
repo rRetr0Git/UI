@@ -67,8 +67,17 @@ import 'bootstrap/dist/css/bootstrap-table-fixed-columns.css'
 import 'bootstrap/dist/js/bootstrap-table-fixed-columns.js'
 
 var tenantAllData =[]
-var tenantInfoUrl = "../../static/testApi/tenant_te_traffic.json";
+var teAllData = []
+var tePathAllData = []
+var teVisData = {}
+var teVisLinks = {}
 $.ajaxSetup({async:false});
+
+/*
+var tenantInfoUrl = "../../static/testApi/tenant_te_traffic.json";
+var teInfoUrl = "../../static/testApi/te_if_state.json";
+var tePathInfoUrl = "../../static/testApi/te_1.json";
+
 $.getJSON(tenantInfoUrl, function(tenant) {
   var tenantData = JSON.parse(JSON.stringify(tenant))
   tenantData.result.forEach(e => {
@@ -76,8 +85,6 @@ $.getJSON(tenantInfoUrl, function(tenant) {
   })
 })
 
-var teAllData = []
-var teInfoUrl = "../../static/testApi/te_if_state.json";
 $.getJSON(teInfoUrl, function(te) {
   var teData = JSON.parse(JSON.stringify(te))
   teData.forEach(e => {
@@ -85,14 +92,68 @@ $.getJSON(teInfoUrl, function(te) {
   })
 })
 
-var tePathAllData = []
-var tePathInfoUrl = "../../static/testApi/te_1.json";
 $.getJSON(tePathInfoUrl, function(tePath) {
   var tePathData = JSON.parse(JSON.stringify(tePath))
   tePathData.results.item.forEach(e => {
     tePathAllData.push(e)
+    teVisData[e.name] = []
+    teVisData[e.name].push({name:e.srcPe,symbolSize:40})
+    teVisLinks[e.name] = []
+    var tempSrc = e.srcPe
+    e.teTunnelPaths[0].paths.forEach(f => {
+      teVisData[e.name].push({name:f.peId,symbolSize:40})
+      teVisLinks[e.name].push({source:tempSrc,target:f.peId})
+      tempSrc = f.peId
+    })
   })
 })
+*/
+
+
+$.ajax({
+  url:"http://127.0.0.1:8000/api/teif_state",
+  type:'get',
+  dataType: 'json',
+  success:function(res){
+    var teData = JSON.parse(JSON.stringify(res))
+    teData.forEach(e => {
+      teAllData.push(e)
+    })
+  }
+});
+
+$.ajax({
+  url:"http://127.0.0.1:8000/api/tenant_te_traffic",
+  type:'get',
+  dataType: 'json',
+  success:function(res){
+    var tenantData = JSON.parse(JSON.stringify(res))
+    tenantData.result.forEach(e => {
+      tenantAllData.push(e)
+    })
+  }
+});
+
+$.ajax({
+  url:"http://127.0.0.1:8000/api/te_1",
+  type:'get',
+  dataType: 'json',
+  success:function(res){
+    var tePathData = JSON.parse(JSON.stringify(res))
+    tePathData.results.item.forEach(e => {
+      tePathAllData.push(e)
+      teVisData[e.name] = []
+      teVisData[e.name].push({name:e.srcPe,symbolSize:40})
+      teVisLinks[e.name] = []
+      var tempSrc = e.srcPe
+      e.teTunnelPaths[0].paths.forEach(f => {
+        teVisData[e.name].push({name:f.peId,symbolSize:40})
+        teVisLinks[e.name].push({source:tempSrc,target:f.peId})
+        tempSrc = f.peId
+      })
+    })
+  }
+});
 
 export default {
   name: 'HelloWorld',
@@ -142,8 +203,8 @@ export default {
                   draggable: false,
                   roam: false,
                   focusNodeAdjacency: true,
-                  data:[{name:'1',category:'type1',symbolSize:20},{name:'2',category:'type1',symbolSize:20},{name:'3',category:'type1',symbolSize:20},{name:'4',category:'type1',symbolSize:20}],
-                  links:[{source:'1',target:'2'},{source:'1',target:'3'},{source:'2',target:'4'}],
+                  data:teVisData[this.tun],
+                  links:teVisLinks[this.tun],
                   itemStyle: {
                       borderColor: '#fff',
                       borderWidth: 1,
