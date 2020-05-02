@@ -30,8 +30,21 @@ export default {
 
         $.ajaxSetup({async:false});
 
-        var countInfoUrl = "../../static/testApi/overview.json";
         var overviewData = {}
+        var topTenRxData = {host:[],ifname:[],usage:[]}
+        var topTenTxData = {host:[],ifname:[],usage:[]}
+        var peAllData = {}
+        var peInterfaceAllData = {}
+        var edgeInfo = []
+
+
+        /*comment
+
+        var countInfoUrl = "../../static/testApi/overview.json";
+        var topTenInfoUrl = "../../static/testApi/top_10_if.json";
+        var peInfoUrl = "../../static/testApi/pe.json";
+        var peInterfaceInfoUrl = "../../static/testApi/pe_interface_stats.json";
+
         $.getJSON(countInfoUrl, function(count) {
             var countData = JSON.parse(JSON.stringify(count))
             overviewData.cpeCount = countData['cpeCount']
@@ -41,9 +54,6 @@ export default {
             overviewData.tenantCount = countData['tenantCount']
         })
 
-        var topTenInfoUrl = "../../static/testApi/top_10_if.json";
-        var topTenRxData = {host:[],ifname:[],usage:[]}
-        var topTenTxData = {host:[],ifname:[],usage:[]}
         $.getJSON(topTenInfoUrl, function(topTen) {
             var topTenData = JSON.parse(JSON.stringify(topTen))
             topTenData.rx.forEach(e => {
@@ -59,20 +69,16 @@ export default {
             })
         })
 
-        var peInfoUrl = "../../static/testApi/pe.json";
-        var peAllData = {}
         $.getJSON(peInfoUrl, function(pe) {
             var peData = JSON.parse(JSON.stringify(pe))
-            pe.forEach(e => {
+            peData.forEach(e => {
                 peAllData[e.name] = e
             })
         })
 
-        var peInterfaceInfoUrl = "../../static/testApi/pe_interface_stats.json";
-        var peInterfaceAllData = {}
         $.getJSON(peInterfaceInfoUrl, function(peInterface) {
             var peInterfaceData = JSON.parse(JSON.stringify(peInterface))
-            peInterface.forEach(e => {
+            peInterfaceData.forEach(e => {
                 if(e.host in peInterfaceAllData){
                     peInterfaceAllData[e.host].push(e)
                 }
@@ -83,9 +89,70 @@ export default {
             })
         })
 
-        console.log(peInterfaceAllData)
+        */
 
-        var edgeInfo = []
+        $.ajax({
+          url:"http://127.0.0.1:8000/api/overview",
+          type:'get',
+          dataType: 'json',
+          success:function(res){
+            var countData = JSON.parse(JSON.stringify(res))
+            overviewData.cpeCount = countData['cpeCount']
+            overviewData.vpeCount = countData['vpeCount']
+            overviewData.peCount = countData['peCount']
+            overviewData.popCount = countData['popCount']
+            overviewData.tenantCount = countData['tenantCount']
+          }
+        });
+
+        $.ajax({
+          url:"http://127.0.0.1:8000/api/top_10_if",
+          type:'get',
+          dataType: 'json',
+          success:function(res){
+            var topTenData = JSON.parse(JSON.stringify(res))
+            topTenData.rx.forEach(e => {
+                topTenRxData.host.push(e.host)
+                topTenRxData.ifname.push(e.ifname)
+                topTenRxData.usage.push(e.usage)
+            })
+
+            topTenData.tx.forEach(e => {
+                topTenTxData.host.push(e.host)
+                topTenTxData.ifname.push(e.ifname)
+                topTenTxData.usage.push(e.usage)
+            })
+          }
+        });
+
+        $.ajax({
+          url:"http://127.0.0.1:8000/api/pe",
+          type:'get',
+          success:function(res){
+            var peData = JSON.parse(JSON.stringify(res))
+            peData.forEach(e => {
+                peAllData[e.name] = e
+            })
+          }
+        });
+
+        $.ajax({
+          url:"http://127.0.0.1:8000/api/pe_interface_stats",
+          type:'get',
+          success:function(res){
+            var peInterfaceData = JSON.parse(JSON.stringify(res))
+            peInterfaceData.forEach(e => {
+                if(e.host in peInterfaceAllData){
+                    peInterfaceAllData[e.host].push(e)
+                }
+                else{
+                    peInterfaceAllData[e.host] = []
+                    peInterfaceAllData[e.host].push(e)
+                }
+            })
+          }
+        });
+
         $.getJSON(uploadedDataURL, function(geoJson) {
             _this.$echarts.registerMap('', geoJson); //注册 地图
 
@@ -98,6 +165,9 @@ export default {
             var barType = []
             var partMap = {}
             var partMapLink = {}
+
+            /*comment
+
             var geoInfoUrl = "../../static/testApi/graph.json";
             $.getJSON(geoInfoUrl, function(geo) {
               var geoData = JSON.parse(JSON.stringify(geo))
@@ -115,6 +185,31 @@ export default {
                   geoCoordMap[name] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
               })
             })
+
+            */
+
+            $.ajax({
+              url:"http://127.0.0.1:8000/api/graph",
+              type:'get',
+              dataType: 'json',
+              success:function(res){
+                var geoData = JSON.parse(JSON.stringify(res))
+                geoData.visualization.nodes.forEach(e => {
+                  let left = e.data.名称.lastIndexOf("\:")
+                  let right = e.data.名称.lastIndexOf("\-")
+                  let name = e.data.名称.substring(0,left)
+
+                  fullName[name] = e.data.名称
+                  status[name] = e.data.状态
+                  categories[name] = e.categories[0]
+                  if(e.categories.toString()===(["CE"]).toString()) return;
+                  if(e.categories.toString()===(["VPE"]).toString()) return;
+                  barType.push(name)
+                  geoCoordMap[name] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
+                })
+              }
+            });
+
             // 数据梯度或类别
             var dataType = ["总览1"]
             var colorType = ['#00ffea', '#00ff8c', '#f9ff00', '#ff5500']
@@ -376,6 +471,8 @@ export default {
                     })
                 })
 
+                /*comment
+
                 $.getJSON(geoInfoUrl, function(geo) {
                       var geoData = JSON.parse(JSON.stringify(geo))
                       geoData.visualization.edges.forEach(e => {
@@ -443,7 +540,80 @@ export default {
                           }])
                       })
                 })
+                */
 
+                $.ajax({
+                    url:"http://127.0.0.1:8000/api/graph",
+                    type:'get',
+                    dataType: 'json',
+                    success:function(res){
+                        var geoData = JSON.parse(JSON.stringify(res))
+                        geoData.visualization.edges.forEach(e => {
+                            if(e.type==="PEB_PEB" || e.type=='PEA_PEB'){}
+                            else{
+                                var source = ''
+                                if(e.target in partMap){
+                                    if(e.source.length>16){
+                                        geoData.visualization.nodes.forEach(f=>{
+                                            if(e.source === f.id){
+                                              source = f.data.名称
+                                            }
+                                        })
+                                    }
+                                    else{
+                                        source = e.source
+                                    }
+                                    partMap[e.target].push({name:source,itemStyle:{color: '#00ffea'}})
+                                    partMapLink[e.target].push({source:source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
+                                }
+                                else{
+                                    if(e.source.length>16){
+                                        geoData.visualization.nodes.forEach(f=>{
+                                            if(e.source === f.id){
+                                              source = f.data.名称
+                                            }
+                                        })
+                                    }
+                                    else{
+                                        source = e.source
+                                    }
+                                    partMap[e.target]=[]
+                                    partMap[e.target].push({name:source,itemStyle:{color: '#00ffea'}})
+                                    partMap[e.target].push({name:e.target,itemStyle:{color: '#00ffea'}})
+                                    partMapLink[e.target]=[]
+                                    partMapLink[e.target].push({source:source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
+                                }
+                            }
+                            if(e.type==="VPE_PEA") return;
+                            if(e.type==="CE_PEA") return;
+                            if(e.type==="CE_VPE") return;
+
+                            var colorStop='#00ff8c'
+
+                            if(e.properties.当前带宽>5000){
+                                colorStop='#00ffea'
+                            }
+
+                            if(e.properties.当前带宽>10000){
+                                colorStop='#f9ff00'
+                            }
+
+
+                            if(e.properties.链路状态==='DOWN'){
+                                colorStop='#ff5500'
+                            }
+                            edgeInfo.push(e)
+                            mapFlyLinesData.push([{
+                                coord: geoCoordMap[e.source],
+                                lineStyle:{
+                                    color:colorStop,
+                                }
+                            },{
+                                coord: geoCoordMap[e.target],
+                            }])
+                        })
+                    }
+                });
 
                 // change options
                 option.options.push({

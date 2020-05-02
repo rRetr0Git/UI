@@ -39,7 +39,7 @@ def __get_response_pe():
 
 def get_api_pe(request):
 	return JsonResponse(
-		__get_response_pe()
+		__get_response_pe(),safe=False
 	)
 
 def __get_response_pe_interface_stats():
@@ -49,7 +49,7 @@ def __get_response_pe_interface_stats():
 
 def get_api_pe_interface_stats(request):
 	return JsonResponse(
-		__get_response_pe_interface_stats()
+		__get_response_pe_interface_stats(),safe=False
 	)
 
 def __get_response_te_1():
@@ -69,7 +69,7 @@ def __get_response_te_if_state():
 
 def get_api_te_if_state(request):
 	return JsonResponse(
-		__get_response_te_if_state()
+		__get_response_te_if_state(),safe=False
 	)
 
 def __get_response_tenant_te_traffic():

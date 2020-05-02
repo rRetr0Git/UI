@@ -111,9 +111,8 @@ $.getJSON(tePathInfoUrl, function(tePath) {
 
 
 $.ajax({
-  url:"http://127.0.0.1:8000/api/teif_state",
+  url:"http://127.0.0.1:8000/api/te_if_state",
   type:'get',
-  dataType: 'json',
   success:function(res){
     var teData = JSON.parse(JSON.stringify(res))
     teData.forEach(e => {
