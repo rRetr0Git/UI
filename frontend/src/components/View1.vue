@@ -109,7 +109,7 @@ $.getJSON(tePathInfoUrl, function(tePath) {
 })
 */
 
-
+/*
 $.ajax({
   url:"http://127.0.0.1:8000/api/te_if_state",
   type:'get',
@@ -153,6 +153,39 @@ $.ajax({
     })
   }
 });
+*/
+
+$.getJSON("http://127.0.0.1:8000/api/te_if_state/jsoncallback=?", function(te) {
+  var teData = JSON.parse(JSON.stringify(te))
+  teData.forEach(e => {
+    teAllData.push(e)
+  })
+})
+
+
+$.getJSON("http://127.0.0.1:8000/api/tenant_te_traffic/jsoncallback=?", function(tenant) {
+  var tenantData = JSON.parse(JSON.stringify(tenant))
+  tenantData.result.forEach(e => {
+    tenantAllData.push(e)
+  })
+})
+
+$.getJSON("http://127.0.0.1:8000/api/te_1/jsoncallback=?", function(tePath) {
+  var tePathData = JSON.parse(JSON.stringify(tePath))
+  tePathData.results.item.forEach(e => {
+    tePathAllData.push(e)
+    teVisData[e.name] = []
+    teVisData[e.name].push({name:e.srcPe,symbolSize:40})
+    teVisLinks[e.name] = []
+    var tempSrc = e.srcPe
+    e.teTunnelPaths[0].paths.forEach(f => {
+      teVisData[e.name].push({name:f.peId,symbolSize:40})
+      teVisLinks[e.name].push({source:tempSrc,target:f.peId})
+      tempSrc = f.peId
+    })
+  })
+})
+
 
 export default {
   name: 'HelloWorld',
@@ -240,6 +273,9 @@ export default {
   },
   mounted(){
 
+  },
+  activated: function() {
+    this.getCase()
   }
 }
 </script>

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,re_path
 from django.views.generic.base import TemplateView
 from backend import views
 
@@ -22,16 +22,16 @@ urlpatterns = [
     # path('admin/', admin.site.urls),
     path(r'admin/', admin.site.urls),
     path(r'demo/', TemplateView.as_view(template_name="index.html")),
-    path(r'demo/view1/', TemplateView.as_view(template_name="index.html")),
-    path(r'demo/view2/', TemplateView.as_view(template_name="index.html")),
-    path(r'api/alert/',views.get_api_alert),
-    path(r'api/graph/',views.get_api_graph),
-    path(r'api/overview/',views.get_api_overview),
-    path(r'api/pe/',views.get_api_pe),
-    path(r'api/pe_interface_stats/',views.get_api_pe_interface_stats),
-    path(r'api/te_1/',views.get_api_te_1),
-    path(r'api/te_if_state/',views.get_api_te_if_state),
-    path(r'api/tenant_te_traffic/',views.get_api_tenant_te_traffic),
-    path(r'api/top_10_if/',views.get_api_top_10_if),
-    path(r'api/traffic/',views.get_api_traffic),
+    re_path(r'^demo/view1/', TemplateView.as_view(template_name="index.html")),
+    re_path(r'^demo/view2/', TemplateView.as_view(template_name="index.html")),
+    re_path(r'^api/alert/',views.get_api_alert),
+    re_path(r'^api/graph/',views.get_api_graph),
+    re_path(r'^api/overview/',views.get_api_overview),
+    re_path(r'^api/pe/',views.get_api_pe),
+    re_path(r'^api/pe_interface_stats/',views.get_api_pe_interface_stats),
+    re_path(r'^api/te_1/',views.get_api_te_1),
+    re_path(r'^api/te_if_state/',views.get_api_te_if_state),
+    re_path(r'^api/tenant_te_traffic/',views.get_api_tenant_te_traffic),
+    re_path(r'^api/top_10_if/',views.get_api_top_10_if),
+    re_path(r'^api/traffic/',views.get_api_traffic),
 ]

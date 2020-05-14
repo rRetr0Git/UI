@@ -3076,296 +3076,296 @@
       "fields": [
         {
           "name": "名称",
-          "active": true
+          "active": "true"
         },
         {
           "name": "Vendor",
-          "active": true
+          "active": "true"
         },
         {
           "name": "状态",
-          "active": true
+          "active": "true"
         },
         {
           "name": "name",
-          "active": true
+          "active": "true"
         },
         {
           "name": "properties",
-          "active": true
+          "active": "true"
         },
         {
           "name": "ports",
-          "active": true
+          "active": "true"
         },
         {
           "name": "厂商",
-          "active": true
+          "active": "true"
         },
         {
           "name": "地点",
-          "active": true
+          "active": "true"
         }
       ],
       "captions": {
         "No category": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "P": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "CE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "VPE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "VPE_P": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_VPE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P_PE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "DC": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "VR": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "白牌机1G": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "白牌机10G": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "Mininet": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "CPE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "PEA": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "PEB": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "PEA_PEA": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PEA_PEB": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PEB_PEB": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_PEA": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_PEB": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CPE_PEA": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CPE_PEB": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_PEA": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_PEB": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_CPE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "SWITCH": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "SWITCH_CE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "SWITCH_PE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P_P": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_PE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "POP": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "CPE_VPE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_PE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE_POP": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CPE_POP": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "POP_CLOUD": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CLOUD": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "LEASEDLINE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": [
             "名称"
           ]
         },
         "VPE_VPE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE_PE": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE_P": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE_L2": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P_PEA": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P_PEB": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_P": {
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         }
       }
@@ -3374,286 +3374,286 @@
       "fields": [
         {
           "name": "预留带宽",
-          "active": true
+          "active": "true"
         },
         {
           "name": "预留带宽使用率",
-          "active": true
+          "active": "true"
         },
         {
           "name": "带宽",
-          "active": true
+          "active": "true"
         }
       ],
       "captions": {
         "VPE_P": {
           "name": "VPE_P",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_VPE": {
           "name": "CE_VPE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE": {
           "name": "PE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P": {
           "name": "P",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE": {
           "name": "CE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE": {
           "name": "VPE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P_PE": {
           "name": "P_PE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "DC": {
           "name": "DC",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VR": {
           "name": "VR",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "白牌机1G": {
           "name": "白牌机1G",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "白牌机10G": {
           "name": "白牌机10G",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "Mininet": {
           "name": "Mininet",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CPE": {
           "name": "CPE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PEA": {
           "name": "PEA",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PEB": {
           "name": "PEB",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PEA_PEA": {
           "name": "PEA_PEA",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PEB_PEB": {
           "name": "PEB_PEB",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PEA_PEB": {
           "name": "PEA_PEB",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_PEA": {
           "name": "VPE_PEA",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_PEB": {
           "name": "VPE_PEB",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CPE_PEA": {
           "name": "CPE_PEA",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CPE_PEB": {
           "name": "CPE_PEB",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_PEA": {
           "name": "CE_PEA",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_PEB": {
           "name": "CE_PEB",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_CPE": {
           "name": "VPE_CPE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "SWITCH": {
           "name": "SWITCH",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "SWITCH_CE": {
           "name": "SWITCH_CE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "SWITCH_PE": {
           "name": "SWITCH_PE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P_P": {
           "name": "P_P",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_PE": {
           "name": "CE_PE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "POP": {
           "name": "POP",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CPE_VPE": {
           "name": "CPE_VPE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_PE": {
           "name": "VPE_PE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE_POP": {
           "name": "PE_POP",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CPE_POP": {
           "name": "CPE_POP",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "POP_CLOUD": {
           "name": "POP_CLOUD",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CLOUD": {
           "name": "CLOUD",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "LEASEDLINE": {
           "name": "LEASEDLINE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "VPE_VPE": {
           "name": "VPE_VPE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE_PE": {
           "name": "PE_PE",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE_P": {
           "name": "PE_P",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "PE_L2": {
           "name": "PE_L2",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P_PEA": {
           "name": "P_PEA",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "P_PEB": {
           "name": "P_PEB",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         },
         "CE_P": {
           "name": "CE_P",
-          "active": true,
-          "displayName": true,
+          "active": "true",
+          "displayName": "true",
           "properties": []
         }
       }
@@ -3664,19 +3664,19 @@
           "color": {
             "by": "data.categories",
             "scheme": "nodes.qualitative.categories",
-            "active": true
+            "active": "true"
           },
           "icon": {
             "by": "data.categories",
             "scheme": "nodes.icons.categories",
-            "active": true
+            "active": "true"
           },
           "size": {
             "by": "data.properties.status",
             "bins": 7,
             "min": 5,
             "max": 6,
-            "active": true
+            "active": "true"
           }
         },
         "edges": {}
@@ -4043,17 +4043,17 @@
       "email": "dev@tethrnet.com",
       "source": "local",
       "preferences": {
-        "pinOnDrag": true
+        "pinOnDrag": "true"
       }
     },
     "userId": 1443,
-    "sandbox": false,
+    "sandbox": "false",
     "createdAt": "2016-12-08T15:52:01.323Z",
     "updatedAt": "2016-12-21T11:08:19.541Z",
     "alternativeIds": {},
     "mode": "nodelink",
     "layout": {
-      "incremental": true,
+      "incremental": "true",
       "algorithm": "force",
       "mode": "best"
     },

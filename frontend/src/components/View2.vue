@@ -865,6 +865,9 @@ export default {
         function _random(a, b) {
             return Math.round(Math.random() * Math.abs(b - a) + a)
         }
+  },
+  activated: function() {
+    this.getCase()
   }
 }
 </script>
