@@ -24,6 +24,7 @@ urlpatterns = [
     path(r'demo/', TemplateView.as_view(template_name="index.html")),
     re_path(r'^demo/view1/', TemplateView.as_view(template_name="index.html")),
     re_path(r'^demo/view2/', TemplateView.as_view(template_name="index.html")),
+    re_path(r'^demo/view3/', TemplateView.as_view(template_name="index.html")),
     re_path(r'^api/alert/',views.get_api_alert),
     re_path(r'^api/graph/',views.get_api_graph),
     re_path(r'^api/overview/',views.get_api_overview),
