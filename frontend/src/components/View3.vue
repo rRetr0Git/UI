@@ -15,7 +15,7 @@
             <el-table
               :header-cell-style="{background:'#61A8cc',color:'#545c64'}"
               :data="tableData"
-              height="280"
+              height="330"
               style="width: 100%"
               :row-class-name="tableRowClassName">
               <el-table-column
@@ -1187,7 +1187,7 @@ export default {
         type: 'pictorialBar',
         symbolPosition: 'end',
         symbolOffset: [0, '0%'],
-        symbolSize: ['125%','8.25%'],
+        symbolSize: ['125%','9.1%'],
         color:'#0092f6',
         data: [{
             value: 1,
@@ -1309,6 +1309,15 @@ export default {
         myCharts3.resize();
         myCharts4.resize();
     }
+
+  },
+  beforeRouteEnter(to, from, next) {
+    document.querySelector('body').setAttribute('style', 'margin:0;padding:0')
+    next()
+  },
+  beforeRouteLeave(to, from, next) {
+    document.querySelector('body').setAttribute('style', '')
+    next()
   }
 }
 </script>
@@ -1316,28 +1325,28 @@ export default {
 
   #myCharts1{
     width: 100%;
-    height:300px;
+    height:360px;
     margin: 0 auto;
   }
   #myCharts2{
     width: 100%;
-    height:300px;
+    height:360px;
     margin: 0 auto;
   }
   #myCharts3{
     width: 100%;
-    height:300px;
+    height:360px;
     margin: 0 auto;
   }
   #myCharts4{
     width: 100%;
-    height:640px;
+    height:720px;
     margin: 0 auto;
   }
 
   #table{
     width: 100%;
-    height:340px;
+    height:360px;
     margin: 0 auto;
   }
 </style>

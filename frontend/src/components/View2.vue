@@ -708,30 +708,23 @@ export default {
   },
   activated: function() {
     this.getCase()
+  },
+  beforeRouteEnter(to, from, next) {
+    document.querySelector('body').setAttribute('style', 'margin:0;padding:0')
+    next()
+  },
+  beforeRouteLeave(to, from, next) {
+    document.querySelector('body').setAttribute('style', '')
+    next()
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-
   #myCharts{
     width: 100%;
-    height:940px;
+    height: 1080px;
     margin: 0 auto;
   }
 </style>
