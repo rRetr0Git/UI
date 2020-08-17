@@ -9,7 +9,7 @@
         <el-row>
         <div id="myCharts3" ref="myCharts3"></div>
         </el-row>
-        <el-row id="table" ref="table" style="background:#333">
+        <el-row id="table" ref="table" style="background:linear-gradient(to right, #01061b , #011944)">
           <template>
             <el-col :span="22" :offset="1">
             <el-table
@@ -49,8 +49,8 @@
 
 <style>
   .el-table .default-row {
-    background: #333;
-    color:#ffffff;
+    background: linear-gradient(to right, #01061b, #011944);
+    color:#cccccc;
   }
   .el-table__row:hover> td{
     background: #666 !important;
@@ -133,6 +133,19 @@ export default {
     var topRankName1 = ['GigabitEthernet 0/1/1/1','GigabitEthernet 0/1/1/2','GigabitEthernet 0/1/1/3','GigabitEthernet 0/1/1/4','GigabitEthernet 0/1/1/5','GigabitEthernet 0/1/1/6','GigabitEthernet 0/1/1/7','GigabitEthernet 0/1/1/8','GigabitEthernet 0/1/1/9','GigabitEthernet 0/1/1/10']
     var topRankValue2 = [10,9,8,7,6,5,4,3,2,1]
     var option1 = {
+      backgroundColor: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 1,
+        y2: 0,
+        colorStops: [{
+          offset: 0, color: '#01061b' // 0% 处的颜色
+        }, {
+          offset: 1, color: '#011944' // 100% 处的颜色
+        }],
+        global: false // 缺省为 false
+      },
       title:[{
         text: "12Mbps\n\n13Mbps",
         left: "center",
@@ -595,7 +608,7 @@ export default {
         "radius": ['30%', '45%'],
         "avoidLabelOverlap": false,
         "startAngle": -45,
-        "color": ['rgba(34,34,34,.9)', "transparent", "transparent"],
+        "color": ['rgba(34,34,34,0.9)', "transparent", "transparent"],
         "hoverAnimation": false,
         "legendHoverLink": false,
         "clockwise": false, //饼图的扇区是否是顺时针排布。
@@ -792,6 +805,19 @@ export default {
     }
 
     var option2 = {
+      backgroundColor: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 1,
+        y2: 0,
+        colorStops: [{
+          offset: 0, color: '#011944' // 0% 处的颜色
+        }, {
+          offset: 1, color: '#002c6e' // 100% 处的颜色
+        }],
+        global: false // 缺省为 false
+      },
       title:[{
           text: "VPN变化趋势",
           left: "65%",
@@ -950,6 +976,19 @@ export default {
     }
 
     var option3 = {
+      backgroundColor: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 1,
+        y2: 0,
+        colorStops: [{
+          offset: 0, color: '#01061b' // 0% 处的颜色
+        }, {
+          offset: 1, color: '#011944' // 100% 处的颜色
+        }],
+        global: false // 缺省为 false
+      },
       title:[{
           text: "告警总数：27",
           left: "42%",
@@ -1093,6 +1132,19 @@ export default {
     }
 
     var option4 = {
+      backgroundColor: {
+        type: 'linear',
+        x: 0,
+        y: 0,
+        x2: 1,
+        y2: 0,
+        colorStops: [{
+          offset: 0, color: '#011944' // 0% 处的颜色
+        }, {
+          offset: 1, color: '#002c6e' // 100% 处的颜色
+        }],
+        global: false // 缺省为 false
+      },
       title:[
       ],
       grid: [{
