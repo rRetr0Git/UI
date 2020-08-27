@@ -96,8 +96,8 @@
 </template>
 
 
-<style>
-  .el-table .default-row{
+<style scoped>
+  /deep/ .el-table .default-row{
     background: linear-gradient(to right, #002c6e , #011944);
     color:#cccccc;
   }
