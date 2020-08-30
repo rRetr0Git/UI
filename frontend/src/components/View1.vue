@@ -5,11 +5,11 @@
         <el-row>
         <div id="myCharts1" ref="myCharts1"></div>
         </el-row>
-        <el-row id="table1" ref="table1" style="background:linear-gradient(to right, #002c6e , #011944)">
+        <el-row id="table1" ref="table1" style="background:linear-gradient(to right, #011944 , #011030)">
           <template>
             <el-col :span="22" :offset="1">
             <el-table
-              :header-cell-style="{background:'#61A8cc',color:'#545c64'}"
+              :header-cell-style="{background:'#1B476A',color:'#ffffff'}"
               :data="tableData1"
               height="420"
               style="width: 100%"
@@ -45,11 +45,11 @@
         <el-row>
         <div id="myCharts2" ref="myCharts2"></div>
         </el-row>
-        <el-row id="table2" ref="table2" style="background:linear-gradient(to right, #002c6e , #011944)">
+        <el-row id="table2" ref="table2" style="background:linear-gradient(to right, #011944 , #011030)">
           <template>
             <el-col :span="22" :offset="1">
             <el-table
-              :header-cell-style="{background:'#61A8cc',color:'#545c64'}"
+              :header-cell-style="{background:'#1B476A',color:'#ffffff'}"
               :data="tableData2"
               height="420"
               style="width: 100%"
@@ -98,7 +98,7 @@
 
 <style scoped>
   /deep/ .el-table .default-row{
-    background: linear-gradient(to right, #002c6e , #011944);
+    background: linear-gradient(to right, #011944 , #011030);
     color:#cccccc;
   }
   .el-table__row:hover> td{
@@ -244,9 +244,9 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#002c6e' // 0% 处的颜色
+          offset: 0, color: '#011944' // 0% 处的颜色
         }, {
-          offset: 1, color: '#011944' // 100% 处的颜色
+          offset: 1, color: '#011030' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
@@ -293,7 +293,7 @@ export default {
         type: 'pictorialBar',
         symbolPosition: 'end',
         symbolOffset: [0, '0%'],
-        symbolSize: ['125%','580%'],
+        symbolSize: ['125%','535%'],
         color:'#0092f6',
         data: [{
             value: 1,
@@ -310,9 +310,9 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#002c6e' // 0% 处的颜色
+          offset: 0, color: '#011944' // 0% 处的颜色
         }, {
-          offset: 1, color: '#011944' // 100% 处的颜色
+          offset: 1, color: '#011030' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
@@ -359,7 +359,7 @@ export default {
         type: 'pictorialBar',
         symbolPosition: 'end',
         symbolOffset: [0, '0%'],
-        symbolSize: ['125%','580%'],
+        symbolSize: ['125%','535%'],
         color:'#0092f6',
         data: [{
             value: 1,
@@ -389,7 +389,7 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#011944' // 0% 处的颜色
+          offset: 0, color: '#011030' // 0% 处的颜色
         }, {
           offset: 1, color: '#01061b' // 100% 处的颜色
         }],
@@ -549,7 +549,7 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#011944' // 0% 处的颜色
+          offset: 0, color: '#011030' // 0% 处的颜色
         }, {
           offset: 1, color: '#01061b' // 100% 处的颜色
         }],

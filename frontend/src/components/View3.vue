@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :span="12"><div id="myCharts5" ref="myCharts5"></div></el-col>
-      <el-col :span="12"><div id="time" style="color:#21a3ca;font-size:24px;height:70px;line-height:70px;text-align:right;background:linear-gradient(to right,#011944, #002c6e)">{{date}}</div></el-col>
+      <el-col :span="12"><div id="time" style="color:#21a3ca;font-size:24px;height:70px;line-height:70px;font-weight:bold;text-align:right;background:linear-gradient(to right,#011030, #011944)">{{date}}</div></el-col>
     </el-row>
     <el-row>
       <el-col :span="12"><div id="myCharts1" ref="myCharts1"></div></el-col>
@@ -13,11 +13,11 @@
         <el-row>
         <div id="myCharts3" ref="myCharts3"></div>
         </el-row>
-        <el-row id="table" ref="table" style="background:linear-gradient(to right, #01061b , #011944)">
+        <el-row id="table" ref="table" style="background:linear-gradient(to right, #01061b , #011030)">
           <template>
             <el-col :span="22" :offset="1">
             <el-table
-              :header-cell-style="{background:'#61A8cc',color:'#545c64'}"
+              :header-cell-style="{background:'#1B476A',color:'#ffffff'}"
               :data="tableData"
               height="330"
               style="width: 100%"
@@ -53,7 +53,7 @@
 
 <style scoped>
   /deep/ .el-table .default-row {
-    background: linear-gradient(to right, #01061b , #011944);
+    background: linear-gradient(to right, #01061b , #011030);
     color:#cccccc;
   }
   .el-table__row:hover> td{
@@ -170,7 +170,7 @@ export default {
         colorStops: [{
           offset: 0, color: '#01061b' // 0% 处的颜色
         }, {
-          offset: 1, color: '#011944' // 100% 处的颜色
+          offset: 1, color: '#011030' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
@@ -237,7 +237,7 @@ export default {
         colorStops: [{
           offset: 0, color: '#01061b' // 0% 处的颜色
         }, {
-          offset: 1, color: '#011944' // 100% 处的颜色
+          offset: 1, color: '#011030' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
@@ -255,7 +255,7 @@ export default {
         x: "25%",
         top: '25%',
         width:"73%",
-        bottom: '10%',
+        bottom: '20%',
       },{
         x: "3%",
         top: '0%',
@@ -907,18 +907,20 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#011944' // 0% 处的颜色
+          offset: 0, color: '#011030' // 0% 处的颜色
         }, {
-          offset: 1, color: '#002c6e' // 100% 处的颜色
+          offset: 1, color: '#011944' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
       title:[{
           text: "VPN变化趋势",
-          left: "65%",
+          left: "55%",
           top: "20%",
           textStyle: {
-            fontSize: 15
+            fontSize: 15,
+            fontWeight: 'bold',
+            color: '#0092f6'
           },
         },
       ],
@@ -929,8 +931,8 @@ export default {
       },{
         x:"5%",
         right:"55%",
-        top: '35%',
-        bottom: '30%',
+        top: '30%',
+        bottom: '35%',
       },{
         top:"0%",
         left:"0%",
@@ -1041,7 +1043,7 @@ export default {
         name: 'glyph',
         type: 'pictorialBar',
         symbolPosition: 'end',
-        symbolOffset: [0, '0%'],
+        symbolOffset: [0, '20%'],
         symbolSize: 96,
         color:'#0092f6',
         data: [{
@@ -1080,16 +1082,17 @@ export default {
         colorStops: [{
           offset: 0, color: '#01061b' // 0% 处的颜色
         }, {
-          offset: 1, color: '#011944' // 100% 处的颜色
+          offset: 1, color: '#011030' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
       title:[{
           text: "告警总数：27",
-          left: "42%",
-          top: "25%",
+          left: "44%",
+          top: "22%",
           textStyle: {
-            fontSize: 20
+            fontSize: 20,
+            color:'#0092f6'
           },
         }
       ],
@@ -1234,9 +1237,9 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#011944' // 0% 处的颜色
+          offset: 0, color: '#011030' // 0% 处的颜色
         }, {
-          offset: 1, color: '#002c6e' // 100% 处的颜色
+          offset: 1, color: '#011944' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
