@@ -99,10 +99,10 @@
 <style scoped>
   /deep/ .el-table .default-row{
     background: linear-gradient(to right, #011944 , #011030);
-    color:#cccccc;
+    color:#ffffff;
   }
-  .el-table__row:hover> td{
-    background: #666 !important;
+  /deep/ .el-table__row:hover> td{
+    background: #1B476A !important;
   }
 
 </style>
