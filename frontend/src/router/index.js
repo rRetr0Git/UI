@@ -24,6 +24,10 @@ export default new Router({
       path: '/demo/view4/',
       component: View4
     },
+    {
+      path: '/test',
+      component: ()=> import ('@/view/test')
+    }
   ],
   mode: 'history'
 })
