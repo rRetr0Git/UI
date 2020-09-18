@@ -139,6 +139,16 @@ export default {
         }
       });
 
+      let url = '/api/monitor/topology/physical',
+        params={
+        }
+      $.get(url, params, (res)=>{
+        if(res.code == 0){
+          console.log(res.data)
+        }
+      })
+
+
       // 数据梯度或类别
       var dataType = ["总览1"]
       var colorType = ['#00ffea', '#00ff8c', '#f9ff00', '#ff5500']
