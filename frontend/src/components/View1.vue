@@ -5,7 +5,7 @@
         <el-row>
         <div id="myCharts1" ref="myCharts1"></div>
         </el-row>
-        <el-row id="table1" ref="table1" style="background:linear-gradient(to right, #011944 , #011030)">
+        <el-row id="table1" ref="table1" style="background:linear-gradient(to right, #002c6e , #011945)">
           <template>
             <el-col :span="22" :offset="1">
             <el-table
@@ -29,13 +29,23 @@
                 label="路径">
               </el-table-column>
               <el-table-column
-                prop="status"
-                label="状态"
+                prop="bw"
+                label="带宽"
                 width="80">
               </el-table-column>
               <el-table-column
-                prop="flow"
-                label="流量"
+                prop="delay"
+                label="时延"
+                width="60">
+              </el-table-column>
+              <el-table-column
+                prop="loss"
+                label="丢包"
+                width="60">
+              </el-table-column>
+              <el-table-column
+                prop="ration"
+                label="利用率"
                 width="80">
               </el-table-column>
             </el-table>
@@ -45,7 +55,7 @@
         <el-row>
         <div id="myCharts2" ref="myCharts2"></div>
         </el-row>
-        <el-row id="table2" ref="table2" style="background:linear-gradient(to right, #011944 , #011030)">
+        <el-row id="table2" ref="table2" style="background:linear-gradient(to right, #002c6e , #011945)">
           <template>
             <el-col :span="22" :offset="1">
             <el-table
@@ -108,7 +118,7 @@
 
 <style scoped>
   /deep/ .el-table .default-row{
-    background: linear-gradient(to right, #011944 , #011030);
+    background: linear-gradient(to right, #002c6e , #011945);
     color:#ffffff;
   }
   /deep/ .el-table__row:hover> td{
@@ -125,110 +135,8 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      tableData1:[{
-          src:'2-P-GZ',
-          dst:'2-P-SG',
-          path:'GZ-SG',
-          status:'在线',
-          flow:'100M',
-        },{
-          src:'2-P-GZ',
-          dst:'2-P-SZ',
-          path:'GZ-SG-SZ',
-          status:'离线',
-          flow:'200M',
-        },{
-          src:'2-P-SZ',
-          dst:'2-P-ZH',
-          path:'SZ-GZ-ZH',
-          status:'在线',
-          flow:'1G',
-        },{
-          src:'2-P-GZ',
-          dst:'2-P-SG',
-          path:'GZ-SG',
-          status:'在线',
-          flow:'100M',
-        },{
-          src:'2-P-GZ',
-          dst:'2-P-SZ',
-          path:'GZ-SG-SZ',
-          status:'离线',
-          flow:'200M',
-        },{
-          src:'2-P-SZ',
-          dst:'2-P-ZH',
-          path:'SZ-GZ-ZH',
-          status:'在线',
-          flow:'1G',
-        },{
-          src:'2-P-GZ',
-          dst:'2-P-SG',
-          path:'GZ-SG',
-          status:'在线',
-          flow:'100M',
-        },{
-          src:'2-P-GZ',
-          dst:'2-P-SZ',
-          path:'GZ-SG-SZ',
-          status:'离线',
-          flow:'200M',
-        },{
-          src:'2-P-SZ',
-          dst:'2-P-ZH',
-          path:'SZ-GZ-ZH',
-          status:'在线',
-          flow:'1G',
-        }],
-      tableData2: [{
-          teChange:'Tunnel1->Tunnel2',
-          time:'2020-05-10 11:00:00',
-          reason:'时延不满足要求',
-          vpnNum:'30',
-          switchTime:'500ms',
-        }, {
-          teChange:'Tunnel1->Tunnel2',
-          time:'2020-05-10 11:00:00',
-          reason:'主路径DOWN',
-          vpnNum:'30',
-          switchTime:'500ms',
-        },{
-          teChange:'Tunnel1->Tunnel2',
-          time:'2020-05-10 11:00:00',
-          reason:'时延不满足要求',
-          vpnNum:'30',
-          switchTime:'500ms',
-        }, {
-          teChange:'Tunnel1->Tunnel2',
-          time:'2020-05-10 11:00:00',
-          reason:'主路径DOWN',
-          vpnNum:'30',
-          switchTime:'500ms',
-        },{
-          teChange:'Tunnel1->Tunnel2',
-          time:'2020-05-10 11:00:00',
-          reason:'时延不满足要求',
-          vpnNum:'30',
-          switchTime:'500ms',
-        }, {
-          teChange:'Tunnel1->Tunnel2',
-          time:'2020-05-10 11:00:00',
-          reason:'主路径DOWN',
-          vpnNum:'30',
-          switchTime:'500ms',
-        },{
-          teChange:'Tunnel1->Tunnel2',
-          time:'2020-05-10 11:00:00',
-          reason:'时延不满足要求',
-          vpnNum:'30',
-          switchTime:'500ms',
-        }, {
-          teChange:'Tunnel1->Tunnel2',
-          time:'2020-05-10 11:00:00',
-          reason:'主路径DOWN',
-          vpnNum:'30',
-          switchTime:'500ms',
-      }]
+      tableData1:[],
+      tableData2: []
     }
   },
   methods: {
@@ -272,6 +180,33 @@ export default {
     })
     this.tableData2 = teChangeList;
 
+    //GET DATA OF TE INFO
+    var teList = []
+    url = '/api/monitor/te/te-path/all',
+      params = {}
+    $.get(url, params, (res)=>{
+      if(res.code == 0){
+        console.log(res.data)
+        for(let i=0;i<res.data.length;i++){
+          let pathstr = ''
+          for(let j=0;j<res.data[i]['explicit-path'].length;j++){
+            pathstr += res.data[i]['explicit-path'][j]['node-id'] + '->'
+          }
+          pathstr += res.data[i]['dst-device']
+          teList.push({
+            src:res.data[i]['src-device'],
+            dst:res.data[i]['dst-device'],
+            path:pathstr,
+            bw:res.data[i]['oper-bw'],
+            delay:res.data[i]['delay'],
+            loss:res.data[i]['loss'],
+            ration:res.data[i]['utilization-ratio'].toFixed(2) + "%"
+          })
+        }
+      }
+    })
+    this.tableData1 = teList;
+
     //GET DATA OF VPN FLOW
     var vpnFlowInData = []
     var vpnFlowOutData = []
@@ -285,7 +220,6 @@ export default {
       }
     $.get(url, params, (res)=>{
       if(res.code == 0){
-        console.log(res.data)
         for(let i=0;i<res.data.length;i++){
           vpnFlowDate.push(res.data[i].time.substring(11,16))
           vpnFlowInData.push(res.data[i].in_traffic)
@@ -306,14 +240,13 @@ export default {
       }
     $.get(url, params, (res)=>{
       if(res.code == 0){
-        console.log(res.data)
         for(let i=0;i<res.data.length;i++){
           teFlowDate.push(res.data[i].time.substring(11,16))
           teFlowOutData.push(res.data[i].out_traffic)
         }
       }
     })
-    console.log(teFlowOutData)
+
     var option1 = {
       backgroundColor: {
         type: 'linear',
@@ -322,9 +255,9 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#011944' // 0% 处的颜色
+          offset: 0, color: '#002c6e' // 0% 处的颜色
         }, {
-          offset: 1, color: '#011030' // 100% 处的颜色
+          offset: 1, color: '#011945' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
@@ -388,9 +321,9 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#011944' // 0% 处的颜色
+          offset: 0, color: '#002c6e' // 0% 处的颜色
         }, {
-          offset: 1, color: '#011030' // 100% 处的颜色
+          offset: 1, color: '#011945' // 100% 处的颜色
         }],
         global: false // 缺省为 false
       },
@@ -467,7 +400,7 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#011030' // 0% 处的颜色
+          offset: 0, color: '#011945' // 0% 处的颜色
         }, {
           offset: 1, color: '#01061b' // 100% 处的颜色
         }],
@@ -612,7 +545,7 @@ export default {
         x2: 1,
         y2: 0,
         colorStops: [{
-          offset: 0, color: '#011030' // 0% 处的颜色
+          offset: 0, color: '#011945' // 0% 处的颜色
         }, {
           offset: 1, color: '#01061b' // 100% 处的颜色
         }],

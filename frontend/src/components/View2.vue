@@ -31,32 +31,36 @@ export default {
     var peInterfaceAllData = {}
     var edgeInfo = []
 
-    /*comment
+    //GET DATA OF TOPOLOGY
+    var geoCoordMap = {}
+    var fullName = {}
+    var status = {}
+    var categories = {}
+    var barType = []
 
-    var peInfoUrl = "../../static/testApi/pe.json";
-    var peInterfaceInfoUrl = "../../static/testApi/pe_interface_stats.json";
-
-    $.getJSON(peInfoUrl, function(pe) {
-      var peData = JSON.parse(JSON.stringify(pe))
-      peData.forEach(e => {
-      peAllData[e.name] = e
-      })
+    let url = '/api/monitor/topology/physical',
+      params={
+      }
+    $.get(url, params, (res)=>{
+      if(res.code == 0){
+        for(let i=0;i<res.data.topology[1].node.length;i++){
+          let item = res.data.topology[1].node[i]
+          let name = item.name
+          fullName[name] = item.name
+          status[name] = item['node-status']
+          categories[name] = item['node-type']
+          if(name.substring(name.length-2) != 'L1' && name.substring(name.length-2) != 'L2') continue;
+          barType.push(name)
+          if(name.substring(name.length-2) == 'L1'){
+            geoCoordMap[name] = [parseFloat(item.longitude)+0.25,parseFloat(item.latitude)+0.10]
+          }
+          else{
+            geoCoordMap[name] = [parseFloat(item.longitude),parseFloat(item.latitude)]
+          }
+        }
+      }
     })
 
-    $.getJSON(peInterfaceInfoUrl, function(peInterface) {
-      var peInterfaceData = JSON.parse(JSON.stringify(peInterface))
-      peInterfaceData.forEach(e => {
-        if(e.host in peInterfaceAllData){
-          peInterfaceAllData[e.host].push(e)
-        }
-        else{
-          peInterfaceAllData[e.host] = []
-          peInterfaceAllData[e.host].push(e)
-        }
-      })
-    })
-
-    */
     $.ajax({
       url:"http://127.0.0.1:8000/api/pe",
       type:'get',
@@ -87,67 +91,10 @@ export default {
 
     $.getJSON(uploadedDataURL, function(geoJson) {
       _this.$echarts.registerMap('', geoJson); //注册 地图
-      // 各区中心点经纬度
-      var geoCoordMap = {}
-      var fullName = {}
-      var status = {}
-      var categories = {}
+
       // 柱状图纵坐标
-      var barType = []
       var partMap = {}
       var partMapLink = {}
-
-      /*comment
-      var geoInfoUrl = "../../static/testApi/graph.json";
-      $.getJSON(geoInfoUrl, function(geo) {
-        var geoData = JSON.parse(JSON.stringify(geo))
-        geoData.visualization.nodes.forEach(e => {
-          let left = e.data.名称.lastIndexOf("\:")
-          let right = e.data.名称.lastIndexOf("\-")
-          let name = e.data.名称.substring(0,left)
-
-          fullName[name] = e.data.名称
-          status[name] = e.data.状态
-          categories[name] = e.categories[0]
-          if(e.categories.toString()===(["CE"]).toString()) return;
-          if(e.categories.toString()===(["VPE"]).toString()) return;
-          barType.push(name)
-          geoCoordMap[name] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
-        })
-      })
-
-      */
-      $.ajax({
-        url:"http://127.0.0.1:8000/api/graph",
-        type:'get',
-        dataType: 'json',
-        success:function(res){
-          var geoData = JSON.parse(JSON.stringify(res))
-          geoData.visualization.nodes.forEach(e => {
-            let left = e.data.名称.lastIndexOf("\:")
-            let right = e.data.名称.lastIndexOf("\-")
-            let name = e.data.名称.substring(0,left)
-
-            fullName[name] = e.data.名称
-            status[name] = e.data.状态
-            categories[name] = e.categories[0]
-            if(e.categories.toString()===(["CE"]).toString()) return;
-            if(e.categories.toString()===(["VPE"]).toString()) return;
-            barType.push(name)
-            geoCoordMap[name] = [parseFloat(e.geo.longitude),parseFloat(e.geo.latitude)]
-          })
-        }
-      });
-
-      let url = '/api/monitor/topology/physical',
-        params={
-        }
-      $.get(url, params, (res)=>{
-        if(res.code == 0){
-          console.log(res.data)
-        }
-      })
-
 
       // 数据梯度或类别
       var dataType = ["总览1"]
@@ -195,31 +142,6 @@ export default {
                 borderColor: 'rgba(0,168,255,1)',
                 opacity: 1
               }
-            }
-          },
-          tooltip: {
-            trigger: 'item',
-            enterable:true,
-            formatter:function (params) {
-              var res = '';
-              if(params.componentSubType==="graph") return;
-              if(params.componentSubType==="bar"&&params.componentIndex===3){
-                res+=params.name+'数:'+params.data+'</br>';
-                return res;
-              }
-              if(params.componentSubType==="bar"&&params.componentIndex==4){
-                res+=topTenRxData.host[params.dataIndex]+'</br>';
-                res+=topTenRxData.ifname[params.dataIndex]+'</br>';
-                res+=topTenRxData.usage[params.dataIndex]+'</br>';
-                return res;
-              }
-              if(params.componentSubType==="bar"&&params.componentIndex==5){
-                res+=topTenTxData.host[params.dataIndex]+'</br>';
-                res+=topTenTxData.ifname[params.dataIndex]+'</br>';
-                res+=topTenTxData.usage[params.dataIndex]+'</br>';
-                return res;
-              }
-              return res;
             }
           },
           grid:[{
@@ -298,7 +220,7 @@ export default {
             mapType: 'guangdong',
             roam: false,
             top: "0%",
-            zoom:0.9,
+            zoom:0.95,
             aspectScale:1,
             left: "13%",
             label: {
@@ -327,7 +249,7 @@ export default {
                 areaColor: 'rgba(40,137,211,1)',
               }
             },
-            animation: false,
+            animation: true,
             tooltip: {
               trigger: 'item',
               enterable:true,
@@ -335,14 +257,15 @@ export default {
               textStyle:{
                 fontSize:14,
               },
-              hideDelay:100000,
+              hideDelay:5,
               borderColor:'#ffffff',
               borderWidth:'2',
               formatter:function (params) {
                 var upMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#00ff00;\"></span>'
                 var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
-                var res = '';
+                var res = '1111';
                 if(params.componentSubType==='effectScatter'){
+                  return res
                   res+=params.marker+peAllData[params['data'].name].name+'</br><table>';
                   res+='<tr><td>City</td><td>'+peAllData[params['data'].name].city+'</td></tr>';
                   res+='<tr><td>Status</td><td>'+status[params['data'].name]+'</td></tr>';
@@ -385,6 +308,7 @@ export default {
                   }
                 }
                 if(params.componentSubType==="lines"){
+                  return res
                   res+='<table>';
                   res+='<tr><td>Source</td><td>'+edgeInfo[params.dataIndex].source+'</td></tr>';
                   res+='<tr><td>Target</td><td>'+edgeInfo[params.dataIndex].target+'</td></tr>';
@@ -405,20 +329,13 @@ export default {
       }
 
       dataType.forEach((e, i) => {
-        // 柱状图模拟数据
-        var barData = [];
-        // 地图撒点数据 [{name:名字,value:[lng,lat,数值]}]
+        // 地图撒点数据
         var mapData = []
         // 地图飞线数据
         var mapFlyLinesData = [];
 
         barType.forEach(res => {
           var value = _random(400, 800);
-          barData.push({
-            'name': res,
-            'value': value
-          })
-
           var point = JSON.parse(JSON.stringify(geoCoordMap[res]));
           point.push(value)
           mapData.push({
@@ -427,72 +344,73 @@ export default {
           })
         })
 
-        /*comment
-        $.getJSON(geoInfoUrl, function(geo) {
-          var geoData = JSON.parse(JSON.stringify(geo))
-          geoData.visualization.edges.forEach(e => {
-            if(e.type==="PEB_PEB" || e.type=='PEA_PEB'){}
-            else{
-              var source = ''
-              if(e.target in partMap){
-                if(e.source.length>16){
-                  geoData.visualization.nodes.forEach(f=>{
-                    if(e.source === f.id){
-                      source = f.data.名称
-                    }
-                  })
+        $.get(url, params, (res)=>{
+          if(res.code == 0){
+            console.log(res.data.topology[1].link)
+            for(let i=0;i<res.data.topology[1].link.length;i++){
+              let item = res.data.topology[1].link[i]
+              let src = item.source
+              let dst = item.destination
+              if(dst['dest-node'].substring(dst['dest-node'].length-2) != 'L1' && dst['dest-node'].substring(dst['dest-node'].length-2) != 'L2'){
+                if(dst['dest-node'] in partMap){
+                  partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
+                  partMapLink[dst['dest-node']].push({source:src['source-node'],target:dst['dest-node'],lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                 }
                 else{
-                  source = e.source
+                  partMap[dst['dest-node']]=[]
+                  partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
+                  partMap[dst['dest-node']].push({name:dst['dest-node'],itemStyle:{color: '#00ffea'}})
+                  partMapLink[dst['dest-node']]=[]
+                  partMapLink[dst['dest-node']].push({source:src['source-node'],target:dst['dest-node'],lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                 }
-                partMap[e.target].push({name:source,itemStyle:{color: '#00ffea'}})
-                partMapLink[e.target].push({source:source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
+                continue;
               }
-              else{
-                if(e.source.length>16){
-                  geoData.visualization.nodes.forEach(f=>{
-                    if(e.source === f.id){
-                      source = f.data.名称
-                    }
-                  })
+              if(src['source-node'].substring(src['source-node'].length-2) != 'L1' && src['source-node'].substring(src['source-node'].length-2) != 'L2'){
+                if(dst['dest-node'] in partMap){
+                  partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
+                  partMapLink[dst['dest-node']].push({source:src['source-node'],target:dst['dest-node'],lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                 }
                 else{
-                  source = e.source
+                  partMap[dst['dest-node']]=[]
+                  partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
+                  partMap[dst['dest-node']].push({name:dst['dest-node'],itemStyle:{color: '#00ffea'}})
+                  partMapLink[dst['dest-node']]=[]
+                  partMapLink[dst['dest-node']].push({source:src['source-node'],target:dst['dest-node'],lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                 }
-                partMap[e.target]=[]
-                partMap[e.target].push({name:source,itemStyle:{color: '#00ffea'}})
-                partMap[e.target].push({name:e.target,itemStyle:{color: '#00ffea'}})
-                partMapLink[e.target]=[]
-                partMapLink[e.target].push({source:source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
+                continue;
               }
-            }
-            if(e.type==="VPE_PEA") return;
-            if(e.type==="CE_PEA") return;
-            if(e.type==="CE_VPE") return;
 
-            var colorStop='#00ff8c'
-            if(e.properties.当前带宽>5000){
-              colorStop='#00ffea'
-            }
-            if(e.properties.当前带宽>10000){
-              colorStop='#f9ff00'
-            }
-            if(e.properties.链路状态==='DOWN'){
-              colorStop='#ff5500'
-            }
-            edgeInfo.push(e)
-            mapFlyLinesData.push([{
-              coord: geoCoordMap[e.source],
-              lineStyle:{
-                color:colorStop,
+
+              let colorStop='#00ff8c'
+              if(item['oper-bw']>15000){
+                colorStop='#00ffea'
               }
-            },{
-              coord: geoCoordMap[e.target],
-            }])
-          })
+              if(item['oper-bw']>30000){
+                colorStop='#f9ff00'
+              }
+
+              //edgeInfo.push(e)
+              let flag = 0
+              for(let i=0;i<mapFlyLinesData.length;i++){
+                if(mapFlyLinesData[i][0].coord == geoCoordMap[dst['dest-node']] && mapFlyLinesData[i][1].coord == geoCoordMap[src['source-node']]){
+                  flag = 1
+                  break
+                }
+              }
+              if(flag==1) continue;
+              mapFlyLinesData.push([{
+                coord: geoCoordMap[src['source-node']],
+                lineStyle:{
+                  color:colorStop,
+                }
+              },{
+                coord: geoCoordMap[dst['dest-node']],
+              }])
+            }
+          }
         })
 
-        */
+        ///
         $.ajax({
           url:"http://127.0.0.1:8000/api/graph",
           type:'get',
@@ -562,6 +480,7 @@ export default {
             })
           }
         });
+        ///
 
         // change options
         option.options.push({
@@ -620,7 +539,7 @@ export default {
                 color: colorType[i],
                 width: 2, //尾迹线条宽度
                 opacity: 0.5, //尾迹线条透明度
-                curveness: .1 //尾迹线条曲直度
+                curveness: 0.1 //尾迹线条曲直度
               }
             },
             data: mapFlyLinesData,
