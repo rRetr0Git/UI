@@ -1939,7 +1939,7 @@ export default {
                 let length = topRankName1[data.dataIndex].length
                 let space = ""
                 for(let i=0;i<90-length;i++){
-                  space+=" "
+                  space+=" \n\n          "
                 }
                 return (
                   topRankName1[data.dataIndex] + space + topRankValue1[data.dataIndex]
@@ -1996,7 +1996,7 @@ export default {
               position: [0, "-100%"],
               formatter: function (data) {
                 let length = topRankName2[data.dataIndex].length
-                let space = "       "
+                let space = "       \n\n          "
                 return (
                   "       " + topRankName2[data.dataIndex] + space + topRankValue2[data.dataIndex]
                 );

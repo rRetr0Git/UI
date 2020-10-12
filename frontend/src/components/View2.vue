@@ -36,6 +36,8 @@ export default {
     var fullName = {}
     var status = {}
     var categories = {}
+    var city = {}
+    var manageIp = {}
     var barType = []
 
     let url = '/api/monitor/topology/physical',
@@ -49,8 +51,11 @@ export default {
           fullName[name] = item.name
           status[name] = item['node-status']
           categories[name] = item['node-type']
+          manageIp[name] = item['management-ip']
+          city[name] = item['city']
           if(name.substring(name.length-2) != 'L1' && name.substring(name.length-2) != 'L2') continue;
           barType.push(name)
+          peInterfaceAllData[name] = item['termination-point']
           if(name.substring(name.length-2) == 'L1'){
             geoCoordMap[name] = [parseFloat(item.longitude)+0.25,parseFloat(item.latitude)+0.10]
           }
@@ -61,33 +66,7 @@ export default {
       }
     })
 
-    $.ajax({
-      url:"http://127.0.0.1:8000/api/pe",
-      type:'get',
-      success:function(res){
-        var peData = JSON.parse(JSON.stringify(res))
-        peData.forEach(e => {
-          peAllData[e.name] = e
-        })
-      }
-    });
 
-    $.ajax({
-      url:"http://127.0.0.1:8000/api/pe_interface_stats",
-      type:'get',
-      success:function(res){
-        var peInterfaceData = JSON.parse(JSON.stringify(res))
-        peInterfaceData.forEach(e => {
-          if(e.host in peInterfaceAllData){
-            peInterfaceAllData[e.host].push(e)
-          }
-          else{
-            peInterfaceAllData[e.host] = []
-            peInterfaceAllData[e.host].push(e)
-          }
-        })
-      }
-    });
 
     $.getJSON(uploadedDataURL, function(geoJson) {
       _this.$echarts.registerMap('', geoJson); //注册 地图
@@ -215,6 +194,79 @@ export default {
             left:'80%'
           },
           calculable: true,
+          tooltip: {
+            trigger: 'item',
+            enterable:true,
+            position:['5%','5%'],
+            textStyle:{
+              fontSize:24,
+            },
+            hideDelay:5,
+            borderColor:'#ffffff',
+            borderWidth:'2',
+
+            formatter:function (params) {
+              var upMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#00ff00;\"></span>'
+              var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
+              var res = '';
+              if(params.componentSubType==='effectScatter'){
+                res+=params.marker+fullName[params['data'].name]+'</br><table>';
+                res+='<tr><td>City</td><td>'+city[params['data'].name]+'</td></tr>';
+                res+='<tr><td>Status</td><td>'+status[params['data'].name]+'</td></tr>';
+                res+='<tr><td>Categories</td><td>'+categories[params['data'].name]+'</td></tr>';
+                res+='<tr><td>ManageIp</td><td>'+manageIp[params['data'].name]+'</td></tr>';
+                /*
+                res+='<tr><td>Number of Interface</td><td>'+peAllData[params['data'].name].length+'</td></tr>';
+                var interfaces={}
+                for(var i=0;i<peAllData[params['data'].name].peInterfaces.length;i++){
+                  interfaces[peAllData[params['data'].name][i]['tp-id']] = peAllData[params['data'].name][i].operStatus
+                }
+                var newData = {};
+                Object.keys(interfaces).sort().map(key => {
+                  newData[key]=interfaces[key]
+                })
+                let rx_bps = null
+                let tx_bps = null
+                for(let key in newData){
+                  if(params['data'].name in peInterfaceAllData){
+                    for(let i = 0; i < peInterfaceAllData[params['data'].name].length; i++){
+                      if(peInterfaceAllData[params['data'].name][i].ifname === key){
+                        rx_bps = parseInt(peInterfaceAllData[params['data'].name][i].rx_bps)
+                        tx_bps = parseInt(peInterfaceAllData[params['data'].name][i].tx_bps)
+                      }
+                    }
+                  }
+                  if(newData[key]==='UP'){
+                    res+='<tr><td>'+key+'</td><td>'
+                    res+=upMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
+                  }
+                  else{
+                    //res+=downMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
+                  }
+                }
+                */
+                res+= '</table>'
+                if(params.componentSubType==='effectScatter'){
+                  if(params.data.name in partMap){
+                    res+='双击查看下层拓扑'+'</br>';
+                  }
+                }
+              }
+              if(params.componentSubType==="lines"){
+                res+='<table>';
+                res+='<tr><td>Source</td><td>'+edgeInfo[params.dataIndex].source['source-node']+'</td></tr>';
+                res+='<tr><td>Target</td><td>'+edgeInfo[params.dataIndex].destination['dest-node']+'</td></tr>';
+                res+='<tr><td>Status</td><td>'+edgeInfo[params.dataIndex]['link-status']+'</td></tr>';
+                res+='<tr><td>Delay</td><td>'+edgeInfo[params.dataIndex]['delay']+'</td></tr>';
+                res+='<tr><td>Loss</td><td>'+edgeInfo[params.dataIndex]['loss']+'</td></tr>';
+                res+='<tr><td>S-Interface</td><td>'+edgeInfo[params.dataIndex].source['source-tp']+'</td></tr>';
+                res+='<tr><td>T-Interface</td><td>'+edgeInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
+                res+='<tr><td>Bandwidth</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+edgeInfo[params.dataIndex]['oper-bw']+'</td></tr>';
+                res+='</table>';
+              }
+              return res;
+            }
+          },
           geo: {
             type: 'map',
             mapType: 'guangdong',
@@ -250,79 +302,6 @@ export default {
               }
             },
             animation: true,
-            tooltip: {
-              trigger: 'item',
-              enterable:true,
-              position:['5%','5%'],
-              textStyle:{
-                fontSize:14,
-              },
-              hideDelay:5,
-              borderColor:'#ffffff',
-              borderWidth:'2',
-              formatter:function (params) {
-                var upMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#00ff00;\"></span>'
-                var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
-                var res = '1111';
-                if(params.componentSubType==='effectScatter'){
-                  return res
-                  res+=params.marker+peAllData[params['data'].name].name+'</br><table>';
-                  res+='<tr><td>City</td><td>'+peAllData[params['data'].name].city+'</td></tr>';
-                  res+='<tr><td>Status</td><td>'+status[params['data'].name]+'</td></tr>';
-                  res+='<tr><td>Categories</td><td>'+categories[params['data'].name]+'</td></tr>';
-                  res+='<tr><td>ManageIp</td><td>'+peAllData[params['data'].name].manageIp+'</td></tr>';
-                  res+='<tr><td>Number of Interface</td><td>'+peAllData[params['data'].name].peInterfaces.length+'</td></tr>';
-                  res+='<tr><td>Interface</td><td>Status</td><td>Rx_bps</td><td>Tx_bps</td></tr>'
-                  var interfaces={}
-                  for(var i=0;i<peAllData[params['data'].name].peInterfaces.length;i++){
-                    interfaces[peAllData[params['data'].name].peInterfaces[i].name] = peAllData[params['data'].name].peInterfaces[i].operStatus
-                  }
-                  var newData = {};
-                  Object.keys(interfaces).sort().map(key => {
-                    newData[key]=interfaces[key]
-                  })
-                  let rx_bps = null
-                  let tx_bps = null
-                  for(let key in newData){
-                    if(params['data'].name in peInterfaceAllData){
-                      for(let i = 0; i < peInterfaceAllData[params['data'].name].length; i++){
-                        if(peInterfaceAllData[params['data'].name][i].ifname === key){
-                          rx_bps = parseInt(peInterfaceAllData[params['data'].name][i].rx_bps)
-                          tx_bps = parseInt(peInterfaceAllData[params['data'].name][i].tx_bps)
-                        }
-                      }
-                    }
-                    if(newData[key]==='UP'){
-                      res+='<tr><td>'+key+'</td><td>'
-                      res+=upMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
-                    }
-                    else{
-                      //res+=downMarker+newData[key]+'</td><td>'+ rx_bps + '</td><td>'+ tx_bps +'</td></tr>'
-                    }
-                  }
-                  res+= '</table>'
-                  if(params.componentSubType==='effectScatter'){
-                    if(params.data.name in partMap){
-                      res+='点击查看下层拓扑'+'</br>';
-                    }
-                  }
-                }
-                if(params.componentSubType==="lines"){
-                  return res
-                  res+='<table>';
-                  res+='<tr><td>Source</td><td>'+edgeInfo[params.dataIndex].source+'</td></tr>';
-                  res+='<tr><td>Target</td><td>'+edgeInfo[params.dataIndex].target+'</td></tr>';
-                  res+='<tr><td>Status</td><td>'+edgeInfo[params.dataIndex].properties.链路状态+'</td></tr>';
-                  res+='<tr><td>Lag</td><td>'+edgeInfo[params.dataIndex].properties.延迟+'</td></tr>';
-                  res+='<tr><td>Loss</td><td>'+edgeInfo[params.dataIndex].properties.丢包+'</td></tr>';
-                  res+='<tr><td>S-Interface</td><td>'+edgeInfo[params.dataIndex].properties.源端口+'</td></tr>';
-                  res+='<tr><td>T-Interface</td><td>'+edgeInfo[params.dataIndex].properties.目的端口+'</td></tr>';
-                  res+='<tr><td>Bandwidth</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+edgeInfo[params.dataIndex].properties.当前带宽+'</td></tr>';
-                  res+='</table>';
-                }
-                return res;
-              }
-            },
           }
         },
         options: []
@@ -347,6 +326,7 @@ export default {
         $.get(url, params, (res)=>{
           if(res.code == 0){
             console.log(res.data.topology[1].link)
+            console.log(res.data.topology[1].node)
             for(let i=0;i<res.data.topology[1].link.length;i++){
               let item = res.data.topology[1].link[i]
               let src = item.source
@@ -389,8 +369,9 @@ export default {
                 colorStop='#f9ff00'
               }
 
-              //edgeInfo.push(e)
+              edgeInfo.push(item)
               let flag = 0
+              /*
               for(let i=0;i<mapFlyLinesData.length;i++){
                 if(mapFlyLinesData[i][0].coord == geoCoordMap[dst['dest-node']] && mapFlyLinesData[i][1].coord == geoCoordMap[src['source-node']]){
                   flag = 1
@@ -398,6 +379,7 @@ export default {
                 }
               }
               if(flag==1) continue;
+              */
               mapFlyLinesData.push([{
                 coord: geoCoordMap[src['source-node']],
                 lineStyle:{
@@ -410,77 +392,7 @@ export default {
           }
         })
 
-        ///
-        $.ajax({
-          url:"http://127.0.0.1:8000/api/graph",
-          type:'get',
-          dataType: 'json',
-          success:function(res){
-            var geoData = JSON.parse(JSON.stringify(res))
-            geoData.visualization.edges.forEach(e => {
-              if(e.type==="PEB_PEB" || e.type=='PEA_PEB'){}
-              else{
-                var source = ''
-                if(e.target in partMap){
-                  if(e.source.length>16){
-                    geoData.visualization.nodes.forEach(f=>{
-                      if(e.source === f.id){
-                        source = f.data.名称
-                      }
-                    })
-                  }
-                  else{
-                    source = e.source
-                  }
-                  partMap[e.target].push({name:source,itemStyle:{color: '#00ffea'}})
-                  partMapLink[e.target].push({source:source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
-                }
-                else{
-                  if(e.source.length>16){
-                    geoData.visualization.nodes.forEach(f=>{
-                      if(e.source === f.id){
-                        source = f.data.名称
-                      }
-                    })
-                  }
-                  else{
-                    source = e.source
-                  }
-                  partMap[e.target]=[]
-                  partMap[e.target].push({name:source,itemStyle:{color: '#00ffea'}})
-                  partMap[e.target].push({name:e.target,itemStyle:{color: '#00ffea'}})
-                  partMapLink[e.target]=[]
-                  partMapLink[e.target].push({source:source,target:e.target,lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
-                }
-              }
-              if(e.type==="VPE_PEA") return;
-              if(e.type==="CE_PEA") return;
-              if(e.type==="CE_VPE") return;
 
-              var colorStop='#00ff8c'
-
-              if(e.properties.当前带宽>5000){
-                colorStop='#00ffea'
-              }
-              if(e.properties.当前带宽>10000){
-                colorStop='#f9ff00'
-              }
-              if(e.properties.链路状态==='DOWN'){
-                colorStop='#ff5500'
-              }
-              edgeInfo.push(e)
-              mapFlyLinesData.push([{
-                coord: geoCoordMap[e.source],
-                lineStyle:{
-                  color:colorStop,
-                }
-              },{
-                coord: geoCoordMap[e.target],
-              }])
-            })
-          }
-        });
-        ///
 
         // change options
         option.options.push({
@@ -532,14 +444,14 @@ export default {
               period: 4, //箭头指向速度，值越小速度越快
               trailLength: 0.02, //特效尾迹长度[0,1]值越大，尾迹越长重
               symbol: 'arrow', //箭头图标
-              symbolSize: 5, //图标大小
+              symbolSize: 3, //图标大小
             },
             lineStyle: {
               normal: {
                 color: colorType[i],
-                width: 2, //尾迹线条宽度
-                opacity: 0.5, //尾迹线条透明度
-                curveness: 0.1 //尾迹线条曲直度
+                width: 1, //尾迹线条宽度
+                opacity: 0.05, //尾迹线条透明度
+                curveness: 0.2 //尾迹线条曲直度
               }
             },
             data: mapFlyLinesData,
@@ -593,7 +505,7 @@ export default {
       })
 
       myCharts.setOption(option)
-
+      console.log(option)
       window.onresize = function(){
         myCharts.resize();
       }
