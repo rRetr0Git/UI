@@ -49,7 +49,6 @@ export default {
         for(let i=0;i<res.data.topology[1].node.length;i++){
           let item = res.data.topology[1].node[i]
           let name = item.name
-          console.log(item.name)
           fullName[name] = item.name
           status[name] = item['node-status']
           categories[name] = item['node-type']
@@ -233,10 +232,10 @@ export default {
               var res = '';
               if(params.componentSubType==='effectScatter'){
                 res+=params.marker+fullName[params['data'].name]+'</br><table>';
-                res+='<tr><td>City</td><td>'+city[params['data'].name]+'</td></tr>';
-                res+='<tr><td>Status</td><td>'+status[params['data'].name]+'</td></tr>';
-                res+='<tr><td>Categories</td><td>'+categories[params['data'].name]+'</td></tr>';
-                res+='<tr><td>ManageIp</td><td>'+manageIp[params['data'].name]+'</td></tr>';
+                res+='<tr><td>城市</td><td>'+city[params['data'].name]+'</td></tr>';
+                res+='<tr><td>状态</td><td>'+status[params['data'].name]+'</td></tr>';
+                res+='<tr><td>类别</td><td>'+categories[params['data'].name]+'</td></tr>';
+                res+='<tr><td>管理Ip</td><td>'+manageIp[params['data'].name]+'</td></tr>';
                 /*
                 res+='<tr><td>Number of Interface</td><td>'+peAllData[params['data'].name].length+'</td></tr>';
                 var interfaces={}
@@ -276,14 +275,14 @@ export default {
               }
               if(params.componentSubType==="lines"){
                 res+='<table>';
-                res+='<tr><td>Source</td><td>'+edgeInfo[params.dataIndex].source['source-node']+'</td></tr>';
-                res+='<tr><td>Target</td><td>'+edgeInfo[params.dataIndex].destination['dest-node']+'</td></tr>';
-                res+='<tr><td>Status</td><td>'+edgeInfo[params.dataIndex]['link-status']+'</td></tr>';
-                res+='<tr><td>Delay</td><td>'+edgeInfo[params.dataIndex]['delay']+'</td></tr>';
-                res+='<tr><td>Loss</td><td>'+edgeInfo[params.dataIndex]['loss']+'</td></tr>';
-                res+='<tr><td>S-Interface</td><td>'+edgeInfo[params.dataIndex].source['source-tp']+'</td></tr>';
-                res+='<tr><td>T-Interface</td><td>'+edgeInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
-                res+='<tr><td>Bandwidth</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+edgeInfo[params.dataIndex]['oper-bw']+'</td></tr>';
+                res+='<tr><td>源</td><td>'+edgeInfo[params.dataIndex].source['source-node']+'</td></tr>';
+                res+='<tr><td>目的</td><td>'+edgeInfo[params.dataIndex].destination['dest-node']+'</td></tr>';
+                res+='<tr><td>状态</td><td>'+edgeInfo[params.dataIndex]['link-status']+'</td></tr>';
+                res+='<tr><td>延迟</td><td>'+edgeInfo[params.dataIndex]['delay']+'</td></tr>';
+                res+='<tr><td>丢包</td><td>'+edgeInfo[params.dataIndex]['loss']+'</td></tr>';
+                res+='<tr><td>源接口</td><td>'+edgeInfo[params.dataIndex].source['source-tp']+'</td></tr>';
+                res+='<tr><td>目的接口</td><td>'+edgeInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
+                res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+edgeInfo[params.dataIndex]['oper-bw']+'</td></tr>';
                 res+='</table>';
               }
               return res;
@@ -449,7 +448,9 @@ export default {
             hoverAnimation: true,
             label: {
               normal: {
-                formatter: '{b}',
+                formatter:function (params) {
+                  return city[params.name]+params.name.substring(params.name.length-2)
+                },
                 position: 'right',
                 show: true
               }

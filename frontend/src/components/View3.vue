@@ -276,13 +276,13 @@ export default {
       if(res.code == 0){
         for(let i=0;i<res.data.length;i++){
           if(res.data[i].host == 'controller1'){
-            controller[0].IN_TRAFFIC = res.data[i].wan_intraffic.toFixed(2)
+            controller[0].IN_TRAFFIC = res.data[i].wan_intraffic.toFixed(0)
           }
           if(res.data[i].host == 'controller2'){
-            controller[1].IN_TRAFFIC = res.data[i].wan_intraffic.toFixed(2)
+            controller[1].IN_TRAFFIC = res.data[i].wan_intraffic.toFixed(0)
           }
           if(res.data[i].host == 'controller3'){
-            controller[2].IN_TRAFFIC = res.data[i].wan_intraffic.toFixed(2)
+            controller[2].IN_TRAFFIC = res.data[i].wan_intraffic.toFixed(0)
           }
         }
       }
@@ -293,13 +293,13 @@ export default {
       if(res.code == 0){
         for(let i=0;i<res.data.length;i++){
           if(res.data[i].host == 'controller1'){
-            controller[0].OUT_TRAFFIC = res.data[i].wan_outtraffic.toFixed(2)
+            controller[0].OUT_TRAFFIC = res.data[i].wan_outtraffic.toFixed(0)
           }
           if(res.data[i].host == 'controller2'){
-            controller[1].OUT_TRAFFIC = res.data[i].wan_outtraffic.toFixed(2)
+            controller[1].OUT_TRAFFIC = res.data[i].wan_outtraffic.toFixed(0)
           }
           if(res.data[i].host == 'controller3'){
-            controller[2].OUT_TRAFFIC = res.data[i].wan_outtraffic.toFixed(2)
+            controller[2].OUT_TRAFFIC = res.data[i].wan_outtraffic.toFixed(0)
           }
         }
       }
@@ -314,7 +314,7 @@ export default {
     url = '/api/monitor/vpn/top',
       params={
         namespace: 'traffic',
-        metricNames: 'in_traffic',
+        metricNames: 'out_traffic',
         "dimensions.0.name": "10",
         "dimensions.0.value": "10",
       }
@@ -443,7 +443,14 @@ export default {
     $.get(url, params, (res)=>{
       if(res.code == 0){
         for(let i=0;i<res.data.length;i++){
-          alertBusinessCategory.push({name:res.data[i].category,value:res.data[i].value})
+          let category = res.data[i].category
+          if(category == 'LINK_UP'){
+            category = '链路UP'
+          }
+          else if(res.data[i].category == 'LINK_DOWN'){
+            category = '链路DOWN'
+          }
+          alertBusinessCategory.push({name:category,value:res.data[i].value})
           sum+=res.data[i].value
         }
       }
@@ -466,7 +473,14 @@ export default {
     $.get(url, params, (res)=>{
       if(res.code == 0){
         for(let i=0;i<res.data.length;i++){
-          alertSystemCategory.push({name:res.data[i].category,value:res.data[i].value})
+          let category = res.data[i].category
+          if(category == 'LINK_UP'){
+            category = '链路UP'
+          }
+          else if(res.data[i].category == 'LINK_DOWN'){
+            category = '链路DOWN'
+          }
+          alertSystemCategory.push({name:category,value:res.data[i].value})
           sum+=res.data[i].value
         }
       }
@@ -506,7 +520,7 @@ export default {
       }
     })
 
-    this.tableData = alertBusinessList;
+    this.tableData = alertBusinessList.reverse();
 
     var option5 = {
       backgroundColor: {
@@ -640,7 +654,7 @@ export default {
       xAxis: [
         {
           gridIndex: 0,
-          data: ["CPU", "MEMORY", "DISK", "NETWORK"],
+          data: ["中央处理器", "内存", "硬盘", "网络"],
           axisTick: {
             show: false,
           },
@@ -1483,7 +1497,7 @@ export default {
           label: {
             normal: {
               show: true,
-              position: 'top'
+              position: ['150%','-150%']
             }
           },
           itemStyle: {
@@ -1811,6 +1825,10 @@ export default {
         global: false, // 缺省为 false
       },
       title: [],
+      tooltip:{
+        trigger:'item',
+        formatter: "{c}",
+      },
       grid: [
         {
           x: "5%",
@@ -1918,6 +1936,9 @@ export default {
           symbolOffset: [0, "0%"],
           symbolSize: ["125%", "8.2%"],
           color: "#0092f6",
+          tooltip: {
+            show:false
+          },
           data: [
             {
               value: 1,
@@ -1958,6 +1979,10 @@ export default {
           labelLine: {
             show: false,
           },
+          tooltip: {
+            trigger: "item",
+          },
+          z:1000,
           data: topRankValue1,
         },
         {
@@ -1984,10 +2009,13 @@ export default {
                   space+=" \n\n          "
                 }
                 return (
-                  topRankName1[data.dataIndex] + space + topRankValue1[data.dataIndex]
+                  topRankName1[data.dataIndex]
                 );
               },
             },
+          },
+          tooltip: {
+            show:false
           },
           data: topRankValue1,
         },
@@ -1996,12 +2024,16 @@ export default {
           yAxisIndex: 1,
           type: "bar",
           barGap: "-100%",
-          barWidth: "30%", //统计条宽度
+          barWidth: "25%", //统计条宽度
           max: 1,
           labelLine: {
             show: false,
           },
           data: topRankValue2,
+          z:1000,
+          tooltip: {
+            trigger: "item",
+          },
         },
         {
           type: "scatter",
@@ -2010,7 +2042,7 @@ export default {
           hoverAnimation: false,
           data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
           yAxisIndex: 1,
-          symbolSize: 35,
+          symbolSize: 25,
           itemStyle: {
             normal: {
               color: "#61A8FF",
@@ -2018,6 +2050,9 @@ export default {
             },
           },
           z: 2,
+          tooltip: {
+            show:false
+          },
         },
         {
           show: true,
@@ -2041,12 +2076,15 @@ export default {
                 let length = topRankName2[data.dataIndex].length
                 let space = "\n    "
                 return (
-                  "    " + topRankName2[data.dataIndex] + space + topRankValue2[data.dataIndex]
+                  "    " + topRankName2[data.dataIndex]
                 );
               },
             },
           },
           data: topRankValue2,
+          tooltip: {
+            show:false
+          },
         },
       ],
     };
