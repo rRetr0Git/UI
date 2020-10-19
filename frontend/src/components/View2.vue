@@ -108,7 +108,7 @@ export default {
       var rxData = [0.25,0.24,0.23,0.23,0.23,0.24,0.25,0.28,0.29,0.43,0.41,0.39,0.36,0.43,0.42,0.49,0.58];
       var txData = [0.29,0.33,0.43,0.13,0.15,0.32,0.29,0.56,0.72,0.21,0.33,0.45,0.20,0.33,0.51,0.39,0.18];
       var img = new Image()
-      img.src = '../../static/backimg.png'
+      img.src = '../../static/backimg_win.png'
       var option = {
         // 时间轴样式
         baseOption: {

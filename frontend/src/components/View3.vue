@@ -39,7 +39,7 @@
                 :row-class-name="tableRowClassName"
               >
                 <el-table-column prop="level" label="级别" width="85"></el-table-column>
-                <el-table-column prop="time" label="时间" width="170"></el-table-column>
+                <el-table-column prop="time" label="时间" width="160"></el-table-column>
                 <el-table-column prop="detail" label="内容"></el-table-column>
               </el-table>
             </el-col>
@@ -67,6 +67,27 @@
     height: 100%;
     background:linear-gradient(to right, #01061b, #011945);
     box-sizing: border-box;
+  }
+  /deep/ ::-webkit-scrollbar
+  {
+      width: 4px;  /*滚动条宽度*/
+      height: 20px;  /*滚动条高度*/
+  }
+
+  /*定义滚动条轨道 内阴影+圆角*/
+  /deep/ ::-webkit-scrollbar-track
+  {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+      border-radius: 1px;  /*滚动条的背景区域的圆角*/
+      background-color: #011945;/*滚动条的背景颜色*/
+  }
+
+  /*定义滑块 内阴影+圆角*/
+  /deep/ ::-webkit-scrollbar-thumb
+  {
+      border-radius: 100px;  /*滚动条的圆角*/
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.1);
+      background-color: grey;  /*滚动条的背景颜色*/
   }
 </style>
 

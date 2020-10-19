@@ -131,6 +131,27 @@
     background:linear-gradient(to right, #002c6e , #011945);
     box-sizing: border-box;
   }
+  /deep/ ::-webkit-scrollbar
+  {
+      width: 4px;  /*滚动条宽度*/
+      height: 20px;  /*滚动条高度*/
+  }
+
+  /*定义滚动条轨道 内阴影+圆角*/
+  /deep/ ::-webkit-scrollbar-track
+  {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+      border-radius: 1px;  /*滚动条的背景区域的圆角*/
+      background-color: #011945;/*滚动条的背景颜色*/
+  }
+
+  /*定义滑块 内阴影+圆角*/
+  /deep/ ::-webkit-scrollbar-thumb
+  {
+      border-radius: 100px;  /*滚动条的圆角*/
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.1);
+      background-color: grey;  /*滚动条的背景颜色*/
+  }
 </style>
 
 <script>
@@ -485,7 +506,7 @@ export default {
         }
       }],
       legend: {
-        data: ['In_Traffic', 'Out_Traffic'],
+        data: ['上行', '下行'],
         textStyle: {
           color: '#B4B4B4'
         },
@@ -507,7 +528,7 @@ export default {
       },{
         xAxisIndex:1,
         yAxisIndex:1,
-        name: 'In_Traffic',
+        name: '下行',
         type: 'bar',
         barWidth: 10,
         itemStyle: {
@@ -523,7 +544,7 @@ export default {
       },{
         xAxisIndex:1,
         yAxisIndex:1,
-        name: 'Out_Traffic',
+        name: '上行',
         type: 'bar',
         barGap: '100%',
         barWidth: 10,
@@ -630,7 +651,7 @@ export default {
         }
       }],
       legend: {
-        data: ['Out_Traffic'],
+        data: ['上行'],
         textStyle: {
           color: '#B4B4B4'
         },
@@ -652,7 +673,7 @@ export default {
       },{
         xAxisIndex:1,
         yAxisIndex:1,
-        name: 'Out_Traffic',
+        name: '上行',
         type: 'bar',
         barWidth: 10,
         itemStyle: {
