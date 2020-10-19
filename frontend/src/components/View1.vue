@@ -124,7 +124,13 @@
   /deep/ .el-table__row:hover> td{
     background: #1B476A !important;
   }
-
+  /deep/ .el-table__empty-text {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background:linear-gradient(to right, #002c6e , #011945);
+    box-sizing: border-box;
+  }
 </style>
 
 <script>
@@ -186,7 +192,6 @@ export default {
       params = {}
     $.get(url, params, (res)=>{
       if(res.code == 0){
-        console.log(res.data)
         for(let i=0;i<res.data.length;i++){
           let pathstr = ''
           for(let j=0;j<res.data[i]['explicit-path'].length;j++){
@@ -304,7 +309,7 @@ export default {
         type: 'pictorialBar',
         symbolPosition: 'end',
         symbolOffset: [0, '0%'],
-        symbolSize: ['125%','585%'],
+        symbolSize: ['125%','540%'],
         color:'#0092f6',
         data: [{
             value: 1,
@@ -370,7 +375,7 @@ export default {
         type: 'pictorialBar',
         symbolPosition: 'end',
         symbolOffset: [0, '0%'],
-        symbolSize: ['125%','585%'],
+        symbolSize: ['125%','540%'],
         color:'#0092f6',
         data: [{
             value: 1,
@@ -493,7 +498,7 @@ export default {
         type: 'pictorialBar',
         symbolPosition: 'end',
         symbolOffset: [0, '0%'],
-        symbolSize: ['125%','12.2%'],
+        symbolSize: ['125%','11.25%'],
         color:'#0092f6',
         data: [{
           value: 1,
@@ -638,7 +643,7 @@ export default {
         type: 'pictorialBar',
         symbolPosition: 'end',
         symbolOffset: [0, '0%'],
-        symbolSize: ['125%','12.2%'],
+        symbolSize: ['125%','11.25%'],
         color:'#0092f6',
         data: [{
           value: 1,

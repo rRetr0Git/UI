@@ -25,7 +25,7 @@
      <el-container  id="container2" ref="container2" style="background:url(../../static/logicimg-right.png);background-size:480px 1080px">
        <el-header height="80px"></el-header>
        <el-main>
-         <el-row id="table" ref="table" style="background:linear-gradient(to right, #142D59 , #011944)">
+         <el-row id="table" ref="table" style="background:linear-gradient(to right, #002c6e , #002c6b)">
           <template>
             <el-table
               :header-cell-style="{background:'#1B476A',color:'#ffffff'}"
@@ -73,7 +73,7 @@
 
 <style scoped>
   /deep/ .el-table .default-row{
-    background: linear-gradient(to right, #142D59 , #011944);
+    background: linear-gradient(to right, #002c6e , #002c6e);
     color:#ffffff;
   }
   /deep/ .el-table__row:hover> td{
@@ -192,6 +192,13 @@ export default {
       }
     })
 
+    url = '/api/monitor/te/te-path/all',
+      params={}
+    $.get(url, params, (res)=>{
+      if(res.code == 0){
+        console.log(res)
+      }
+    })
     this.options = vpnId
 
     logicimg_center.src = '../../static/logicimg-center.png'
@@ -218,9 +225,9 @@ export default {
       },{
         type:'tree',
         symbol: function(v,p){
-          if(p.name=='韶关')
+          if(p.name=='一级节点群'||p.name=='二级节点群')
             return network
-          else if(p.name=='X大学1'||p.name=='X大学2')
+          else if(p.name.substring(p.name.length-3) =='Vpn')
             return terminalOn
           else if(p.name=='鹏城实验室'||p.name=='中山大学')
             return terminalDown
@@ -232,7 +239,7 @@ export default {
         left:'0%',
         expandAndCollapse: false,
         symbolSize:function(v,p){
-          if(p.name=='鹏城实验室'||p.name=='中山大学'||p.name=='X大学1'||p.name=='X大学2')
+          if(p.name.substring(p.name.length-3) =='Vpn')
             return [140,140]
           else
             return [80,120]
@@ -241,6 +248,7 @@ export default {
           fontSize:18,
           color:'#fff',
           fontWright:'bolder',
+          offset:[0,20],
         },
         edgeShape: 'polyline',
         bottom:'30%',
@@ -255,7 +263,7 @@ export default {
             "children": [{
               "name": "广州2",
               "children": [{
-                "name": "中山大学"
+                "name": "中山大学Vpn"
               },{
                 "name": "X大学1"
               }]
@@ -271,7 +279,7 @@ export default {
               "children": [{
                 "name": "X大学2"
               },{
-                "name": "鹏城实验室"
+                "name": "鹏城实验室Vpn"
               }]
             }]
           }]
@@ -514,15 +522,22 @@ export default {
             console.log(res.data)
             for(let i=0;i<res.data.links.length;i++){
               let item = res.data.links[i]
+              let vpnName = ''
+              for(let j=0;j<res.data.nodes.length;j++){
+                if(item.source['source-node'] == res.data.nodes[j].node_id){
+                  vpnName = res.data.nodes[j].name
+                  break
+                }
+              }
               if(item.destination['dest-node'].substring(item.destination['dest-node'].length-2)=='L2'){
-                logicData[0].children[0].children.push({name:item.destination['dest-node'],children:[{name:item.source['source-node']}]})
+                logicData[0].children[0].children.push({name:item.destination['dest-node'],children:[{name:vpnName+'Vpn'}]})
                 console.log(logicData)
               }
               else if(item.destination['dest-node'].substring(item.destination['dest-node'].length-2)!='L2'){
                 console.log(partMap)
                 let L2 = partMap[item.destination['dest-node']][0].name
                 let L3 = item.destination['dest-node']
-                logicData[0].children[0].children.push({name:L2,children:[{name:L3,children:[{name:item.source['source-node']}]}]})
+                logicData[0].children[0].children.push({name:L2,children:[{name:L3,children:[{name:vpnName+'Vpn'}]}]})
                 console.log(logicData)
               }
             }

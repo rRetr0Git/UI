@@ -45,9 +45,11 @@ export default {
       }
     $.get(url, params, (res)=>{
       if(res.code == 0){
+        console.log(res.data.topology[1].node)
         for(let i=0;i<res.data.topology[1].node.length;i++){
           let item = res.data.topology[1].node[i]
           let name = item.name
+          console.log(item.name)
           fullName[name] = item.name
           status[name] = item['node-status']
           categories[name] = item['node-type']
@@ -66,7 +68,27 @@ export default {
       }
     })
 
-
+    let teFlowInData = []
+    let teFlowOutData = []
+    let teFlowDate = []
+    url = '/api/monitor/te/history',
+      params={
+        namespace:'traffic',
+        metricNames:'in_traffic,out_traffic',
+        'dimensions.0.name':'deviceName',
+        'dimensions.1.name':'tunnelName',
+        period: '1h'
+      }
+    $.get(url, params, (res)=>{
+      if(res.code == 0){
+        console.log(res.data)
+        for(let i=0;i<res.data.length;i++){
+          teFlowDate.push(res.data[i].time.substring(11,16))
+          teFlowInData.push(res.data[i].in_traffic)
+          teFlowOutData.push(res.data[i].out_traffic)
+        }
+      }
+    })
 
     $.getJSON(uploadedDataURL, function(geoJson) {
       _this.$echarts.registerMap('', geoJson); //注册 地图
@@ -145,7 +167,7 @@ export default {
             }
           },{
             gridIndex:1,
-            data: category,
+            data: teFlowDate,
             axisLine: {
               lineStyle: {
                 color: '#B4B4B4'
@@ -184,7 +206,7 @@ export default {
             }
           }],
           legend: {
-            data: ['rx','tx'],
+            data: ['in_traffic','out_traffic'],
             textStyle: [{
               color: '#00f8ff',
             },{
@@ -323,6 +345,9 @@ export default {
           })
         })
 
+        url = '/api/monitor/topology/physical',
+          params={
+          }
         $.get(url, params, (res)=>{
           if(res.code == 0){
             console.log(res.data.topology[1].link)
@@ -331,6 +356,7 @@ export default {
               let item = res.data.topology[1].link[i]
               let src = item.source
               let dst = item.destination
+              console.log(src['source-node']+'->'+dst['dest-node'])
               if(dst['dest-node'].substring(dst['dest-node'].length-2) != 'L1' && dst['dest-node'].substring(dst['dest-node'].length-2) != 'L2'){
                 if(dst['dest-node'] in partMap){
                   partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
@@ -368,7 +394,9 @@ export default {
               if(item['oper-bw']>30000){
                 colorStop='#f9ff00'
               }
-
+              if(item['link-status']=='DOWN'){
+                colorStop='#ff0000'
+              }
               edgeInfo.push(item)
               let flag = 0
               /*
@@ -475,7 +503,7 @@ export default {
           },{
             xAxisIndex:1,
             yAxisIndex:1,
-            name: 'rx',
+            name: 'in_traffic',
             type: 'line',
             showAllSymbol: true,
             symbol: 'emptyCircle',
@@ -485,11 +513,11 @@ export default {
                 color:'#00f8ff'
               },
             },
-            data: rxData
+            data: teFlowInData
           },{
             xAxisIndex:1,
             yAxisIndex:1,
-            name: 'tx',
+            name: 'out_traffic',
             type: 'line',
             showAllSymbol: true,
             symbol: 'emptyCircle',
@@ -499,7 +527,7 @@ export default {
                 color:'#00f15a'
               },
             },
-            data: txData
+            data: teFlowOutData
           }]
         })
       })
@@ -522,9 +550,31 @@ export default {
 
       myCharts.on('click', function (params) {
         console.log(params)
-        if(params.componentSubType=='effectScatter'||params.componentSubType=='lines'){
-          option.options[0].series[4].data = randArr(rxData)
-          option.options[0].series[5].data = randArr(txData)
+
+        if(params.componentSubType=='lines'){
+          let teFlowInData = []
+          let teFlowOutData = []
+          let teFlowDate = []
+          url = '/api/monitor/te/history',
+            params={
+              namespace:'traffic',
+              metricNames:'in_traffic,out_traffic',
+              'dimensions.0.name':'deviceName',
+              'dimensions.1.name':'tunnelName',
+              period: '1h'
+            }
+          $.get(url, params, (res)=>{
+            if(res.code == 0){
+              console.log(res.data)
+              for(let i=0;i<res.data.length;i++){
+                teFlowDate.push(res.data[i].time.substring(11,16))
+                teFlowInData.push(res.data[i].in_traffic)
+                teFlowOutData.push(res.data[i].out_traffic)
+              }
+            }
+          })
+          //option.options[0].series[4].data = randArr(teFlowInData)
+          //option.options[0].series[5].data = randArr(teFlowOutData)
           myCharts.resize();
           myCharts.setOption(option,{notMerge:true,lazyUpdate:false});
         }
@@ -570,7 +620,7 @@ export default {
             animationDurationUpdate: 1500,
             animationEasingUpdate: 'quinticInOut',
             legend: {
-              data: ['rx','tx'],
+              data: ['in_traffic','out_traffic'],
               textStyle: [{
                 color: '#00f8ff',
               },{
@@ -674,7 +724,7 @@ export default {
             },{
               xAxisIndex:0,
               yAxisIndex:0,
-              name: 'rx',
+              name: 'in_traffic',
               type: 'line',
               showAllSymbol: true,
               symbol: 'emptyCircle',
@@ -688,7 +738,7 @@ export default {
             },{
               xAxisIndex:0,
               yAxisIndex:0,
-              name: 'tx',
+              name: 'out_traffic',
               type: 'line',
               showAllSymbol: true,
               symbol: 'emptyCircle',

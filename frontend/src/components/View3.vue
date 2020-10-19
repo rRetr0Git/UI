@@ -54,13 +54,20 @@
 </template>
 
 <style scoped>
-/deep/ .el-table .default-row {
-  background: linear-gradient(to right, #01061b, #011945);
-  color: #ffffff;
-}
-/deep/ .el-table__row:hover > td {
-  background: #1b476a !important;
-}
+  /deep/ .el-table .default-row {
+    background: linear-gradient(to right, #01061b, #011945);
+    color: #ffffff;
+  }
+  /deep/ .el-table__row:hover > td {
+    background: #1b476a !important;
+  }
+  /deep/ .el-table__empty-text {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background:linear-gradient(to right, #01061b, #011945);
+    box-sizing: border-box;
+  }
 </style>
 
 <script>
@@ -293,8 +300,14 @@ export default {
     $.get(url, params, (res)=>{
       if(res.code == 0){
         for(let i=0;i<10;i++){
-          topRankName2.push(res.data[i].vpn_name)
-          topRankValue2.push(res.data[i].value.toFixed(2))
+          if(i>=res.data.length){
+            topRankName2.push("VPN-XXXX")
+            topRankValue2.push(0)
+          }
+          else{
+            topRankName2.push(res.data[i].vpn_name)
+            topRankValue2.push(res.data[i].value.toFixed(2))
+          }
         }
       }
     })
@@ -303,8 +316,14 @@ export default {
     $.get(url, params, (res)=>{
       if(res.code == 0){
         for(let i=0;i<10;i++){
-          topRankName1.push(res.data[i].name + "   =>   " + res.data[i].routername)
-          topRankValue1.push(res.data[i].value.toFixed(2))
+          if(i>=res.data.length){
+            topRankName1.push("TunnelXXXX   =>   XX-XX-XXXX-XX")
+            topRankValue1.push(0)
+          }
+          else{
+            topRankName1.push(res.data[i].name + "   =>   " + res.data[i].routername)
+            topRankValue1.push(res.data[i].value.toFixed(2))
+          }
         }
       }
     })
@@ -806,7 +825,7 @@ export default {
           type: "pictorialBar",
           symbolPosition: "end",
           symbolOffset: [0, "0%"],
-          symbolSize: ["125%", "20%"],
+          symbolSize: ["125%", "18%"],
           color: "#0092f6",
           data: [
             {
@@ -1395,6 +1414,7 @@ export default {
       yAxis: [
         {
           type: "value",
+          minInterval: 1
         },
         {
           gridIndex: 1,
@@ -1506,7 +1526,7 @@ export default {
           type: "pictorialBar",
           symbolPosition: "end",
           symbolOffset: [0, "0%"],
-          symbolSize: ["125%", "20%"],
+          symbolSize: ["125%", "18%"],
           color: "#0092f6",
           data: [
             {
@@ -1600,6 +1620,7 @@ export default {
       yAxis: [
         {
           type: "value",
+          minInterval: 1
         },
         {
           gridIndex: 1,
@@ -1662,7 +1683,7 @@ export default {
           type: "pictorialBar",
           symbolPosition: "end",
           symbolOffset: [0, "0%"],
-          symbolSize: ["125%", "22.5%"],
+          symbolSize: ["125%", "20%"],
           color: "#0092f6",
           data: [
             {
@@ -1874,7 +1895,7 @@ export default {
           type: "pictorialBar",
           symbolPosition: "end",
           symbolOffset: [0, "0%"],
-          symbolSize: ["125%", "9.2%"],
+          symbolSize: ["125%", "8.2%"],
           color: "#0092f6",
           data: [
             {
@@ -1893,7 +1914,7 @@ export default {
           show: true,
           type: "bar",
           barGap: "-100%",
-          barWidth: "35%", //统计条宽度
+          barWidth: "30%", //统计条宽度
           itemStyle: {
             normal: {
               color: {
@@ -1924,7 +1945,7 @@ export default {
           xAxisIndex: 0,
           yAxisIndex: 0,
           barGap: "-100%",
-          barWidth: "35%", //统计条宽度
+          barWidth: "30%", //统计条宽度
           itemStyle: {
             normal: {
               barBorderRadius: 200,
@@ -1954,7 +1975,7 @@ export default {
           yAxisIndex: 1,
           type: "bar",
           barGap: "-100%",
-          barWidth: "35%", //统计条宽度
+          barWidth: "30%", //统计条宽度
           max: 1,
           labelLine: {
             show: false,
@@ -1983,7 +2004,7 @@ export default {
           xAxisIndex: 1,
           yAxisIndex: 1,
           barGap: "-100%",
-          barWidth: "35%", //统计条宽度
+          barWidth: "30%", //统计条宽度
           itemStyle: {
             normal: {
               barBorderRadius: 200,
@@ -1994,11 +2015,12 @@ export default {
             normal: {
               show: true,
               position: [0, "-100%"],
+              fontSize:16,
               formatter: function (data) {
                 let length = topRankName2[data.dataIndex].length
-                let space = "       \n\n          "
+                let space = "\n    "
                 return (
-                  "       " + topRankName2[data.dataIndex] + space + topRankValue2[data.dataIndex]
+                  "    " + topRankName2[data.dataIndex] + space + topRankValue2[data.dataIndex]
                 );
               },
             },
