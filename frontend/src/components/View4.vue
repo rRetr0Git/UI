@@ -2,7 +2,7 @@
  <div>
    <el-col :span="6">
      <el-container  id="container1" ref="container1" style="background:url(../../static/logicimg-left.png);background-size:480px 1080px">
-       <el-header height="300px"></el-header>
+       <el-header height="100px"></el-header>
        <el-main>
          <el-row>
            <el-select v-model="value" id="select1" ref="select1" filterable placeholder="请选择">

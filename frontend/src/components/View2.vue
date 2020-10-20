@@ -80,7 +80,6 @@ export default {
       }
     $.get(url, params, (res)=>{
       if(res.code == 0){
-        console.log(res.data)
         for(let i=0;i<res.data.length;i++){
           teFlowDate.push(res.data[i].time.substring(11,16))
           teFlowInData.push(res.data[i].in_traffic)
@@ -355,7 +354,6 @@ export default {
               let item = res.data.topology[1].link[i]
               let src = item.source
               let dst = item.destination
-              console.log(src['source-node']+'->'+dst['dest-node'])
               if(dst['dest-node'].substring(dst['dest-node'].length-2) != 'L1' && dst['dest-node'].substring(dst['dest-node'].length-2) != 'L2'){
                 if(dst['dest-node'] in partMap){
                   partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
