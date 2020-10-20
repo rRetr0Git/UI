@@ -131,6 +131,29 @@
     background:linear-gradient(to right, #002c6e , #011945);
     box-sizing: border-box;
   }
+  /deep/ .el-table__body-wrapper::-webkit-scrollbar{
+    width: 0;
+    display: none;
+  }
+  /deep/ .el-table__body-wrapper::-webkit-scrollbar-thumb{
+    width: 0;
+    display: none;
+  }
+  /deep/ .el-table__body{
+    width: 100%;
+  }
+  /deep/ .el-table{
+    background-color: transparent;
+  }
+  /deep/ .el-table th{
+    background-color: transparent;
+  }
+  /deep/ .el-table tr{
+    background-color: transparent;
+  }
+  /deep/ .el-table::before{
+    width: calc(100% - 21px);
+  }
 </style>
 
 <script>

@@ -50,7 +50,7 @@
               <el-table-column
                 prop="dst"
                 label="目的站点"
-                width="120">
+                width="100">
               </el-table-column>
               <el-table-column
                 prop="lag"
@@ -78,6 +78,26 @@
   }
   /deep/ .el-table__row:hover> td{
     background: #1B476A !important;
+  }
+   /deep/ .el-table__body-wrapper::-webkit-scrollbar{
+    width: 0;
+    display: none;
+  }
+  /deep/ .el-table__body-wrapper::-webkit-scrollbar-thumb{
+    width: 0;
+    display: none;
+  }
+  /deep/ .el-table__body{
+    width: 100%;
+  }
+  /deep/ .el-table{
+    background-color: transparent;
+  }
+  /deep/ .el-table th{
+    background-color: transparent;
+  }
+  /deep/ .el-table tr{
+    background-color: transparent;
   }
 </style>
 
