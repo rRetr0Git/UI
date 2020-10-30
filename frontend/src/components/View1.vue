@@ -203,7 +203,7 @@ export default {
               src:res.data[i]['src-device'],
               dst:res.data[i]['dst-device'],
               path:pathstr,
-              bw:res.data[i]['oper-bw'],
+              bw:(res.data[i]['oper-bw']/(1024*1024)).toFixed(2) + 'M',
               delay:res.data[i]['delay'],
               loss:res.data[i]['loss'],
               ration:res.data[i]['utilization-ratio'].toFixed(2) + "%"

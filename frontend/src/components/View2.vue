@@ -48,6 +48,7 @@ export default {
       var city = {}
       var manageIp = {}
       var barType = []
+      var topLevelNode = [];
 
       let url = '/api/monitor/topology/physical',
         params={
@@ -67,7 +68,7 @@ export default {
             barType.push(name)
             peInterfaceAllData[name] = item['termination-point']
             if(name.substring(name.length-2) == 'L1'){
-              geoCoordMap[name] = [parseFloat(item.longitude)+0.25,parseFloat(item.latitude)+0.10]
+              //geoCoordMap[name] = [parseFloat(item.longitude)+0.25,parseFloat(item.latitude)+0.10]
             }
             else{
               geoCoordMap[name] = [parseFloat(item.longitude),parseFloat(item.latitude)]
@@ -157,11 +158,6 @@ export default {
               top: '60%',
               width:"30%",
               bottom: '10%',
-            },{
-              left:'75%',
-              width:'20%',
-              top:'60%',
-              bottom:'15%'
             }],
             xAxis:[{
               gridIndex:0,
@@ -171,17 +167,6 @@ export default {
               },
               axisLine: {
                 show: false
-              }
-            },{
-              gridIndex:1,
-              data: teFlowDate,
-              axisLine: {
-                lineStyle: {
-                  color: '#B4B4B4'
-                }
-              },
-              axisTick:{
-                show:false,
               }
             }],
             yAxis:[{
@@ -200,28 +185,7 @@ export default {
               axisLabel: {
                 show: false
               }
-            },{
-              gridIndex:1,
-              splitLine: {show: false},
-              axisLine: {
-                lineStyle: {
-                  color: '#B4B4B4',
-                }
-              },
-              axisLabel:{
-                formatter:'{value} Mbps',
-              }
             }],
-            legend: {
-              data: ['下行','上行'],
-              textStyle: [{
-                color: '#00f8ff',
-              },{
-                color: '#00f15a',
-              }],
-              top:'55%',
-              left:'80%'
-            },
             calculable: true,
             tooltip: {
               trigger: 'item',
@@ -239,6 +203,18 @@ export default {
                 var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
                 var res = '';
                 if(params.componentSubType==='effectScatter'){
+                  for(let i=0;i<topLevelNode.length;i++){
+                    let l1 = fullName[params['data'].name].substring(0,fullName[params['data'].name].length-2) + 'L1'
+                    if(topLevelNode[i] == l1){
+                      res+=params.marker+fullName[l1]+'</br><table>';
+                      res+='<tr><td>城市</td><td>'+city[l1]+'</td></tr>';
+                      res+='<tr><td>状态</td><td>'+status[l1]+'</td></tr>';
+                      res+='<tr><td>类别</td><td>'+categories[l1]+'</td></tr>';
+                      res+='<tr><td>管理Ip</td><td>'+manageIp[l1]+'</td></tr>';
+                      res+='</table>'
+                      res+='</br>'
+                    }
+                  }
                   res+=params.marker+fullName[params['data'].name]+'</br><table>';
                   res+='<tr><td>城市</td><td>'+city[params['data'].name]+'</td></tr>';
                   res+='<tr><td>状态</td><td>'+status[params['data'].name]+'</td></tr>';
@@ -290,7 +266,7 @@ export default {
                   res+='<tr><td>丢包</td><td>'+edgeInfo[params.dataIndex]['loss']+'</td></tr>';
                   res+='<tr><td>源接口</td><td>'+edgeInfo[params.dataIndex].source['source-tp']+'</td></tr>';
                   res+='<tr><td>目的接口</td><td>'+edgeInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
-                  res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+edgeInfo[params.dataIndex]['oper-bw']+'</td></tr>';
+                  res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+(edgeInfo[params.dataIndex]['oper-bw']/(1024*1024)).toFixed(2)+' M</td></tr>';
                   res+='</table>';
                 }
                 return res;
@@ -341,17 +317,37 @@ export default {
           var mapData = []
           // 地图飞线数据
           var mapFlyLinesData = [];
-
           barType.forEach(res => {
-            var value = _random(400, 800);
-            var point = JSON.parse(JSON.stringify(geoCoordMap[res]));
-            point.push(value)
-            mapData.push({
-              'name': res,
-              'value': point
-            })
-          })
+            if(res.substring(res.length-2) == 'L1'){
+              topLevelNode.push(res)
+            }
+            else{
+              var value = _random(400, 800);
+              var point = JSON.parse(JSON.stringify(geoCoordMap[res]));
 
+              point.push(value)
+              mapData.push({
+                'name': res,
+                'value': point,
+                'symbolSize': 20,
+                'itemStyle':{
+                  'color': '#00ff8c'
+                }
+              })
+            }
+          })
+          for(let i=0;i<mapData.length;i++){
+            let temp = mapData[i]['name'].substring(0,mapData[i]['name'].length-2) + 'L1'
+            for(let j=0;j<topLevelNode.length;j++){
+              if(topLevelNode[j] == temp){
+                mapData[i]['symbolSize'] = 26
+                mapData[i]['itemStyle']['color'] = '#00ffea'
+                break
+              }
+            }
+          }
+          console.log(mapData)
+          console.log(topLevelNode)
           url = '/api/monitor/topology/physical',
             params={
             }
@@ -363,6 +359,7 @@ export default {
                 let item = res.data.topology[1].link[i]
                 let src = item.source
                 let dst = item.destination
+
                 if(dst['dest-node'].substring(dst['dest-node'].length-2) != 'L1' && dst['dest-node'].substring(dst['dest-node'].length-2) != 'L2'){
                   if(dst['dest-node'] in partMap){
                     partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
@@ -414,15 +411,25 @@ export default {
                 }
                 if(flag==1) continue;
                 */
+
+                let srcName = src['source-node']
+                let dstName = dst['dest-node']
+                if(srcName.substring(srcName.length-2) == 'L1'){
+                  srcName = srcName.substring(0,srcName.length-2) + 'L2'
+                }
+                if(dstName.substring(dstName.length-2) == 'L1'){
+                  dstName = dstName.substring(0,dstName.length-2) + 'L2'
+                }
                 mapFlyLinesData.push([{
-                  coord: geoCoordMap[src['source-node']],
+                  coord: geoCoordMap[srcName],
                   lineStyle:{
                     color:colorStop,
                   }
                 },{
-                  coord: geoCoordMap[dst['dest-node']],
+                  coord: geoCoordMap[dstName],
                 }])
               }
+              console.log(mapFlyLinesData)
             }
           })
 
@@ -435,7 +442,6 @@ export default {
               type: 'scatter',
               coordinateSystem: 'geo',
               data: mapData,
-              symbolSize: 20,
               itemStyle: {
                 normal: {
                   color: colorType[i]
@@ -447,7 +453,6 @@ export default {
               type: 'effectScatter',
               coordinateSystem: 'geo',
               data: mapData,
-              symbolSize: 20,
               showEffectOn: 'render',
               rippleEffect: {
                 brushType: 'stroke'
@@ -456,7 +461,13 @@ export default {
               label: {
                 normal: {
                   formatter:function (params) {
-                    return city[params.name]+params.name.substring(params.name.length-2)
+                    let temp = params.name.substring(0,params.name.length-2) + 'L1'
+                    for(let i=0;i<topLevelNode.length;i++){
+                      if(temp == topLevelNode[i]){
+                        return city[params.name] + 'L1/L2'
+                      }
+                    }
+                    return city[params.name] + 'L2'
                   },
                   position: 'right',
                   show: true
@@ -508,40 +519,11 @@ export default {
                   value: 1,
                   symbol: logicDown,
               }]
-            },{
-              xAxisIndex:1,
-              yAxisIndex:1,
-              name: '下行',
-              type: 'line',
-              showAllSymbol: true,
-              symbol: 'emptyCircle',
-              symbolSize: 8,
-              itemStyle: {
-                normal: {
-                  color:'#00f8ff'
-                },
-              },
-              data: teFlowInData
-            },{
-              xAxisIndex:1,
-              yAxisIndex:1,
-              name: '上行',
-              type: 'line',
-              showAllSymbol: true,
-              symbol: 'emptyCircle',
-              symbolSize: 8,
-              itemStyle: {
-                normal: {
-                  color:'#00f15a'
-                },
-              },
-              data: teFlowOutData
             }]
           })
         })
 
         myCharts.setOption(option)
-        console.log(option)
         window.onresize = function(){
           myCharts.resize();
         }
@@ -555,6 +537,8 @@ export default {
           }
           return arr;
         }
+
+        /*
 
         myCharts.on('click', function (params) {
           console.log(params)
@@ -598,6 +582,8 @@ export default {
           }
         })
 
+        */
+
         myCharts.on('dblclick', function (params) {
           console.log(params);
           if(params.componentSubType=='effectScatter'&&params.data.name in partMap){
@@ -627,46 +613,6 @@ export default {
               },
               animationDurationUpdate: 1500,
               animationEasingUpdate: 'quinticInOut',
-              legend: {
-                data: ['in_traffic','out_traffic'],
-                textStyle: [{
-                  color: '#00f8ff',
-                },{
-                  color: '#00f15a',
-                }],
-                top:'55%',
-                left:'80%'
-              },
-              grid:{
-                left:'75%',
-                width:'20%',
-                top:'60%',
-                bottom:'15%'
-              },
-              xAxis:{
-                gridIndex:0,
-                data: category,
-                axisLine: {
-                  lineStyle: {
-                    color: '#B4B4B4'
-                  }
-                },
-                axisTick:{
-                  show:false,
-                }
-              },
-              yAxis:{
-                gridIndex:0,
-                splitLine: {show: false},
-                axisLine: {
-                  lineStyle: {
-                    color: '#B4B4B4',
-                  }
-                },
-                axisLabel:{
-                  formatter:'{value} Mbps',
-                }
-              },
               series: [{
                 type: 'graph',
                 layout: 'circular',
@@ -729,34 +675,6 @@ export default {
                     return res;
                   }
                 },
-              },{
-                xAxisIndex:0,
-                yAxisIndex:0,
-                name: 'in_traffic',
-                type: 'line',
-                showAllSymbol: true,
-                symbol: 'emptyCircle',
-                symbolSize: 8,
-                itemStyle: {
-                  normal: {
-                    color:'#00f8ff'
-                  },
-                },
-                data: rxData
-              },{
-                xAxisIndex:0,
-                yAxisIndex:0,
-                name: 'out_traffic',
-                type: 'line',
-                showAllSymbol: true,
-                symbol: 'emptyCircle',
-                symbolSize: 8,
-                itemStyle: {
-                  normal: {
-                    color:'#00f15a'
-                  },
-                },
-                data: txData
               }],
               lineStyle: {
                 color: 'source',
