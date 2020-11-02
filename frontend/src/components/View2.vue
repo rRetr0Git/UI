@@ -538,39 +538,10 @@ export default {
           return arr;
         }
 
-        /*
 
         myCharts.on('click', function (params) {
           console.log(params)
-
-          if(params.componentSubType=='lines'){
-            let teFlowInData = []
-            let teFlowOutData = []
-            let teFlowDate = []
-            url = '/api/monitor/te/history',
-              params={
-                namespace:'traffic',
-                metricNames:'in_traffic,out_traffic',
-                'dimensions.0.name':'deviceName',
-                'dimensions.1.name':'tunnelName',
-                period: '1h'
-              }
-            $.get(url, params, (res)=>{
-              if(res.code == 0){
-                console.log(res.data)
-                for(let i=0;i<res.data.length;i++){
-                  teFlowDate.push(res.data[i].time.substring(11,16))
-                  teFlowInData.push(res.data[i].in_traffic)
-                  teFlowOutData.push(res.data[i].out_traffic)
-                }
-              }
-            })
-            //option.options[0].series[4].data = randArr(teFlowInData)
-            //option.options[0].series[5].data = randArr(teFlowOutData)
-            myCharts.resize();
-            myCharts.setOption(option,{notMerge:true,lazyUpdate:false});
-          }
-          else if(params.componentSubType=='pictorialBar'&&params.dataIndex==1&&params.componentIndex==3){
+          if(params.componentSubType=='pictorialBar'&&params.dataIndex==1&&params.componentIndex==3){
             window.location.pathname = '/demo/view4'
           }
           else if(params.componentSubType=='pictorialBar'&&params.dataIndex==0&&params.componentIndex==0){
@@ -582,7 +553,6 @@ export default {
           }
         })
 
-        */
 
         myCharts.on('dblclick', function (params) {
           console.log(params);

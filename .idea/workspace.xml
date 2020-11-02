@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d3d4934-80d3-4bd2-8cce-c6381b28296c" name="Default Changelist" comment=")">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/View1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/View1.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/View2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/View2.vue" afterDir="false" />
     </list>
@@ -17,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/View3.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
+            <state relative-caret-position="-2407">
               <caret line="69" column="3" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
             </state>
           </provider>
@@ -26,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/View2.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="268" column="224" selection-start-line="268" selection-start-column="217" selection-end-line="268" selection-end-column="224" />
+            <state relative-caret-position="3271">
+              <caret line="546" column="57" lean-forward="true" selection-start-line="546" selection-start-column="57" selection-end-line="546" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -53,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/View1.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="205" column="70" selection-start-line="205" selection-start-column="70" selection-end-line="205" selection-end-column="70" />
+            <state relative-caret-position="536">
+              <caret line="705" column="28" selection-start-line="705" selection-start-column="28" selection-end-line="705" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -104,9 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dest</find>
-      <find>partMapLink</find>
-      <find>partMap</find>
       <find>alertDate</find>
       <find>console.log</find>
       <find>physicOn</find>
@@ -127,12 +123,15 @@
       <find>scatter</find>
       <find>formatter</find>
       <find>console</find>
-      <find>alert</find>
       <find>barType</find>
       <find>edgeInfo</find>
       <find>img</find>
       <find>mapData</find>
       <find>bw</find>
+      <find>delay</find>
+      <find>alert</find>
+      <find>vpn</find>
+      <find>get</find>
       <find>oper-bw</find>
     </findStrings>
     <replaceStrings>
@@ -573,13 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/View3.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="69" column="3" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -601,17 +593,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/View3.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2407">
+          <caret line="69" column="3" selection-start-line="69" selection-start-column="3" selection-end-line="69" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/View2.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="268" column="224" selection-start-line="268" selection-start-column="217" selection-end-line="268" selection-end-column="224" />
+        <state relative-caret-position="3271">
+          <caret line="546" column="57" lean-forward="true" selection-start-line="546" selection-start-column="57" selection-end-line="546" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/View1.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="205" column="70" selection-start-line="205" selection-start-column="70" selection-end-line="205" selection-end-column="70" />
+        <state relative-caret-position="536">
+          <caret line="705" column="28" selection-start-line="705" selection-start-column="28" selection-end-line="705" selection-end-column="28" />
         </state>
       </provider>
     </entry>
