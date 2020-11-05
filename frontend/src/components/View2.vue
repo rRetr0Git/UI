@@ -154,9 +154,9 @@ export default {
               }
             },
             grid:[{
-              x: "35%",
+              x: "30%",
               top: '60%',
-              width:"30%",
+              width:"40%",
               bottom: '10%',
             }],
             xAxis:[{
@@ -331,7 +331,7 @@ export default {
                 'value': point,
                 'symbolSize': 20,
                 'itemStyle':{
-                  'color': '#00ff8c'
+                  'color': '#E8FF4B'
                 }
               })
             }
@@ -341,9 +341,13 @@ export default {
             for(let j=0;j<topLevelNode.length;j++){
               if(topLevelNode[j] == temp){
                 mapData[i]['symbolSize'] = 26
-                mapData[i]['itemStyle']['color'] = '#00ffea'
+                mapData[i]['itemStyle']['color'] = '#00AE96'
                 break
               }
+            }
+            if(status[mapData[i]['name']] == 'DOWN'){
+              mapData[i]['itemStyle']['color'] = '#FF9C00'
+              mapData[i]['symbolSize'] = 16
             }
           }
           console.log(mapData)
@@ -475,9 +479,9 @@ export default {
               },
               itemStyle: {
                 normal: {
-                  color: colorType[i],
+                  //color: colorType[i],
                   shadowBlur: 10,
-                  shadowColor: colorType[i]
+                  //shadowColor: colorType[i]
                 }
               },
               zlevel: 1
@@ -509,7 +513,7 @@ export default {
               type: 'pictorialBar',
               symbolPosition: 'end',
               symbolOffset: [0, '400%'],
-              symbolSize: ['125%','20%'],
+              symbolSize: ['120%','20%'],
               bargap:'-100%',
               color:'#0092f6',
               data: [{
