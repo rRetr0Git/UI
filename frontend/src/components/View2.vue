@@ -39,6 +39,7 @@ export default {
       var peAllData = {}
       var peInterfaceAllData = {}
       var edgeInfo = []
+      var edgeArrowInfo = []
 
       //GET DATA OF TOPOLOGY
       var geoCoordMap = {}
@@ -258,16 +259,30 @@ export default {
                   }
                 }
                 if(params.componentSubType==="lines"){
-                  res+='<table>';
-                  res+='<tr><td>源</td><td>'+edgeInfo[params.dataIndex].source['source-node']+'</td></tr>';
-                  res+='<tr><td>目的</td><td>'+edgeInfo[params.dataIndex].destination['dest-node']+'</td></tr>';
-                  res+='<tr><td>状态</td><td>'+edgeInfo[params.dataIndex]['link-status']+'</td></tr>';
-                  res+='<tr><td>延迟</td><td>'+edgeInfo[params.dataIndex]['delay']+'</td></tr>';
-                  res+='<tr><td>丢包</td><td>'+edgeInfo[params.dataIndex]['loss']+'</td></tr>';
-                  res+='<tr><td>源接口</td><td>'+edgeInfo[params.dataIndex].source['source-tp']+'</td></tr>';
-                  res+='<tr><td>目的接口</td><td>'+edgeInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
-                  res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+(edgeInfo[params.dataIndex]['oper-bw']/(1024*1024)).toFixed(2)+' M</td></tr>';
-                  res+='</table>';
+                  if(params.componentIndex===3){
+                    res+='<table>';
+                    res+='<tr><td>源</td><td>'+edgeInfo[params.dataIndex].source['source-node']+'</td></tr>';
+                    res+='<tr><td>目的</td><td>'+edgeInfo[params.dataIndex].destination['dest-node']+'</td></tr>';
+                    res+='<tr><td>状态</td><td>'+edgeInfo[params.dataIndex]['link-status']+'</td></tr>';
+                    res+='<tr><td>延迟</td><td>'+edgeInfo[params.dataIndex]['delay']+'</td></tr>';
+                    res+='<tr><td>丢包</td><td>'+edgeInfo[params.dataIndex]['loss']+'</td></tr>';
+                    res+='<tr><td>源接口</td><td>'+edgeInfo[params.dataIndex].source['source-tp']+'</td></tr>';
+                    res+='<tr><td>目的接口</td><td>'+edgeInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
+                    res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+(edgeInfo[params.dataIndex]['oper-bw']/(1024*1024)).toFixed(2)+' M</td></tr>';
+                    res+='</table>';
+                  }
+                  else{
+                    res+='<table>';
+                    res+='<tr><td>源</td><td>'+edgeArrowInfo[params.dataIndex].source['source-node']+'</td></tr>';
+                    res+='<tr><td>目的</td><td>'+edgeArrowInfo[params.dataIndex].destination['dest-node']+'</td></tr>';
+                    res+='<tr><td>状态</td><td>'+edgeArrowInfo[params.dataIndex]['link-status']+'</td></tr>';
+                    res+='<tr><td>延迟</td><td>'+edgeArrowInfo[params.dataIndex]['delay']+'</td></tr>';
+                    res+='<tr><td>丢包</td><td>'+edgeArrowInfo[params.dataIndex]['loss']+'</td></tr>';
+                    res+='<tr><td>源接口</td><td>'+edgeArrowInfo[params.dataIndex].source['source-tp']+'</td></tr>';
+                    res+='<tr><td>目的接口</td><td>'+edgeArrowInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
+                    res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+(edgeArrowInfo[params.dataIndex]['oper-bw']/(1024*1024)).toFixed(2)+' M</td></tr>';
+                    res+='</table>';
+                  }
                 }
                 return res;
               }
@@ -317,6 +332,7 @@ export default {
           var mapData = []
           // 地图飞线数据
           var mapFlyLinesData = [];
+          var mapFlyLinesArrowData = [];
           barType.forEach(res => {
             if(res.substring(res.length-2) == 'L1'){
               topLevelNode.push(res)
@@ -394,17 +410,18 @@ export default {
                 }
 
 
-                let colorStop='#00ff8c'
-                if(item['oper-bw']>15000){
-                  colorStop='#00ffea'
+                let colorStop='#FF9C00'
+                if(item['oper-bw']>(1024*1024)){
+                  colorStop='#00AE96'
                 }
-                if(item['oper-bw']>30000){
-                  colorStop='#f9ff00'
+                if(item['oper-bw']>(100*1024*1024)){
+                  colorStop='#E8FF4B'
                 }
                 if(item['link-status']=='DOWN'){
-                  colorStop='#ff0000'
+                  colorStop='#FF9C00'
                 }
-                edgeInfo.push(item)
+
+
                 let flag = 0
                 /*
                 for(let i=0;i<mapFlyLinesData.length;i++){
@@ -424,16 +441,29 @@ export default {
                 if(dstName.substring(dstName.length-2) == 'L1'){
                   dstName = dstName.substring(0,dstName.length-2) + 'L2'
                 }
-                mapFlyLinesData.push([{
-                  coord: geoCoordMap[srcName],
-                  lineStyle:{
-                    color:colorStop,
-                  }
-                },{
-                  coord: geoCoordMap[dstName],
-                }])
+                if(colorStop=='#FF9C00'){
+                  edgeInfo.push(item)
+                  mapFlyLinesData.push([{
+                    coord: geoCoordMap[srcName],
+                    lineStyle:{
+                      color:colorStop,
+                    }
+                  },{
+                    coord: geoCoordMap[dstName],
+                  }])
+                }
+                else{
+                  edgeArrowInfo.push(item)
+                  mapFlyLinesArrowData.push([{
+                    coord: geoCoordMap[srcName],
+                    lineStyle:{
+                      color:colorStop,
+                    }
+                  },{
+                    coord: geoCoordMap[dstName],
+                  }])
+                }
               }
-              console.log(mapFlyLinesData)
             }
           })
 
@@ -486,7 +516,7 @@ export default {
               },
               zlevel: 1
             },
-            //飞线层
+            //飞线层-箭头
             {
               type: 'lines',
               zlevel: 2,
@@ -495,13 +525,25 @@ export default {
                 period: 4, //箭头指向速度，值越小速度越快
                 trailLength: 0.02, //特效尾迹长度[0,1]值越大，尾迹越长重
                 symbol: 'arrow', //箭头图标
-                symbolSize: 3, //图标大小
+                symbolSize: 4, //图标大小
               },
               lineStyle: {
                 normal: {
-                  color: colorType[i],
+                  width: 3, //尾迹线条宽度
+                  opacity: 0.4, //尾迹线条透明度
+                  curveness: 0.2 //尾迹线条曲直度
+                }
+              },
+              data: mapFlyLinesArrowData,
+            },
+            //飞线层
+            {
+              type: 'lines',
+              zlevel: 2,
+              lineStyle: {
+                normal: {
                   width: 1, //尾迹线条宽度
-                  opacity: 0.05, //尾迹线条透明度
+                  opacity: 0.6, //尾迹线条透明度
                   curveness: 0.2 //尾迹线条曲直度
                 }
               },
@@ -545,6 +587,7 @@ export default {
 
         myCharts.on('click', function (params) {
           console.log(params)
+          console.log(edgeInfo)
           if(params.componentSubType=='pictorialBar'&&params.dataIndex==1&&params.componentIndex==3){
             window.location.pathname = '/demo/view4'
           }
