@@ -203,7 +203,7 @@ export default {
                 var upMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#00ff00;\"></span>'
                 var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
                 var res = '';
-                if(params.componentSubType==='effectScatter'){
+                if(params.componentSubType==='scatter'){
                   for(let i=0;i<topLevelNode.length;i++){
                     let l1 = fullName[params['data'].name].substring(0,fullName[params['data'].name].length-2) + 'L1'
                     if(topLevelNode[i] == l1){
@@ -211,7 +211,7 @@ export default {
                       res+='<tr><td>城市</td><td>'+city[l1]+'</td></tr>';
                       res+='<tr><td>状态</td><td>'+status[l1]+'</td></tr>';
                       res+='<tr><td>类别</td><td>'+categories[l1]+'</td></tr>';
-                      res+='<tr><td>管理Ip</td><td>'+manageIp[l1]+'</td></tr>';
+                      res+='<tr><td>管理IP</td><td>'+manageIp[l1]+'</td></tr>';
                       res+='</table>'
                       res+='</br>'
                     }
@@ -220,7 +220,7 @@ export default {
                   res+='<tr><td>城市</td><td>'+city[params['data'].name]+'</td></tr>';
                   res+='<tr><td>状态</td><td>'+status[params['data'].name]+'</td></tr>';
                   res+='<tr><td>类别</td><td>'+categories[params['data'].name]+'</td></tr>';
-                  res+='<tr><td>管理Ip</td><td>'+manageIp[params['data'].name]+'</td></tr>';
+                  res+='<tr><td>管理IP</td><td>'+manageIp[params['data'].name]+'</td></tr>';
                   /*
                   res+='<tr><td>Number of Interface</td><td>'+peAllData[params['data'].name].length+'</td></tr>';
                   var interfaces={}
@@ -317,7 +317,7 @@ export default {
                 },
                 emphasis: {
                   borderColor: 'rgba(0,168,255,1)',
-                  borderWidth: 2,
+                  borderWidth: 5,
                   areaColor: 'rgba(40,137,211,1)',
                 }
               },
@@ -345,9 +345,9 @@ export default {
               mapData.push({
                 'name': res,
                 'value': point,
-                'symbolSize': 20,
+                'symbolSize': 18,
                 'itemStyle':{
-                  'color': '#E8FF4B'
+                  'color': '#A6DF8A'
                 }
               })
             }
@@ -357,7 +357,7 @@ export default {
             for(let j=0;j<topLevelNode.length;j++){
               if(topLevelNode[j] == temp){
                 mapData[i]['symbolSize'] = 26
-                mapData[i]['itemStyle']['color'] = '#00AE96'
+                mapData[i]['itemStyle']['color'] = '#6DF6E9'
                 break
               }
             }
@@ -408,17 +408,15 @@ export default {
                   }
                   continue;
                 }
-
-
-                let colorStop='#FF9C00'
-                if(item['oper-bw']>(1024*1024)){
-                  colorStop='#00AE96'
+                let colorStop='#73FAE8'
+                if(item['utilization-ratio']>0.5){
+                  colorStop='#A7DF8C'
                 }
-                if(item['oper-bw']>(100*1024*1024)){
-                  colorStop='#E8FF4B'
+                if(item['utilization-ratio']>0.8){
+                  colorStop='#FF5000'
                 }
                 if(item['link-status']=='DOWN'){
-                  colorStop='#FF9C00'
+                  colorStop='#FF5000'
                 }
 
 
@@ -474,6 +472,7 @@ export default {
             series: [{
               name: 'point',
               type: 'scatter',
+              zlevel: 3,
               coordinateSystem: 'geo',
               data: mapData,
               itemStyle: {
@@ -487,6 +486,7 @@ export default {
               type: 'effectScatter',
               coordinateSystem: 'geo',
               data: mapData,
+              zlevel: 2,
               showEffectOn: 'render',
               rippleEffect: {
                 brushType: 'stroke'
@@ -530,7 +530,7 @@ export default {
               lineStyle: {
                 normal: {
                   width: 3, //尾迹线条宽度
-                  opacity: 0.4, //尾迹线条透明度
+                  opacity: 0.6, //尾迹线条透明度
                   curveness: 0.2 //尾迹线条曲直度
                 }
               },
@@ -588,10 +588,10 @@ export default {
         myCharts.on('click', function (params) {
           console.log(params)
           console.log(edgeInfo)
-          if(params.componentSubType=='pictorialBar'&&params.dataIndex==1&&params.componentIndex==3){
+          if(params.componentSubType=='pictorialBar'&&params.dataIndex==1&&params.componentIndex==4){
             window.location.pathname = '/demo/view4'
           }
-          else if(params.componentSubType=='pictorialBar'&&params.dataIndex==0&&params.componentIndex==0){
+          else if(params.componentSubType=='pictorialBar'&&params.dataIndex==0&&params.componentIndex==4){
             myCharts.resize();
             myCharts.setOption(option,{notMerge:true,lazyUpdate:false});
           }

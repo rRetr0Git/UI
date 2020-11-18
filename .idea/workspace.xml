@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d3d4934-80d3-4bd2-8cce-c6381b28296c" name="Default Changelist" comment=")">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/View1.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/View1.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/View2.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/View2.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/View3.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/View3.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,20 +15,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/View3.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="664">
-              <caret line="204" column="6" selection-start-line="204" selection-start-column="6" selection-end-line="204" selection-end-column="6" />
+            <state relative-caret-position="704">
+              <caret line="1680" column="23" selection-start-line="1680" selection-start-column="23" selection-end-line="1680" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/View2.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="708">
-              <caret line="414" column="36" selection-start-line="414" selection-start-column="36" selection-end-line="414" selection-end-column="36" />
+            <state relative-caret-position="305">
+              <caret line="409" column="17" selection-start-line="409" selection-start-column="17" selection-end-line="409" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -51,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/components/View1.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="576">
-              <caret line="185" column="6" selection-start-line="185" selection-start-column="6" selection-end-line="185" selection-end-column="6" />
+            <state relative-caret-position="454">
+              <caret line="120" column="38" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -69,7 +72,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/view/test/test.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
+            <state relative-caret-position="435">
               <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
             </state>
           </provider>
@@ -87,7 +90,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/static/testApi/graph.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35748">
+            <state relative-caret-position="43290">
               <caret line="2886" column="55" selection-start-line="2886" selection-start-column="19" selection-end-line="2886" selection-end-column="55" />
             </state>
           </provider>
@@ -125,13 +128,13 @@
       <find>bw</find>
       <find>delay</find>
       <find>vpn</find>
-      <find>get</find>
-      <find>alert</find>
       <find>DOWN</find>
       <find>UP</find>
       <find>logicOn</find>
       <find>logicDown</find>
       <find>oper-bw</find>
+      <find>alert</find>
+      <find>get</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;true&quot;</replace>
@@ -167,15 +170,14 @@
         <option value="$PROJECT_DIR$/frontend/src/components/View4.vue" />
         <option value="$PROJECT_DIR$/frontend/src/App.vue" />
         <option value="$PROJECT_DIR$/frontend/src/components/View1.vue" />
-        <option value="$PROJECT_DIR$/frontend/src/components/View3.vue" />
         <option value="$PROJECT_DIR$/frontend/src/components/View2.vue" />
+        <option value="$PROJECT_DIR$/frontend/src/components/View3.vue" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="850" />
-    <option name="width" value="830" />
-    <option name="height" value="1050" />
+    <option name="width" value="1920" />
+    <option name="height" value="1200" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -193,6 +195,16 @@
               <item name="UI" type="b2602c69:ProjectViewProjectNode" />
               <item name="UI" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="UI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UI" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -202,7 +214,7 @@
   <component name="PropertiesComponent">
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -284,7 +296,7 @@
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12848867" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11321748" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -295,7 +307,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32959184" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.14159292" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.14159292" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -496,30 +508,6 @@
         <state relative-caret-position="-225" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/config/proxy.config.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/config/prod.env.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/static/testApi/graph.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35748">
-          <caret line="2886" column="55" selection-start-line="2886" selection-start-column="19" selection-end-line="2886" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/view/test/test.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1110">
@@ -544,13 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/App.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/View4.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -558,24 +539,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/View1.vue">
+    <entry file="file://$PROJECT_DIR$/frontend/src/App.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="185" column="6" selection-start-line="185" selection-start-column="6" selection-end-line="185" selection-end-column="6" />
+        <state relative-caret-position="705">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/components/View3.vue">
+    <entry file="file://$PROJECT_DIR$/frontend/src/view/test/test.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="664">
-          <caret line="204" column="6" selection-start-line="204" selection-start-column="6" selection-end-line="204" selection-end-column="6" />
+        <state relative-caret-position="435">
+          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/config/prod.env.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/static/testApi/graph.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43290">
+          <caret line="2886" column="55" selection-start-line="2886" selection-start-column="19" selection-end-line="2886" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/config/proxy.config.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/View1.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="120" column="38" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/components/View2.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="708">
-          <caret line="414" column="36" selection-start-line="414" selection-start-column="36" selection-end-line="414" selection-end-column="36" />
+        <state relative-caret-position="305">
+          <caret line="409" column="17" selection-start-line="409" selection-start-column="17" selection-end-line="409" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/components/View3.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="1680" column="23" selection-start-line="1680" selection-start-column="23" selection-end-line="1680" selection-end-column="23" />
         </state>
       </provider>
     </entry>
