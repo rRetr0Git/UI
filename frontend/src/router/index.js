@@ -4,6 +4,7 @@ import View3 from '@/components/View3'
 import View2 from '@/components/View2'
 import View1 from '@/components/View1'
 import View4 from '@/components/View4'
+import View5 from '@/components/View5'
 import App from '../App'
 Vue.use(Router)
 export default new Router({
@@ -23,6 +24,10 @@ export default new Router({
     {
       path: '/demo/view4/',
       component: View4
+    },
+    {
+      path: '/demo/view5/',
+      component: View5
     },
     {
       path: '/test',
