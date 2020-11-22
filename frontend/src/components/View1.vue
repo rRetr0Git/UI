@@ -175,6 +175,20 @@ export default {
       return 'default-row';
     },
     init(){
+
+      function transferBw(n){
+        let m = n/(1014*1024)
+        if(m<1024){
+          return m.toFixed(2)+' M'
+        }
+        else if(m>=1024 && m<1024*1024){
+          return (m/1024).toFixed(2) + ' G'
+        }
+        else{
+          return (m/(1024*1024)).toFixed(2) + ' T'
+        }
+      }
+
       const  myCharts1 = this.$echarts.init(this.$refs.myCharts1,'dark');
       const  myCharts2 = this.$echarts.init(this.$refs.myCharts2,'dark');
       const  myCharts3 = this.$echarts.init(this.$refs.myCharts3,'dark');
@@ -215,7 +229,7 @@ export default {
               src:city[res.data[i]['src-device']] + (res.data[i]['src-device']).substring(res.data[i]['src-device'].length-2),
               dst:city[res.data[i]['dst-device']] + (res.data[i]['dst-device']).substring(res.data[i]['dst-device'].length-2),
               path:pathstr,
-              bw:(res.data[i]['oper-bw']/(1024*1024)).toFixed(2) + 'M',
+              bw:transferBw(res.data[i]['oper-bw']),
               delay:res.data[i]['delay'] + 'ms',
               loss:res.data[i]['loss'] + '%',
               ration:res.data[i]['utilization-ratio'].toFixed(2) + "%"

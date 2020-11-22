@@ -60,7 +60,7 @@
   }
 
   /deep/ .el-table .ok-row {
-    background: linear-gradient(to right, #ffffff, #ffffff);
+    background: rgba(0,255,0,0.3);
     color: #ffffff;
   }
 
@@ -126,6 +126,19 @@ export default {
       }
     },
     init(){
+      function transferBw(n){
+        let m = n/(1014*1024)
+        if(m<1024){
+          return m.toFixed(2)+' M'
+        }
+        else if(m>=1024 && m<1024*1024){
+          return (m/1024).toFixed(2) + ' G'
+        }
+        else{
+          return (m/(1024*1024)).toFixed(2) + ' T'
+        }
+      }
+
       $.ajaxSetup({async:false});
       let _this = this; // 声明一个变量指向Vue实例this，保证作用域一致
 
@@ -625,7 +638,7 @@ export default {
         },
         title: [
           {
-            text: controller[0].OUT_TRAFFIC+"Mbps\n\n"+controller[0].IN_TRAFFIC+"Mbps",
+            text: transferBw(controller[0].OUT_TRAFFIC)+"bps\n\n"+transferBw(controller[0].IN_TRAFFIC)+"bps",
             top: "44%",
             left: "88%",
             textStyle: {

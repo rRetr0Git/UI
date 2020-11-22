@@ -22,7 +22,22 @@ export default {
     // }, this.setIntervalTime)
   },
   methods: {
+
     init(){
+
+      function transferBw(n){
+        let m = n/(1014*1024)
+        if(m<1024){
+          return m.toFixed(2)+' M'
+        }
+        else if(m>=1024 && m<1024*1024){
+          return (m/1024).toFixed(2) + ' G'
+        }
+        else{
+          return (m/(1024*1024)).toFixed(2) + ' T'
+        }
+      }
+
       const  myCharts = this.$echarts.init(this.$refs.myCharts,'dark');
       // 指定图表的配置项和数据
       var uploadedDataURL = "../../static/json/data-1482909784051-BJgwuy-Sl.json";
@@ -268,7 +283,7 @@ export default {
                     res+='<tr><td>丢包</td><td>'+edgeInfo[params.dataIndex]['loss']+'</td></tr>';
                     res+='<tr><td>源接口</td><td>'+edgeInfo[params.dataIndex].source['source-tp']+'</td></tr>';
                     res+='<tr><td>目的接口</td><td>'+edgeInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
-                    res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+(edgeInfo[params.dataIndex]['oper-bw']/(1024*1024)).toFixed(2)+' M</td></tr>';
+                    res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+transferBw(edgeInfo[params.dataIndex]['oper-bw'])+'</td></tr>';
                     res+='</table>';
                   }
                   else{
@@ -280,7 +295,7 @@ export default {
                     res+='<tr><td>丢包</td><td>'+edgeArrowInfo[params.dataIndex]['loss']+'</td></tr>';
                     res+='<tr><td>源接口</td><td>'+edgeArrowInfo[params.dataIndex].source['source-tp']+'</td></tr>';
                     res+='<tr><td>目的接口</td><td>'+edgeArrowInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
-                    res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+(edgeArrowInfo[params.dataIndex]['oper-bw']/(1024*1024)).toFixed(2)+' M</td></tr>';
+                    res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+transferBw(edgeArrowInfo[params.dataIndex]['oper-bw'])+'</td></tr>';
                     res+='</table>';
                   }
                 }
