@@ -55,11 +55,26 @@
 
 <style scoped>
   /deep/ .el-table .default-row {
-    background: transparent!important;
+    background: rgba(255,0,0,0.3);
     color: #ffffff;
   }
 
   /deep/ .el-table .ok-row {
+    background: transparent!important;
+    color: #ffffff;
+  }
+
+  /deep/ .el-table .info-row {
+    background: rgba(0,0,255,0.2);
+    color: #ffffff;
+  }
+
+  /deep/ .el-table .warning-row {
+    background: rgba(255,255,0,0.3);
+    color: #ffffff;
+  }
+
+  /deep/ .el-table .debug-row {
     background: rgba(0,255,0,0.3);
     color: #ffffff;
   }
@@ -120,6 +135,18 @@ export default {
     tableRowClassName({ row, rowIndex }) {
       if(row.level == 'CRITICAL'){
         return "default-row";
+      }
+      else if(row.level == 'OK'){
+        return "ok-row";
+      }
+      else if(row.level == 'INFO'){
+        return "info-row";
+      }
+      else if(row.level == 'DEBUG'){
+        return "debug-row";
+      }
+      else if(row.level == 'WARNING'){
+        return "warning-row";
       }
       else{
         return "ok-row";
@@ -182,6 +209,12 @@ export default {
         return s;
       }
 
+
+      function compare(property){
+        return function (obj1,obj2){
+          return obj1[property]-obj2[property];
+        }
+      }
       const myCharts1 = this.$echarts.init(this.$refs.myCharts1, "dark");
       const myCharts2 = this.$echarts.init(this.$refs.myCharts2, "dark");
       const myCharts3 = this.$echarts.init(this.$refs.myCharts3, "dark");
@@ -369,7 +402,7 @@ export default {
               topRankValue1.push(0)
             }
             else{
-              topRankName1.push(res.data[i].name + "   =>   " + res.data[i].routername)
+              topRankName1.push(res.data[i].routername + "   =>   " + res.data[i].name)
               topRankValue1.push(res.data[i].value.toFixed(2))
             }
           }
@@ -473,7 +506,6 @@ export default {
         }
       $.get(url, params, (res)=>{
         if(res.code == 0){
-          console.log(res.data)
           for(let i=0;i<res.data.length;i++){
             let category = res.data[i].category
             if(category == 'LINK_UP'){
@@ -514,8 +546,7 @@ export default {
       })
 
       //GET DATA OF ALERT LIST
-      var alertBusinessList = []
-      var alertSystemList = []
+      var alertList = []
       url = '/api/monitor/alert/list',
         params={
           namespace: 'business',
@@ -524,7 +555,7 @@ export default {
       $.get(url, params, (res)=>{
         if(res.code == 0){
           for(let i=0;i<res.data.length;i++){
-            alertBusinessList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].msg})
+            alertList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].msg})
           }
         }
       })
@@ -536,12 +567,13 @@ export default {
       $.get(url, params, (res)=>{
         if(res.code == 0){
           for(let i=0;i<res.data.length;i++){
-            alertSystemList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].message})
+            alertList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].message})
           }
         }
       })
-
-      this.tableData = alertBusinessList.reverse();
+      console.log('compare')
+      console.log(JSON.stringify(alertList.sort(compare('time'))))
+      this.tableData = JSON.stringify(alertList.sort(compare('time')))
 
       var option5 = {
         backgroundColor: {
@@ -2503,7 +2535,6 @@ export default {
               value: 1,
               symbol: alertSystemOn,
             }]
-            this.tableData = alertSystemList;
           }
           else{
             option3.series[2].data = alertBusinessData
@@ -2519,7 +2550,6 @@ export default {
               value: 1,
               symbol: alertSystemDown,
             }]
-            this.tableData = alertBusinessList;
           }
         }
 
@@ -2528,13 +2558,53 @@ export default {
         myCharts3.setOption(option3, { notMerge: true, lazyUpdate: false });
       })
       
+    },
+
+    getTableData(isShow){
+      var alertChangeList = []
+      let url = '/api/monitor/alert/list',
+        params={
+          namespace: 'business',
+          interval: '7d'
+        }
+      $.get(url, params, (res)=>{
+        if(res.code == 0){
+          console.log(res.data)
+          for(let i=0;i<res.data.length;i++){
+            alertChangeList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].msg})
+          }
+
+        }
+      })
+
+        params={
+          namespace: 'system',
+          interval: '1d'
+        }
+      $.get(url, params, (res)=>{
+        if(res.code == 0){
+          console.log(res.data)
+          for(let i=0;i<res.data.length;i++){
+            alertChangeList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].message})
+          }
+        }
+      })
+
+      this.tableData = alertChangeList.reverse();
+        isShow && this.$message({
+          showClose: true,
+          message: '告警信息列表更新成功',
+          type: 'success'
+      });
     }
   },
   mounted() {
+    $.ajaxSetup({async:false});
     this.init()
-    // setInterval(()=>{
-    //   this.init()
-    // }, this.setIntervalTime)
+    this.getTableData(false)
+    setInterval(()=>{
+      this.getTableData(true)
+    }, this.setIntervalTime)
   },
   beforeRouteEnter(to, from, next) {
     document.querySelector("body").setAttribute("style", "margin:0;padding:0");

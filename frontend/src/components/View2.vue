@@ -267,7 +267,7 @@ export default {
                   }
                   */
                   res+= '</table>'
-                  if(params.componentSubType==='effectScatter'){
+                  if(params.componentSubType==='scatter'){
                     if(params.data.name in partMap){
                       res+='双击查看下层拓扑'+'</br>';
                     }
@@ -279,8 +279,8 @@ export default {
                     res+='<tr><td>源</td><td>'+edgeInfo[params.dataIndex].source['source-node']+'</td></tr>';
                     res+='<tr><td>目的</td><td>'+edgeInfo[params.dataIndex].destination['dest-node']+'</td></tr>';
                     res+='<tr><td>状态</td><td>'+edgeInfo[params.dataIndex]['link-status']+'</td></tr>';
-                    res+='<tr><td>延迟</td><td>'+edgeInfo[params.dataIndex]['delay']+'</td></tr>';
-                    res+='<tr><td>丢包</td><td>'+edgeInfo[params.dataIndex]['loss']+'</td></tr>';
+                    res+='<tr><td>延迟</td><td>'+edgeInfo[params.dataIndex]['delay']+'ms</td></tr>';
+                    res+='<tr><td>丢包</td><td>'+edgeInfo[params.dataIndex]['loss']+'%</td></tr>';
                     res+='<tr><td>源接口</td><td>'+edgeInfo[params.dataIndex].source['source-tp']+'</td></tr>';
                     res+='<tr><td>目的接口</td><td>'+edgeInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
                     res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+transferBw(edgeInfo[params.dataIndex]['oper-bw'])+'</td></tr>';
@@ -291,8 +291,8 @@ export default {
                     res+='<tr><td>源</td><td>'+edgeArrowInfo[params.dataIndex].source['source-node']+'</td></tr>';
                     res+='<tr><td>目的</td><td>'+edgeArrowInfo[params.dataIndex].destination['dest-node']+'</td></tr>';
                     res+='<tr><td>状态</td><td>'+edgeArrowInfo[params.dataIndex]['link-status']+'</td></tr>';
-                    res+='<tr><td>延迟</td><td>'+edgeArrowInfo[params.dataIndex]['delay']+'</td></tr>';
-                    res+='<tr><td>丢包</td><td>'+edgeArrowInfo[params.dataIndex]['loss']+'</td></tr>';
+                    res+='<tr><td>延迟</td><td>'+edgeArrowInfo[params.dataIndex]['delay']+'ms</td></tr>';
+                    res+='<tr><td>丢包</td><td>'+edgeArrowInfo[params.dataIndex]['loss']+'%</td></tr>';
                     res+='<tr><td>源接口</td><td>'+edgeArrowInfo[params.dataIndex].source['source-tp']+'</td></tr>';
                     res+='<tr><td>目的接口</td><td>'+edgeArrowInfo[params.dataIndex].destination['dest-tp']+'</td></tr>';
                     res+='<tr><td>当前带宽</td><td>'+'<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:'+params.color+';\"></span>'+transferBw(edgeArrowInfo[params.dataIndex]['oper-bw'])+'</td></tr>';
@@ -618,7 +618,7 @@ export default {
 
         myCharts.on('dblclick', function (params) {
           console.log(params);
-          if(params.componentSubType=='effectScatter'&&params.data.name in partMap){
+          if(params.componentSubType=='scatter'&&params.data.name in partMap){
             let option={
               backgroundColor: {image:img},
               color: ['#f44'],
