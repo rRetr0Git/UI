@@ -125,10 +125,9 @@ export default {
     return {
       msg: "Welcome to Your Vue.js App",
       date: new Date(),
-      tableData: [
-
-      ],
-      setIntervalTime: setIntervalTimeView3
+      tableData: [],
+      setIntervalTime: setIntervalTimeView3,
+      alertChangeList: []
     };
   },
   methods: {
@@ -418,7 +417,7 @@ export default {
           namespace: 'count',
         }
       $.get(url, params, (res)=>{
-        console.log(res)
+        // console.log(res)
         if(res.code == 0){
           overview.PE = res.data.pe
           overview.TE = res.data.te
@@ -571,10 +570,10 @@ export default {
           }
         }
       })
-      console.log('compare')
-      console.log(JSON.stringify(alertList.sort(compare('time'))))
-      this.tableData = JSON.stringify(alertList.sort(compare('time')))
-
+      // console.log('compare')
+      // console.log(JSON.stringify(alertList.sort(compare('time'))))
+      // this.tableData = JSON.parse(JSON.stringify(alertList.sort(compare('time'))))
+      this.tableData = this.listSort(JSON.parse(JSON.stringify(alertList))).reverse()
       var option5 = {
         backgroundColor: {
           type: "linear",
@@ -2225,7 +2224,7 @@ export default {
         myCharts5.resize();
       };
       myCharts1.on("click", function (params) {
-        console.log(params);
+        // console.log(params);
         if (
           params.componentSubType == "pictorialBar" &&
           params.componentIndex == 1
@@ -2561,19 +2560,18 @@ export default {
     },
 
     getTableData(isShow){
-      var alertChangeList = []
+      this.alertChangeList = []
       let url = '/api/monitor/alert/list',
         params={
           namespace: 'business',
           interval: '7d'
         }
       $.get(url, params, (res)=>{
-        if(res.code == 0){
-          console.log(res.data)
+        if(res.code == 0 && res.data.length>0){
+          // console.log(res.data)
           for(let i=0;i<res.data.length;i++){
-            alertChangeList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].msg})
+            this.alertChangeList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].msg})
           }
-
         }
       })
 
@@ -2582,20 +2580,27 @@ export default {
           interval: '1d'
         }
       $.get(url, params, (res)=>{
-        if(res.code == 0){
-          console.log(res.data)
+        if(res.code == 0 && res.data.length>0){
+          // console.log(res.data)
           for(let i=0;i<res.data.length;i++){
-            alertChangeList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].message})
+            this.alertChangeList.push({level:res.data[i].level,time:res.data[i].time,detail:res.data[i].message})
           }
         }
       })
 
-      this.tableData = alertChangeList.reverse();
-        isShow && this.$message({
+      // this.tableData = alertChangeList.reverse();
+      isShow && this.$message({
           showClose: true,
           message: '告警信息列表更新成功',
           type: 'success'
       });
+    },
+    listSort(arr){
+      return arr.sort(function(a, b){
+        let num = new Date(a.time).getTime() - new Date(b.time).getTime()
+        // console.log(num)
+        return (new Date(a.time).getTime() - new Date(b.time).getTime())
+      })
     }
   },
   mounted() {
@@ -2619,6 +2624,11 @@ export default {
       clearInterval(this.timer); // 在Vue实例销毁前，清除我们的定时器
     }
   },
+  watch: {
+    alertChangeList(val){
+      this.tableData = this.listSort(JSON.parse(JSON.stringify(val))).reverse()
+    }
+  }
 };
 </script>
 <style scoped>
