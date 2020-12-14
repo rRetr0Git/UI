@@ -604,7 +604,7 @@ export default {
           console.log(params)
           console.log(edgeInfo)
           if(params.componentSubType=='pictorialBar'&&params.dataIndex==1&&params.componentIndex==4){
-            window.location.pathname = '/demo/view4'
+            window.location.pathname = '/demo/view5'
           }
           else if(params.componentSubType=='pictorialBar'&&params.dataIndex==0&&params.componentIndex==4){
             myCharts.resize();
