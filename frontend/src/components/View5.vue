@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-col :span="6">
-          <el-container  id="container1" ref="container1" style="background:url(../../static/logicimg-select.png);background-size:480px 1080px">
+          <el-container  id="container1" ref="container1" style="background:url(../../static/logicimg-select.png);background-size:480px 240px">
             <el-header height="80px"></el-header>
             <el-main>
               <el-row>

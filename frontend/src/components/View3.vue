@@ -54,6 +54,11 @@
 </template>
 
 <style scoped>
+  /deep/ .el-table .update-row {
+    background: rgba(255,255,0,0.8);
+    color: #000000;
+  }
+
   /deep/ .el-table .default-row {
     background: rgba(255,0,0,0.3);
     color: #ffffff;
@@ -132,7 +137,28 @@ export default {
   },
   methods: {
     tableRowClassName({ row, rowIndex }) {
-      if(row.level == 'CRITICAL'){
+
+      function stringToDate(str){
+        var tempStrs = str.split(" ");
+        var dateStrs = tempStrs[0].split("-");
+        var year = parseInt(dateStrs[0], 10);
+        var month = parseInt(dateStrs[1], 10) - 1;
+        var day = parseInt(dateStrs[2], 10);
+        var timeStrs = tempStrs[1].split(":");
+        var hour = parseInt(timeStrs [0], 10);
+        var minute = parseInt(timeStrs[1], 10);
+        var second = parseInt(timeStrs[2], 10);
+        var date = new Date(year, month, day, hour, minute, second);
+        return date;
+      }
+
+      let time = stringToDate(row.time).getTime()
+      let timeNow = new Date().getTime()
+      console.log(timeNow - time)
+      if(timeNow - time < 600000){
+        return "update-row";
+      }
+      else if(row.level == 'CRITICAL'){
         return "default-row";
       }
       else if(row.level == 'OK'){
