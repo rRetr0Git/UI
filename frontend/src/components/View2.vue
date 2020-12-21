@@ -114,6 +114,27 @@ export default {
         }
       })
 
+      //GET DATA OF TOP
+      var topRankValue1 = [];
+      var topRankName1 = [];
+
+      url = '/api/monitor/switch/top',
+        params={
+          namespace: 'port',
+          metricNames: 'in_traffic',
+          "dimensions.0.name": "n",
+          "dimensions.0.value": "10",
+        }
+      $.get(url, params, (res)=>{
+        if(res.code == 0){
+          for(let i=0;i<10;i++){
+            topRankName1.push(res.data[i].routername)
+            topRankValue1.push(res.data[i].value.toFixed(2))
+          }
+        }
+      })
+
+
       $.getJSON(uploadedDataURL, function(geoJson) {
         _this.$echarts.registerMap('', geoJson); //注册 地图
 
@@ -174,6 +195,11 @@ export default {
               top: '60%',
               width:"40%",
               bottom: '10%',
+            },{
+              x: "80%",
+              top: '55%',
+              width:"18%",
+              bottom: '5%',
             }],
             xAxis:[{
               gridIndex:0,
@@ -184,6 +210,9 @@ export default {
               axisLine: {
                 show: false
               }
+            },{
+              gridIndex:1,
+              show: false,
             }],
             yAxis:[{
               gridIndex:0,
@@ -201,6 +230,22 @@ export default {
               axisLabel: {
                 show: false
               }
+            },{
+              type: "category",
+              inverse: true,
+              gridIndex:1,
+              splitLine: {
+                show: false,
+              },
+              axisLabel: {
+                show: false, //让Y轴数据不显示
+              },
+              axisTick: {
+                show: false, //隐藏Y轴刻度
+              },
+              axisLine: {
+                show: false, //隐藏Y轴线段
+              },
             }],
             calculable: true,
             tooltip: {
@@ -580,6 +625,74 @@ export default {
                   value: 1,
                   symbol: logicDown,
               }]
+            },{
+              xAxisIndex: 1,
+              yAxisIndex: 1,
+              show: true,
+              type: "bar",
+              barGap: "-100%",
+              barWidth: "30%", //统计条宽度
+              itemStyle: {
+                normal: {
+                  color: {
+                    type: "bar",
+                    colorStops: [
+                      {
+                        offset: 0,
+                        color: "#39A7FC", // 0% 处的颜色
+                      },
+                      {
+                        offset: 1,
+                        color: "#00FBFF", // 100% 处的颜色
+                      },
+                    ],
+                    globalCoord: false, // 缺省为 false
+                  },
+                },
+              },
+              max: 1,
+              labelLine: {
+                show: false,
+              },
+              tooltip: {
+                trigger: "item",
+              },
+              z:1000,
+              data: topRankValue1,
+            },
+            {
+              show: true,
+              type: "bar",
+              xAxisIndex: 1,
+              yAxisIndex: 1,
+              barGap: "-100%",
+              barWidth: "30%", //统计条宽度
+              itemStyle: {
+                normal: {
+                  barBorderRadius: 200,
+                  color: "rgba(22,203,115,0.05)",
+                },
+              },
+              label: {
+                normal: {
+                  show: true,
+                  position: [0, "-100%"],
+                  formatter: function (data) {
+                    let length = topRankName1[data.dataIndex].length
+                    let space = ""
+                    for(let i=0;i<90-length;i++){
+                      space+=" \n\n          "
+                    }
+                    return (
+                      topRankName1[data.dataIndex]
+                    );
+                  },
+                },
+              },
+              tooltip: {
+                show:false
+              },
+              data: topRankValue1,
             }]
           })
         })
