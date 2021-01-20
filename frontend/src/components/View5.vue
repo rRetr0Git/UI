@@ -13,7 +13,7 @@
                     :value="item.value">
                   </el-option>
                 </el-select>
-                <el-button type="primary" @click="selectVPN" plain>Select VPN</el-button>
+                <el-button type="primary" @click="selectVPN" plain>选择VPN</el-button>
               </el-row>
             </el-main>
           </el-container>
@@ -187,8 +187,9 @@ export default {
         }
       $.get(url, params, (res)=>{
         if(res.code == 0){
+          console.log(res.data)
           for(let i=0;i<res.data.length;i++){
-            vpnId.push({value:res.data[i].vpn_id, label:res.data[i].vpn_id})
+            vpnId.push({value:res.data[i].vpn_id, label:res.data[i].vpn_id + ' ' + res.data[i].vpn_name})
           }
         }
       })
@@ -470,44 +471,44 @@ export default {
           }
         }],
         series:[{
-          xAxisIndex:0,
-          yAxisIndex:0,
           type: 'line',
+          smooth: true,
           showAllSymbol: true,
           symbol: 'emptyCircle',
           symbolSize: 8,
+          xAxisIndex: 0,
+          yAxisIndex: 0,
           itemStyle: {
             normal: {
-              color:'#00f8ff'
+              color:'#ffffff'
             },
           },
-          //data: rxData
         },{
-          xAxisIndex:0,
-          yAxisIndex:0,
           type: 'line',
+          smooth: true,
           showAllSymbol: true,
           symbol: 'emptyCircle',
           symbolSize: 8,
+          xAxisIndex: 0,
+          yAxisIndex: 0,
           itemStyle: {
             normal: {
-              color:'#00f15a'
+              color:'#0092f6'
             },
           },
-          //data: txData
         },{
-          xAxisIndex:1,
-          yAxisIndex:1,
           type: 'line',
+          smooth: true,
           showAllSymbol: true,
           symbol: 'emptyCircle',
           symbolSize: 8,
+          xAxisIndex: 1,
+          yAxisIndex: 1,
           itemStyle: {
             normal: {
-              color:'#00f8ff'
+              color:'#ffffff'
             },
           },
-          //data: rxData
         }]
       }
 
@@ -647,7 +648,7 @@ export default {
           }
         }
       })
-
+      console.log('----------')
       console.log(teFlowInData)
 
       var vpnFlowInData = []
@@ -671,6 +672,10 @@ export default {
           }
         }
       })
+
+      console.log('----------')
+      console.log(vpnFlowInData)
+      console.log(vpnFlowOutData)
 
       this.option.series.push({
         type: 'lines',
