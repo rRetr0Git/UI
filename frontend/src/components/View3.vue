@@ -531,7 +531,9 @@ export default {
         }
       $.get(url, params, (res)=>{
         if(res.code == 0){
+          let top= 0
           for(let i=0;i<res.data.length;i++){
+            top = top + 1
             let category = res.data[i].category
             if(category == 'LINK_UP'){
               category = '链路UP'
@@ -542,6 +544,9 @@ export default {
             alertBusinessCategory.push(category)
             alertBusinessCategoryData.push(res.data[i].value)
             alertBusinessCategorySideData.push(res.data[i].value+res.data[0].value*0.1)
+            if(top == 5){
+              break
+            }
           }
         }
       })
@@ -1748,7 +1753,7 @@ export default {
               textStyle: {
                 color: '#fff',
               },
-              rotate:20
+              rotate:15
             }
           },
         ],

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id="myCharts" ref="myCharts"></div>
+        <div id="myCharts" ref="myCharts" ></div>
     </div>
 </template>
 
@@ -157,7 +157,7 @@ export default {
         var option = {
           // 时间轴样式
           baseOption: {
-            backgroundColor: {image:img},
+            backgroundColor: 'transparent',
             timeline: {
               axisType: 'category',
               autoPlay: true,
@@ -413,17 +413,19 @@ export default {
             }
           })
           for(let i=0;i<mapData.length;i++){
-            let temp = mapData[i]['name'].substring(0,mapData[i]['name'].length-2) + 'L1'
-            for(let j=0;j<topLevelNode.length;j++){
-              if(topLevelNode[j] == temp){
-                mapData[i]['symbolSize'] = 26
-                mapData[i]['itemStyle']['color'] = '#6DF6E9'
-                break
-              }
-            }
             if(status[mapData[i]['name']] == 'DOWN'){
               mapData[i]['itemStyle']['color'] = '#FF9C00'
               mapData[i]['symbolSize'] = 16
+            }
+            else{
+              let temp = mapData[i]['name'].substring(0,mapData[i]['name'].length-2) + 'L1'
+              for(let j=0;j<topLevelNode.length;j++){
+                if(topLevelNode[j] == temp){
+                  mapData[i]['symbolSize'] = 26
+                  mapData[i]['itemStyle']['color'] = '#6DF6E9'
+                  break
+                }
+              }
             }
           }
           console.log(mapData)
@@ -841,5 +843,6 @@ export default {
     width: 100%;
     height: 1080px;
     margin: 0 auto;
+    background:url('../../static/backimg_win.png');
   }
 </style>

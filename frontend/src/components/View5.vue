@@ -296,7 +296,7 @@ export default {
       }
 
       this.option = {
-        backgroundColor: {image:img},
+        backgroundColor: 'transparent',
         grid:[{
           x: "6.5%",
           top: '60%',
@@ -402,7 +402,7 @@ export default {
 
 
       this.option2 = {
-        backgroundColor:{image:logicimg_charts},
+        backgroundColor:'transparent',
         title:{
           text: "租户VPN数：1   租户TE数：1",
           top: "5%",
@@ -747,12 +747,14 @@ export default {
     width: 100%;
     height: 1080px;
     margin: 0 auto;
+    background: url('../../static/logicimg-topo.png');
   }
 
   #myCharts2{
     width: 100%;
     height: 840px;
     margin: 0 auto;
+    background: url('../../static/logicimg-charts.png');
   }
 
   #container1{
