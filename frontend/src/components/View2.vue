@@ -476,7 +476,7 @@ export default {
                   colorStop='#FF5000'
                 }
                 if(item['link-status']=='DOWN'){
-                  colorStop='#FF5000'
+                  colorStop='#FF9C00'
                 }
 
 
@@ -781,41 +781,22 @@ export default {
                   enterable:true,
                   position:['5%','5%'],
                   textStyle:{
-                    fontSize:16,
+                    fontSize:24,
                   },
                   borderColor:'#ffffff',
                   borderWidth:'2',
                   formatter:function (params) {
+                    console.log(params)
                     var upMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#00ff00;\"></span>'
                     var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
                     var res = '';
                     if(params.componentSubType==='graph' && params.dataType==='node'){
-                      if(params['data'].name in peAllData){
-                        res+=params.marker+peAllData[params['data'].name].name+'</br><table>';
-                        res+='<tr><td>City</td><td>'+peAllData[params['data'].name].city+'</td></tr>';
-                        res+='<tr><td>Status</td><td>'+status[params['data'].name]+'</td></tr>';
-                        res+='<tr><td>Categories</td><td>'+categories[params['data'].name]+'</td></tr>';
-                        res+='<tr><td>ManageIp</td><td>'+peAllData[params['data'].name].manageIp+'</td></tr>';
-                        res+='<tr><td>Number of Interface</td><td>'+peAllData[params['data'].name].peInterfaces.length+'</td></tr>';
-                        var interfaces={}
-                        for(var i=0;i<peAllData[params['data'].name].peInterfaces.length;i++){
-                          interfaces[peAllData[params['data'].name].peInterfaces[i].name] = peAllData[params['data'].name].peInterfaces[i].operStatus
-                        }
-                        var newData = {};
-                        Object.keys(interfaces).sort().map(key => {
-                          newData[key]=interfaces[key]
-                        })
-                        for(let key in newData){
-                          res+='<tr><td>'+key+'</td><td>'
-                          if(newData[key]==='UP'){
-                            res+=upMarker+newData[key]+'</td></tr>'
-                          }
-                          else{
-                            res+=downMarker+newData[key]+'</td></tr>'
-                          }
-                        }
-                        res+= '</table>'
-                      }
+                      res+=params.marker+fullName[params['data'].name]+'</br><table>';
+                      res+='<tr><td>城市</td><td>'+city[params['data'].name]+'</td></tr>';
+                      res+='<tr><td>状态</td><td>'+status[params['data'].name]+'</td></tr>';
+                      res+='<tr><td>类别</td><td>'+categories[params['data'].name]+'</td></tr>';
+                      res+='<tr><td>管理IP</td><td>'+manageIp[params['data'].name]+'</td></tr>';
+                      res+= '</table>'
                     }
                     return res;
                   }
