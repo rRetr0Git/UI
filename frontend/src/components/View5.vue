@@ -404,7 +404,7 @@ export default {
 
       this.option2 = {
         backgroundColor:'transparent',
-        title:{
+        title:[{
           text: "租户VPN数：1   租户TE数：1",
           top: "5%",
           left: "20%",
@@ -412,7 +412,23 @@ export default {
             fontSize: 24,
             color: "#0092f6",
           },
-        },
+        },{
+          text: "租户当日VPN流量",
+          top: "12%",
+          left: "35%",
+          textStyle: {
+            fontSize: 24,
+            color: "#0092f6",
+          },
+        },{
+          text: "租户当日TE流量",
+          top: "55%",
+          left: "35%",
+          textStyle: {
+            fontSize: 24,
+            color: "#0092f6",
+          },
+        }],
         grid:[{
           x: "20%",
           top: '20%',
@@ -538,7 +554,7 @@ export default {
       let newLine2 = []
       let url = '/api/monitor/topology/logical',
         params = {
-          vpnId: select1.value
+          vpnId: select1.value.split(' ')[0]
         }
       $.get(url, params, (res)=>{
         if(res.code == 0){
@@ -566,6 +582,11 @@ export default {
                     color: 'orange',
                   }
                 }
+                for(let k=0;k<this.charts.nodes.length;k++){
+                  if((this.charts.nodes[k].value[0] == tempNode.value[0]) && (this.charts.nodes[k].value[1] == tempNode.value[1])){
+                    this.charts.nodes[k].symbolOffset = [0,'1000%']
+                  }
+                }
                 this.charts.nodes.push(tempNode)
                 newLine.push({coords:[[this.nodes[j].x, this.nodes[j].y-200],[this.nodes[j].x, this.nodes[j].y]]})
               }
@@ -579,11 +600,10 @@ export default {
 
       url = '/api/monitor/te/vpn/te-path',
         params = {
-          vpnId: select1.value
+          vpnId: select1.value.split(' ')[0]
         }
       $.get(url, params, (res)=>{
         if(res.code == 0){
-          //console.log(res.data)
           if(res.data != []){
             for(let i=0;i<res.data.length;i++){
               let item = res.data[i]['te-policy-targets']
@@ -648,8 +668,6 @@ export default {
           }
         }
       })
-      console.log('----------')
-      console.log(teFlowInData)
 
       var vpnFlowInData = []
       var vpnFlowOutData = []
@@ -664,6 +682,7 @@ export default {
           period: '1h'
         }
       $.get(url, params, (res)=>{
+        console.log(res)
         if(res.code == 0){
           for(let i=0;i<res.data.length;i++){
             vpnFlowDate.push(res.data[i].time.substring(11,16))
@@ -672,10 +691,6 @@ export default {
           }
         }
       })
-
-      console.log('----------')
-      console.log(vpnFlowInData)
-      console.log(vpnFlowOutData)
 
       this.option.series.push({
         type: 'lines',
@@ -729,6 +744,9 @@ export default {
       myCharts.setOption(this.option,{notMerge:true,lazyUpdate:false});
       myCharts2.setOption(this.option2,{notMerge:true,lazyUpdate:false});
       this.charts.nodes.splice(nodeNum,nodeNewNum);
+      for(let i=0;i<this.charts.nodes.length;i++){
+        this.charts.nodes[i].symbolOffset = [0,'20%']
+      }
       this.option.series.splice(defaultNum,2);
     }
   },
