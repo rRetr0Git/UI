@@ -830,7 +830,10 @@ export default {
     }
   },
   mounted(){
-    $.ajaxSetup({async:false});
+   $.ajaxSetup({
+      async:true,
+      timeout: 5000,
+    });
     this.init()
     this.getTableData2(false)
     setInterval(()=>{
