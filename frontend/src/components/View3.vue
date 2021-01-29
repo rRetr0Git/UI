@@ -38,7 +38,7 @@
                 style="width: 100%"
                 :row-class-name="tableRowClassName"
               >
-                <el-table-column prop="level" label="级别" width="85"></el-table-column>
+                <el-table-column prop="level" label="级别" width="90"></el-table-column>
                 <el-table-column prop="time" label="时间" width="160"></el-table-column>
                 <el-table-column prop="detail" label="内容"></el-table-column>
               </el-table>
@@ -154,6 +154,7 @@ export default {
 
       let time = stringToDate(row.time).getTime()
       let timeNow = new Date().getTime()
+      console.log(timeNow - time)
       if(timeNow - time < 600000){
         return "update-row";
       }
@@ -180,13 +181,13 @@ export default {
       function transferBw(n){
         let m = n/(1014*1024)
         if(m<1024){
-          return m.toFixed(1)+'M'
+          return m.toFixed(2)+'M'
         }
         else if(m>=1024 && m<1024*1024){
-          return (m/1024).toFixed(1) + 'G'
+          return (m/1024).toFixed(2) + 'G'
         }
         else{
-          return (m/(1024*1024)).toFixed(1) + 'T'
+          return (m/(1024*1024)).toFixed(2) + 'T'
         }
       }
 
@@ -1979,6 +1980,15 @@ export default {
         title: [],
         tooltip:{
           trigger:'item',
+          textStyle:{
+            fontSize:12,
+          },
+          hideDelay:5,
+          borderColor:'#ffffff',
+          borderWidth:'1',
+          position:function (point) {
+            return point
+          },
           formatter: function (params) {
             return transferBw(params.data)
           }

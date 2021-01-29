@@ -818,7 +818,7 @@ export default {
           alert('/topology/physical 接口出错')
         }
       )
-      /*
+
       url = '/api/monitor/te/event',
         params={
           interval: '1d'
@@ -851,7 +851,7 @@ export default {
           alert('/te/event 接口出错')
         }
       )
-      */
+
     }
   },
   mounted(){

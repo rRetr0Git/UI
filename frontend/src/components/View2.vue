@@ -87,7 +87,12 @@ export default {
               //geoCoordMap[name] = [parseFloat(item.longitude)+0.25,parseFloat(item.latitude)+0.10]
             }
             else{
-              geoCoordMap[name] = [parseFloat(item.longitude),parseFloat(item.latitude)]
+              if(name.substring(0,2) == 'GZ'){
+                geoCoordMap[name] = [parseFloat(item.longitude)+0.2,parseFloat(item.latitude)+0.2]
+              }
+              else{
+                geoCoordMap[name] = [parseFloat(item.longitude),parseFloat(item.latitude)]
+              }
             }
           }
         }
