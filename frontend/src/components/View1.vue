@@ -174,7 +174,7 @@ export default {
     tableRowClassName({row, rowIndex}) {
       return 'default-row';
     },
-    init(){
+    async init(){
 
       function transferBw(n){
         let m = n/(1014*1024)
@@ -201,576 +201,601 @@ export default {
 
       var city = {}
 
-      let url = '/api/monitor/topology/physical',
+      
+      
+      function get1 () {
+        let url = '/api/monitor/topology/physical',
         params={
-        }
-      $.get(url, params,
-        function(res){
-          if(res.code == 0){
-            for(let i=0;i<res.data.topology[1].node.length;i++){
-              let item = res.data.topology[1].node[i]
-              let name = item.name
-              city[name] = item['city']
+        };
+        return new Promise((resolve, reject)=>{
+          $.get(url, params,
+            function(res){
+              if(res.code == 0){
+                for(let i=0;i<res.data.topology[1].node.length;i++){
+                  let item = res.data.topology[1].node[i]
+                  let name = item.name
+                  city[name] = item['city']
+                }
+                resolve(1)
+              }
             }
-          }
-        }
-      ).fail(function(){
-          alert('/topology/physical 接口出错')
-        }
-      )
-
+          ).fail(function(){
+              resolve(1)
+              alert('/topology/physical 接口出错')
+            }
+          )
+        })
+      }
       //GET DATA OF TE INFO
       var teList = []
-      url = '/api/monitor/te/te-path/all',
-        params = {}
-      $.get(url, params,
-        function(res){
-          if(res.code == 0){
-            for(let i=0;i<res.data.length;i++){
-              let pathstr = ''
-              for(let j=0;j<res.data[i]['explicit-path'].length;j++){
-                pathstr += city[res.data[i]['explicit-path'][j]['node-id']] + (res.data[i]['explicit-path'][j]['node-id']).substring(res.data[i]['explicit-path'][j]['node-id'].length-2) + '->'
+      
+      let that = this
+      function get2 () {
+        let url = '/api/monitor/te/te-path/all',
+        params = {};
+        return new Promise((resolve, reject)=>{
+          $.get(url, params,
+            function(res){
+              if(res.code == 0){
+                for(let i=0;i<res.data.length;i++){
+                  let pathstr = ''
+                  for(let j=0;j<res.data[i]['explicit-path'].length;j++){
+                    pathstr += city[res.data[i]['explicit-path'][j]['node-id']] + (res.data[i]['explicit-path'][j]['node-id']).substring(res.data[i]['explicit-path'][j]['node-id'].length-2) + '->'
+                  }
+                  pathstr += city[res.data[i]['dst-device']] + (res.data[i]['dst-device']).substring(res.data[i]['dst-device'].length-2)
+                  teList.push({
+                    src:city[res.data[i]['src-device']] + (res.data[i]['src-device']).substring(res.data[i]['src-device'].length-2),
+                    dst:city[res.data[i]['dst-device']] + (res.data[i]['dst-device']).substring(res.data[i]['dst-device'].length-2),
+                    path:pathstr,
+                    bw:transferBw(res.data[i]['oper-bw']),
+                    delay:res.data[i]['delay'] + 'ms',
+                    loss:res.data[i]['loss'] + '%',
+                    ration:res.data[i]['utilization-ratio'].toFixed(2) + "%"
+                  })
+                }
+                that.tableData1 = teList;
+                resolve(1)
               }
-              pathstr += city[res.data[i]['dst-device']] + (res.data[i]['dst-device']).substring(res.data[i]['dst-device'].length-2)
-              teList.push({
-                src:city[res.data[i]['src-device']] + (res.data[i]['src-device']).substring(res.data[i]['src-device'].length-2),
-                dst:city[res.data[i]['dst-device']] + (res.data[i]['dst-device']).substring(res.data[i]['dst-device'].length-2),
-                path:pathstr,
-                bw:transferBw(res.data[i]['oper-bw']),
-                delay:res.data[i]['delay'] + 'ms',
-                loss:res.data[i]['loss'] + '%',
-                ration:res.data[i]['utilization-ratio'].toFixed(2) + "%"
-              })
             }
-          }
-        }
-      ).fail(function(){
-          alert('/te/te-path/all 接口出错')
-        }
-      )
+          ).fail(function(){
+              resolve(1)
+              alert('/te/te-path/all 接口出错')
+            }
+          )
+        })
+      }
 
-      this.tableData1 = teList;
+      
 
       //GET DATA OF VPN FLOW
       var vpnFlowInData = []
       var vpnFlowOutData = []
       var vpnFlowDate = []
 
-      url = '/api/monitor/vpn/history',
+      
+      function get3 () {
+        let url = '/api/monitor/vpn/history',
         params={
           namespace: 'traffic',
           metricNames: 'in_traffic, out_traffic',
           period: '1h'
-        }
-      $.get(url, params,
-        function(res){
-          if(res.code == 0){
-            for(let i=0;i<res.data.length;i++){
-              vpnFlowDate.push(res.data[i].time.substring(11,16))
-              vpnFlowInData.push(res.data[i].in_traffic)
-              vpnFlowOutData.push(res.data[i].out_traffic)
+        };
+        return new Promise((resolve, reject)=>{
+          $.get(url, params,
+            function(res){
+              if(res.code == 0){
+                for(let i=0;i<res.data.length;i++){
+                  vpnFlowDate.push(res.data[i].time.substring(11,16))
+                  vpnFlowInData.push(res.data[i].in_traffic)
+                  vpnFlowOutData.push(res.data[i].out_traffic)
+                }
+                resolve(1)
+              }
             }
-          }
-        }
-      ).fail(function(){
-          alert('/vpn/history 接口出错')
-        }
-      )
-
+          ).fail(function(){
+              resolve(1)
+              alert('/vpn/history 接口出错')
+            }
+          )
+        })
+      }
+      
       //GET DATA OF TE FLOW
       var teFlowOutData = []
       var teFlowDate = []
 
-      url = '/api/monitor/te/history',
+      
+      
+      function get4 () {
+        let url = '/api/monitor/te/history',
         params={
           namespace: 'traffic',
           metricNames: 'out_traffic',
           period: '1h'
-        }
-      $.get(url, params,
-        function(res){
-          if(res.code == 0){
-            for(let i=0;i<res.data.length;i++){
-              teFlowDate.push(res.data[i].time.substring(11,16))
-              teFlowOutData.push(res.data[i].out_traffic)
+        };
+        return new Promise((resolve, reject)=>{
+          $.get(url, params,
+            function(res){
+              if(res.code == 0){
+                for(let i=0;i<res.data.length;i++){
+                  teFlowDate.push(res.data[i].time.substring(11,16))
+                  teFlowOutData.push(res.data[i].out_traffic)
+                }
+                resolve(1)
+              }
             }
-          }
-        }
-      ).fail(function(){
-          alert('/te/history 接口出错')
-        }
-      )
-
-      var option1 = {
-        backgroundColor: {
-          type: 'linear',
-          x: 0,
-          y: 0,
-          x2: 1,
-          y2: 0,
-          colorStops: [{
-            offset: 0, color: '#002c6e' // 0% 处的颜色
-          }, {
-            offset: 1, color: '#011945' // 100% 处的颜色
-          }],
-          global: false // 缺省为 false
-        },
-        grid:{
-          top:"0%",
-          left:"0%",
-          right:'0%',
-        },
-        xAxis:{
-          gridIndex:0,
-          data: [''],
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          axisLabel: {
-            color: '#0092f6',
-            fontSize: 12
-          },
-        },
-        yAxis:{
-          gridIndex:0,
-          min: 0,
-          max: 1,
-          splitLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          axisLabel: {
-            show: false
-          }
-        },
-        series:{
-          xAxisIndex:0,
-          yAxisIndex:0,
-          name: 'glyph',
-          type: 'pictorialBar',
-          symbolPosition: 'end',
-          symbolOffset: [0, '0%'],
-          symbolSize: ['125%','540%'],
-          color:'#0092f6',
-          data: [{
-              value: 1,
-              symbol: teInfoTitle,
-          }],
-        }
+          ).fail(function(){
+              resolve(1)
+              alert('/te/history 接口出错')
+            }
+          )
+        })
       }
+      
+      
 
-      var option2 = {
-        backgroundColor: {
-          type: 'linear',
-          x: 0,
-          y: 0,
-          x2: 1,
-          y2: 0,
-          colorStops: [{
-            offset: 0, color: '#002c6e' // 0% 处的颜色
-          }, {
-            offset: 1, color: '#011945' // 100% 处的颜色
-          }],
-          global: false // 缺省为 false
-        },
-        grid:{
-          top:"0%",
-          left:"0%",
-          right:'0%',
-        },
-        xAxis:{
-          gridIndex:0,
-          data: [''],
-          axisTick: {
-            show: false
+      
+      
+      Promise.all([get1(), get2(), get3(), get4()]).then(()=>{
+        var option1 = {
+          backgroundColor: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 1,
+            y2: 0,
+            colorStops: [{
+              offset: 0, color: '#002c6e' // 0% 处的颜色
+            }, {
+              offset: 1, color: '#011945' // 100% 处的颜色
+            }],
+            global: false // 缺省为 false
           },
-          axisLine: {
-            show: false
+          grid:{
+            top:"0%",
+            left:"0%",
+            right:'0%',
           },
-          axisLabel: {
-            color: '#0092f6',
-            fontSize: 12
+          xAxis:{
+            gridIndex:0,
+            data: [''],
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              color: '#0092f6',
+              fontSize: 12
+            },
           },
-        },
-        yAxis:{
-          gridIndex:0,
-          min: 0,
-          max: 1,
-          splitLine: {
-            show: false
+          yAxis:{
+            gridIndex:0,
+            min: 0,
+            max: 1,
+            splitLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            }
           },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          axisLabel: {
-            show: false
+          series:{
+            xAxisIndex:0,
+            yAxisIndex:0,
+            name: 'glyph',
+            type: 'pictorialBar',
+            symbolPosition: 'end',
+            symbolOffset: [0, '0%'],
+            symbolSize: ['125%','540%'],
+            color:'#0092f6',
+            data: [{
+                value: 1,
+                symbol: teInfoTitle,
+            }],
           }
-        },
-        series:{
-          xAxisIndex:0,
-          yAxisIndex:0,
-          name: 'glyph',
-          type: 'pictorialBar',
-          symbolPosition: 'end',
-          symbolOffset: [0, '0%'],
-          symbolSize: ['125%','540%'],
-          color:'#0092f6',
-          data: [{
+        }
+
+        var option2 = {
+          backgroundColor: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 1,
+            y2: 0,
+            colorStops: [{
+              offset: 0, color: '#002c6e' // 0% 处的颜色
+            }, {
+              offset: 1, color: '#011945' // 100% 处的颜色
+            }],
+            global: false // 缺省为 false
+          },
+          grid:{
+            top:"0%",
+            left:"0%",
+            right:'0%',
+          },
+          xAxis:{
+            gridIndex:0,
+            data: [''],
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              color: '#0092f6',
+              fontSize: 12
+            },
+          },
+          yAxis:{
+            gridIndex:0,
+            min: 0,
+            max: 1,
+            splitLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            }
+          },
+          series:{
+            xAxisIndex:0,
+            yAxisIndex:0,
+            name: 'glyph',
+            type: 'pictorialBar',
+            symbolPosition: 'end',
+            symbolOffset: [0, '0%'],
+            symbolSize: ['125%','540%'],
+            color:'#0092f6',
+            data: [{
+                value: 1,
+                symbol: teChangeTitle,
+            }]
+          }
+        }
+
+        var option3 = {
+          backgroundColor: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 1,
+            y2: 0,
+            colorStops: [{
+              offset: 0, color: '#011945' // 0% 处的颜色
+            }, {
+              offset: 1, color: '#01061b' // 100% 处的颜色
+            }],
+            global: false // 缺省为 false
+          },
+          grid:[{
+            top:"0%",
+            left:"0%",
+            right:'0%',
+          },{
+            left:'10%',
+            width:'80%',
+            top:'20%',
+          }],
+          xAxis:[{
+            gridIndex:0,
+            data: [''],
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              color: '#0092f6',
+              fontSize: 12
+            },
+          },{
+            gridIndex:1,
+            data: vpnFlowDate,
+            axisLine: {
+              lineStyle: {
+                color: '#B4B4B4'
+              }
+            },
+            axisTick:{
+              show:false,
+            }
+          }],
+          yAxis:[{
+            gridIndex:0,
+            min: 0,
+            max: 1,
+            splitLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            }
+          },{
+            gridIndex:1,
+            splitLine: {show: false},
+            axisLine: {
+              lineStyle: {
+                color: '#B4B4B4',
+              }
+            },
+            axisLabel:{
+              formatter:'{value} Mbps',
+            }
+          },{
+            gridIndex:1,
+            splitLine: {show: false},
+            axisLine: {
+              lineStyle: {
+                color: '#B4B4B4',
+              }
+            },
+            axisLabel:{
+              formatter:'{value}',
+            }
+          }],
+          legend: {
+            data: ['上行', '下行'],
+            textStyle: {
+              color: '#B4B4B4'
+            },
+            top:'15%',
+          },
+          series:[{
+            xAxisIndex:0,
+            yAxisIndex:0,
+            name: 'glyph',
+            type: 'pictorialBar',
+            symbolPosition: 'end',
+            symbolOffset: [0, '0%'],
+            symbolSize: ['125%','11.25%'],
+            color:'#0092f6',
+            data: [{
               value: 1,
-              symbol: teChangeTitle,
+              symbol: vpnFlowTitle,
+            }],
+          },{
+            name: 'trend',
+            type: 'line',
+            smooth: true,
+            showAllSymbol: true,
+            symbol: 'emptyCircle',
+            symbolSize: 8,
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            itemStyle: {
+              normal: {
+                color:'#ffffff'
+              },
+            },
+            data: vpnFlowInData
+          },{
+            name: 'trend',
+            type: 'line',
+            smooth: true,
+            showAllSymbol: true,
+            symbol: 'emptyCircle',
+            symbolSize: 8,
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            itemStyle: {
+              normal: {
+                color:'#0092f6'
+              },
+            },
+            data: vpnFlowOutData
+          },{
+            xAxisIndex:1,
+            yAxisIndex:1,
+            name: '下行',
+            type: 'bar',
+            barWidth: 10,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 5,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                  [{offset: 0, color: '#ffffff'},
+                {offset: 1, color: '#3EACE5'}]
+                )
+              }
+            },
+            data: vpnFlowInData
+          },{
+            xAxisIndex:1,
+            yAxisIndex:1,
+            name: '上行',
+            type: 'bar',
+            barGap: '30%',
+            barWidth: 10,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 5,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                  [{offset: 0, color: '#0092f6'},
+                  {offset: 0.2, color: '#21a3ca'},
+                  {offset: 1, color: 'rgba(156,107,211,0)'}]
+                )
+              }
+            },
+            z: -12,
+            data: vpnFlowOutData
           }]
         }
-      }
 
-
-      var category = [7.1,7.2,7.3,7.4,7.5,7.6,7.7,7.8,7.9,7.10,7.11,7.12,7.13,7.14,7.15,7.16,7.17];
-      var dottedBase = [];
-      var lineData = [180.92,207.28,240.45,283.48,328.08
-                      ,360.97,398.67,447.15,484.44,504.15
-                      ,560.61,626.77,695.21,775.60,850.38
-                      ,924.77,1022.68];
-      var barData = [46,50,55,65,75
-                      ,85,99,125,140,215
-                      ,232,244.5,252.5,333,358
-                      ,454,598.1];
-      var rateData = [0.25,0.24,0.23,0.23,0.23,0.24,0.25,0.28,0.29,0.43,0.41,0.39,0.36,0.43,0.42,0.49,0.58];
-
-      var option3 = {
-        backgroundColor: {
-          type: 'linear',
-          x: 0,
-          y: 0,
-          x2: 1,
-          y2: 0,
-          colorStops: [{
-            offset: 0, color: '#011945' // 0% 处的颜色
-          }, {
-            offset: 1, color: '#01061b' // 100% 处的颜色
+        var option4 = {
+          backgroundColor: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 1,
+            y2: 0,
+            colorStops: [{
+              offset: 0, color: '#011945' // 0% 处的颜色
+            }, {
+              offset: 1, color: '#01061b' // 100% 处的颜色
+            }],
+            global: false // 缺省为 false
+          },
+          grid:[{
+            top:"0%",
+            left:"0%",
+            right:'0%',
+          },{
+            left:'10%',
+            width:'80%',
+            top:'20%',
           }],
-          global: false // 缺省为 false
-        },
-        grid:[{
-          top:"0%",
-          left:"0%",
-          right:'0%',
-        },{
-          left:'10%',
-          width:'80%',
-          top:'20%',
-        }],
-        xAxis:[{
-          gridIndex:0,
-          data: [''],
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          axisLabel: {
-            color: '#0092f6',
-            fontSize: 12
-          },
-        },{
-          gridIndex:1,
-          data: vpnFlowDate,
-          axisLine: {
-            lineStyle: {
+          xAxis:[{
+            gridIndex:0,
+            data: [''],
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              color: '#0092f6',
+              fontSize: 12
+            },
+          },{
+            gridIndex:1,
+            data: teFlowDate,
+            axisLine: {
+              lineStyle: {
+                color: '#B4B4B4'
+              }
+            },
+            axisTick:{
+              show:false,
+            }
+          }],
+          yAxis:[{
+            gridIndex:0,
+            min: 0,
+            max: 1,
+            splitLine: {
+              show: false
+            },
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            }
+          },{
+            gridIndex:1,
+            splitLine: {show: false},
+            axisLine: {
+              lineStyle: {
+                color: '#B4B4B4',
+              }
+            },
+            axisLabel:{
+              formatter:'{value} Mbps',
+            }
+          },{
+            gridIndex:1,
+            splitLine: {show: false},
+            axisLine: {
+              lineStyle: {
+                color: '#B4B4B4',
+              }
+            },
+            axisLabel:{
+              formatter:'{value}',
+            }
+          }],
+          legend: {
+            data: ['流量'],
+            textStyle: {
               color: '#B4B4B4'
-            }
-          },
-          axisTick:{
-            show:false,
-          }
-        }],
-        yAxis:[{
-          gridIndex:0,
-          min: 0,
-          max: 1,
-          splitLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          axisLabel: {
-            show: false
-          }
-        },{
-          gridIndex:1,
-          splitLine: {show: false},
-          axisLine: {
-            lineStyle: {
-              color: '#B4B4B4',
-            }
-          },
-          axisLabel:{
-            formatter:'{value} Mbps',
-          }
-        },{
-          gridIndex:1,
-          splitLine: {show: false},
-          axisLine: {
-            lineStyle: {
-              color: '#B4B4B4',
-            }
-          },
-          axisLabel:{
-            formatter:'{value}',
-          }
-        }],
-        legend: {
-          data: ['上行', '下行'],
-          textStyle: {
-            color: '#B4B4B4'
-          },
-          top:'15%',
-        },
-        series:[{
-          xAxisIndex:0,
-          yAxisIndex:0,
-          name: 'glyph',
-          type: 'pictorialBar',
-          symbolPosition: 'end',
-          symbolOffset: [0, '0%'],
-          symbolSize: ['125%','11.25%'],
-          color:'#0092f6',
-          data: [{
-            value: 1,
-            symbol: vpnFlowTitle,
-          }],
-        },{
-          name: 'trend',
-          type: 'line',
-          smooth: true,
-          showAllSymbol: true,
-          symbol: 'emptyCircle',
-          symbolSize: 8,
-          xAxisIndex: 1,
-          yAxisIndex: 1,
-          itemStyle: {
-            normal: {
-              color:'#ffffff'
             },
+            top:'15%',
           },
-          data: vpnFlowInData
-        },{
-          name: 'trend',
-          type: 'line',
-          smooth: true,
-          showAllSymbol: true,
-          symbol: 'emptyCircle',
-          symbolSize: 8,
-          xAxisIndex: 1,
-          yAxisIndex: 1,
-          itemStyle: {
-            normal: {
-              color:'#0092f6'
+          series:[{
+            xAxisIndex:0,
+            yAxisIndex:0,
+            name: 'glyph',
+            type: 'pictorialBar',
+            symbolPosition: 'end',
+            symbolOffset: [0, '0%'],
+            symbolSize: ['125%','11.25%'],
+            color:'#0092f6',
+            data: [{
+              value: 1,
+              symbol: teFlowTitle,
+            }],
+          },{
+            name: 'trend',
+            type: 'line',
+            smooth: true,
+            showAllSymbol: true,
+            symbol: 'emptyCircle',
+            symbolSize: 8,
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            itemStyle: {
+              normal: {
+                color:'#ffffff'
+              },
             },
-          },
-          data: vpnFlowOutData
-        },{
-          xAxisIndex:1,
-          yAxisIndex:1,
-          name: '下行',
-          type: 'bar',
-          barWidth: 10,
-          itemStyle: {
-            normal: {
-              barBorderRadius: 5,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
-                [{offset: 0, color: '#ffffff'},
-              {offset: 1, color: '#3EACE5'}]
-              )
-            }
-          },
-          data: vpnFlowInData
-        },{
-          xAxisIndex:1,
-          yAxisIndex:1,
-          name: '上行',
-          type: 'bar',
-          barGap: '30%',
-          barWidth: 10,
-          itemStyle: {
-            normal: {
-              barBorderRadius: 5,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
-                [{offset: 0, color: '#0092f6'},
-                {offset: 0.2, color: '#21a3ca'},
-                {offset: 1, color: 'rgba(156,107,211,0)'}]
-              )
-            }
-          },
-          z: -12,
-          data: vpnFlowOutData
-        }]
-      }
-
-      var option4 = {
-        backgroundColor: {
-          type: 'linear',
-          x: 0,
-          y: 0,
-          x2: 1,
-          y2: 0,
-          colorStops: [{
-            offset: 0, color: '#011945' // 0% 处的颜色
-          }, {
-            offset: 1, color: '#01061b' // 100% 处的颜色
-          }],
-          global: false // 缺省为 false
-        },
-        grid:[{
-          top:"0%",
-          left:"0%",
-          right:'0%',
-        },{
-          left:'10%',
-          width:'80%',
-          top:'20%',
-        }],
-        xAxis:[{
-          gridIndex:0,
-          data: [''],
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          axisLabel: {
-            color: '#0092f6',
-            fontSize: 12
-          },
-        },{
-          gridIndex:1,
-          data: teFlowDate,
-          axisLine: {
-            lineStyle: {
-              color: '#B4B4B4'
-            }
-          },
-          axisTick:{
-            show:false,
-          }
-        }],
-        yAxis:[{
-          gridIndex:0,
-          min: 0,
-          max: 1,
-          splitLine: {
-            show: false
-          },
-          axisTick: {
-            show: false
-          },
-          axisLine: {
-            show: false
-          },
-          axisLabel: {
-            show: false
-          }
-        },{
-          gridIndex:1,
-          splitLine: {show: false},
-          axisLine: {
-            lineStyle: {
-              color: '#B4B4B4',
-            }
-          },
-          axisLabel:{
-            formatter:'{value} Mbps',
-          }
-        },{
-          gridIndex:1,
-          splitLine: {show: false},
-          axisLine: {
-            lineStyle: {
-              color: '#B4B4B4',
-            }
-          },
-          axisLabel:{
-            formatter:'{value}',
-          }
-        }],
-        legend: {
-          data: ['流量'],
-          textStyle: {
-            color: '#B4B4B4'
-          },
-          top:'15%',
-        },
-        series:[{
-          xAxisIndex:0,
-          yAxisIndex:0,
-          name: 'glyph',
-          type: 'pictorialBar',
-          symbolPosition: 'end',
-          symbolOffset: [0, '0%'],
-          symbolSize: ['125%','11.25%'],
-          color:'#0092f6',
-          data: [{
-            value: 1,
-            symbol: teFlowTitle,
-          }],
-        },{
-          name: 'trend',
-          type: 'line',
-          smooth: true,
-          showAllSymbol: true,
-          symbol: 'emptyCircle',
-          symbolSize: 8,
-          xAxisIndex: 1,
-          yAxisIndex: 1,
-          itemStyle: {
-            normal: {
-              color:'#ffffff'
+            data: teFlowOutData
+          },{
+            xAxisIndex:1,
+            yAxisIndex:1,
+            name: '流量',
+            type: 'bar',
+            barWidth: 10,
+            itemStyle: {
+              normal: {
+                barBorderRadius: 5,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
+                  [{offset: 0, color: '#ffffff'},
+                {offset: 1, color: '#3EACE5'}]
+                )
+              }
             },
-          },
-          data: teFlowOutData
-        },{
-          xAxisIndex:1,
-          yAxisIndex:1,
-          name: '流量',
-          type: 'bar',
-          barWidth: 10,
-          itemStyle: {
-            normal: {
-              barBorderRadius: 5,
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1,
-                [{offset: 0, color: '#ffffff'},
-              {offset: 1, color: '#3EACE5'}]
-              )
-            }
-          },
-          data: teFlowOutData
-        }]
-      }
-      myCharts1.setOption(option1)
-      myCharts2.setOption(option2)
-      myCharts3.setOption(option3)
-      myCharts4.setOption(option4)
-      window.onresize = function(){
-          myCharts1.resize();
-          myCharts2.resize();
-          myCharts3.resize();
-          myCharts4.resize();
-      }
+            data: teFlowOutData
+          }]
+        }
+        myCharts1.setOption(option1)
+        myCharts2.setOption(option2)
+        myCharts3.setOption(option3)
+        myCharts4.setOption(option4) 
+        window.onresize = function(){
+            myCharts1.resize();
+            myCharts2.resize();
+            myCharts3.resize();
+            myCharts4.resize();
+        }
+      })
+      
     },
     getTableData2(isShow){
       //GET DATA OF TE CHANGE INFO
