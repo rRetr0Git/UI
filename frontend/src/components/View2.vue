@@ -658,6 +658,18 @@ export default {
               },
               tooltip: {
                 trigger: "item",
+                textStyle:{
+                  fontSize:12,
+                },
+                hideDelay:5,
+                borderColor:'#ffffff',
+                borderWidth:'1',
+                position:function (point) {
+                  return point
+                },
+                formatter: function (params) {
+                  return transferBw(params.data)
+                }
               },
               z:1000,
               data: topRankValue1,

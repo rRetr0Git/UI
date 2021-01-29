@@ -262,15 +262,20 @@ export default {
           metricNames: 'in_traffic, out_traffic',
           period: '1h'
         }
-      $.get(url, params, (res)=>{
-        if(res.code == 0){
-          for(let i=0;i<res.data.length;i++){
-            vpnFlowDate.push(res.data[i].time.substring(11,16))
-            vpnFlowInData.push(res.data[i].in_traffic)
-            vpnFlowOutData.push(res.data[i].out_traffic)
+      $.get(url, params,
+        function(res){
+          if(res.code == 0){
+            for(let i=0;i<res.data.length;i++){
+              vpnFlowDate.push(res.data[i].time.substring(11,16))
+              vpnFlowInData.push(res.data[i].in_traffic)
+              vpnFlowOutData.push(res.data[i].out_traffic)
+            }
           }
         }
-      })
+      ).fail(function(){
+          alert('/vpn/history 接口出错')
+        }
+      )
 
       //GET DATA OF TE FLOW
       var teFlowOutData = []
@@ -282,14 +287,19 @@ export default {
           metricNames: 'out_traffic',
           period: '1h'
         }
-      $.get(url, params, (res)=>{
-        if(res.code == 0){
-          for(let i=0;i<res.data.length;i++){
-            teFlowDate.push(res.data[i].time.substring(11,16))
-            teFlowOutData.push(res.data[i].out_traffic)
+      $.get(url, params,
+        function(res){
+          if(res.code == 0){
+            for(let i=0;i<res.data.length;i++){
+              teFlowDate.push(res.data[i].time.substring(11,16))
+              teFlowOutData.push(res.data[i].out_traffic)
+            }
           }
         }
-      })
+      ).fail(function(){
+          alert('/te/history 接口出错')
+        }
+      )
 
       var option1 = {
         backgroundColor: {
@@ -769,42 +779,54 @@ export default {
       let url = '/api/monitor/topology/physical',
         params={
         }
-      $.get(url, params, (res)=>{
-        if(res.code == 0){
-          for(let i=0;i<res.data.topology[1].node.length;i++){
-            let item = res.data.topology[1].node[i]
-            let name = item.name
-            city[name] = item['city']
+      $.get(url, params,
+        function(res){
+          if(res.code == 0){
+            for(let i=0;i<res.data.topology[1].node.length;i++){
+              let item = res.data.topology[1].node[i]
+              let name = item.name
+              city[name] = item['city']
+            }
           }
         }
-      })
-
+      ).fail(function(){
+          alert('/topology/physical 接口出错')
+        }
+      )
+      /*
       url = '/api/monitor/te/event',
         params={
           interval: '1d'
         }
-      $.get(url, params, (res)=>{
-        if(res.code == 0){
-          this.tableData2 = []
-          for(let i=0;i<res.data.length;i++){
-            teChangeList.push({
-              tunnelChange:res.data[i].oldTunnel[0]["tunnel-name"] + "=>" + res.data[i].newTunnel[0]["tunnel-name"],
-              src:city[res.data[i].srcDevice] + (res.data[i].srcDevice.substring(res.data[i].srcDevice.length-2)),
-              dst:city[res.data[i].dstDevice] + (res.data[i].dstDevice.substring(res.data[i].dstDevice.length-2)),
-              reason:res.data[i].reason,
-              time:res.data[i].time,
-              vpnId:res.data[i].vpnId,
-              SLA:res.data[i].color
-            })
+
+      $.get(url, params,
+        function(res){
+          if(res.code == 0){
+            this.tableData2 = []
+            for(let i=0;i<res.data.length;i++){
+              teChangeList.push({
+                tunnelChange:res.data[i].oldTunnel[0]["tunnel-name"] + "=>" + res.data[i].newTunnel[0]["tunnel-name"],
+                src:city[res.data[i].srcDevice] + (res.data[i].srcDevice.substring(res.data[i].srcDevice.length-2)),
+                dst:city[res.data[i].dstDevice] + (res.data[i].dstDevice.substring(res.data[i].dstDevice.length-2)),
+                reason:res.data[i].reason,
+                time:res.data[i].time,
+                vpnId:res.data[i].vpnId,
+                SLA:res.data[i].color
+              })
+            }
+            this.tableData2 = teChangeList;
+             isShow && this.$message({
+              showClose: true,
+              message: 'TE变更列表更新成功',
+              type: 'success'
+            });
           }
-          this.tableData2 = teChangeList;
-           isShow && this.$message({
-            showClose: true,
-            message: 'TE变更列表更新成功',
-            type: 'success'
-          });
         }
-      })
+      ).fail(function(){
+          alert('/te/event 接口出错')
+        }
+      )
+      */
     }
   },
   mounted(){
