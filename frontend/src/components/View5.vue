@@ -661,6 +661,7 @@ export default {
           period: '1h'
         }
       $.get(url, params, (res)=>{
+        console.log(res)
         if(res.code == 0){
           for(let i=0;i<res.data.length;i++){
             teFlowDate.push(res.data[i].time.substring(11,16))
@@ -677,12 +678,11 @@ export default {
          params = {
           namespace: "traffic",
           metricNames: "in_traffic, out_traffic",
-          "dimensions.0.name": select1.value,
-          "dimensions.0.value": select1.value,
+          "dimensions.0.name": "vpnId",
+          "dimensions.0.value": select1.value.split(' ')[0],
           period: '1h'
         }
       $.get(url, params, (res)=>{
-        console.log(res)
         if(res.code == 0){
           for(let i=0;i<res.data.length;i++){
             vpnFlowDate.push(res.data[i].time.substring(11,16))
