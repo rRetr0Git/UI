@@ -803,7 +803,8 @@ export default {
       var city = {}
       let url = '/api/monitor/topology/physical',
         params={
-        }
+        },
+        that = this;
       $.get(url, params,
         function(res){
           if(res.code == 0){
@@ -827,7 +828,7 @@ export default {
       $.get(url, params,
         function(res){
           if(res.code == 0){
-            this.tableData2 = []
+            that.tableData2 = []
             for(let i=0;i<res.data.length;i++){
               teChangeList.push({
                 tunnelChange:res.data[i].oldTunnel[0]["tunnel-name"] + "=>" + res.data[i].newTunnel[0]["tunnel-name"],
@@ -839,8 +840,8 @@ export default {
                 SLA:res.data[i].color
               })
             }
-            this.tableData2 = teChangeList;
-             isShow && this.$message({
+            that.tableData2 = teChangeList;
+             isShow && that.$message({
               showClose: true,
               message: 'TE变更列表更新成功',
               type: 'success'
