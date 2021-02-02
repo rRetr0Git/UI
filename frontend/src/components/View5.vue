@@ -429,6 +429,14 @@ export default {
             color: "#0092f6",
           },
         }],
+        legend: {
+          data: ['上行', '下行'],
+          textStyle: {
+            color: '#B4B4B4'
+          },
+          top:'18%',
+          left:'60%'
+        },
         grid:[{
           x: "20%",
           top: '20%',
@@ -490,8 +498,9 @@ export default {
           type: 'line',
           smooth: true,
           showAllSymbol: true,
+          name:"下行",
           symbol: 'emptyCircle',
-          symbolSize: 8,
+          symbolSize: 4,
           xAxisIndex: 0,
           yAxisIndex: 0,
           itemStyle: {
@@ -503,8 +512,9 @@ export default {
           type: 'line',
           smooth: true,
           showAllSymbol: true,
+          name:"上行",
           symbol: 'emptyCircle',
-          symbolSize: 8,
+          symbolSize: 4,
           xAxisIndex: 0,
           yAxisIndex: 0,
           itemStyle: {
@@ -517,7 +527,7 @@ export default {
           smooth: true,
           showAllSymbol: true,
           symbol: 'emptyCircle',
-          symbolSize: 8,
+          symbolSize: 4,
           xAxisIndex: 1,
           yAxisIndex: 1,
           itemStyle: {
@@ -558,10 +568,13 @@ export default {
         }
       $.get(url, params, (res)=>{
         if(res.code == 0){
-          //console.log(res.data)
+          console.log(res.data)
           nodeNewNum = res.data.nodes.length
           for(let i=0;i<res.data.links.length;i++){
-            let srcName = res.data.nodes[i].name
+            let srcName = ''
+            if(res.data.nodes[i].name){
+              srcName = res.data.nodes[i].name
+            }
             let dstName = ''
             let dstId = res.data.links[i].destination['dest-node']
             if (dstId.substring(dstId.length-2) == 'L2'){
@@ -684,10 +697,16 @@ export default {
         }
       $.get(url, params, (res)=>{
         if(res.code == 0){
-          for(let i=0;i<res.data.length;i++){
+          console.log(res.data)
+          for(let i=0;i<res.data.length/2;i++){
             vpnFlowDate.push(res.data[i].time.substring(11,16))
             vpnFlowInData.push(res.data[i].in_traffic)
             vpnFlowOutData.push(res.data[i].out_traffic)
+          }
+          for(let i=res.data.length/2;i<res.data.length;i++){
+            let j = i-res.data.length/2
+            vpnFlowInData[j] += res.data[i].in_traffic
+            vpnFlowOutData[j] += res.data[i].out_traffic
           }
         }
       })

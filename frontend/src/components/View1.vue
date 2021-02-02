@@ -852,7 +852,6 @@ export default {
           alert('/te/event 接口出错')
         }
       )
-
     }
   },
   mounted(){

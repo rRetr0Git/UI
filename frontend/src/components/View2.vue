@@ -169,31 +169,40 @@ export default {
               playInterval: 10000,
               data: dataType,
               label: {
-                color: 'rgba(0,168,255,.6)'
+                color: 'rgba(0,168,255,0)'
               },
               lineStyle: {
-                color: '#666'
+                color: 'rgba(0,168,255,0)'
               },
               checkpointStyle: {
-                color: 'rgba(0,168,255,1)',
-                borderColor: 'rgba(0,168,255,0.3)'
+                color: 'rgba(0,168,255,0)',
+                borderColor: 'rgba(0,168,255,0)'
               },
               itemStyle: {
-                opacity: 0.3
+                opacity: 0
               },
               controlStyle: {
-                opacity: 0.3
+                opacity: 0
               },
               emphasis: {
                 label: {
-                  color: 'rgba(0,168,255,1)'
+                  color: 'rgba(0,168,255,0)'
                 },
                 controlStyle: {
-                  color: 'rgba(0,168,255,1)',
-                  borderColor: 'rgba(0,168,255,1)',
-                  opacity: 1
+                  color: 'rgba(0,168,255,0)',
+                  borderColor: 'rgba(0,168,255,0)',
+                  opacity: 0
                 }
               }
+            },
+            title:{
+              text: "Top10 PE端口",
+              top: "50%",
+              left: "85%",
+              textStyle: {
+                fontSize: 24,
+                color: "#ffffff",
+              },
             },
             grid:[{
               x: "30%",
@@ -265,14 +274,21 @@ export default {
               borderWidth:'2',
 
               formatter:function (params) {
-                var upMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#00ff00;\"></span>'
-                var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#ff0000;\"></span>'
+                var l1Marker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#6DF6E9;\"></span>'
+                var l2Marker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#A6DF8A;\"></span>'
+                var downMarker='<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#FF9C00;\"></span>'
                 var res = '';
                 if(params.componentSubType==='scatter'){
                   for(let i=0;i<topLevelNode.length;i++){
                     let l1 = fullName[params['data'].name].substring(0,fullName[params['data'].name].length-2) + 'L1'
                     if(topLevelNode[i] == l1){
-                      res+=params.marker+fullName[l1]+'</br><table>';
+                      if(status[l1] == 'DOWN'){
+                        res += downMarker
+                      }
+                      else{
+                        res += l1Marker
+                      }
+                      res+=fullName[l1]+'</br><table>';
                       res+='<tr><td>城市</td><td>'+city[l1]+'</td></tr>';
                       res+='<tr><td>状态</td><td>'+status[l1]+'</td></tr>';
                       res+='<tr><td>类别</td><td>'+categories[l1]+'</td></tr>';
@@ -281,7 +297,16 @@ export default {
                       res+='</br>'
                     }
                   }
-                  res+=params.marker+fullName[params['data'].name]+'</br><table>';
+                  if(status[params['data'].name] == 'DOWN'){
+                    res += downMarker
+                  }
+                  else if(fullName[params['data'].name].substring(2) == 'L1'){
+                    res += l1Marker
+                  }
+                  else{
+                    res += l2Marker
+                  }
+                  res+=fullName[params['data'].name]+'</br><table>';
                   res+='<tr><td>城市</td><td>'+city[params['data'].name]+'</td></tr>';
                   res+='<tr><td>状态</td><td>'+status[params['data'].name]+'</td></tr>';
                   res+='<tr><td>类别</td><td>'+categories[params['data'].name]+'</td></tr>';
@@ -670,7 +695,7 @@ export default {
                 borderColor:'#ffffff',
                 borderWidth:'1',
                 position:function (point) {
-                  return point
+                  return [point[0]+5,point[1]+5]
                 },
                 formatter: function (params) {
                   return transferBw(params.data)

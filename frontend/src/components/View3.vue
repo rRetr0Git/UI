@@ -1987,7 +1987,7 @@ export default {
           borderColor:'#ffffff',
           borderWidth:'1',
           position:function (point) {
-            return point
+            return [point[0]+5,point[1]+5]
           },
           formatter: function (params) {
             return transferBw(params.data)
