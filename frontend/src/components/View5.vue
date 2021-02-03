@@ -43,6 +43,7 @@ export default {
       option2:{},
       charts:{},
       nodeMapping:{},
+      teNum:0
     }
   },
   mounted(){
@@ -405,7 +406,7 @@ export default {
       this.option2 = {
         backgroundColor:'transparent',
         title:[{
-          text: "租户VPN数：1   租户TE数：1",
+          text: "租户VPN数：1   租户TE数："+this.teNum,
           top: "5%",
           left: "20%",
           textStyle: {
@@ -496,10 +497,10 @@ export default {
         }],
         series:[{
           type: 'line',
-          smooth: true,
-          showAllSymbol: true,
+          smooth: 1,
+          showAllSymbol: 'auto',
           name:"下行",
-          symbol: 'emptyCircle',
+          symbol: 'pin',
           symbolSize: 4,
           xAxisIndex: 0,
           yAxisIndex: 0,
@@ -510,10 +511,10 @@ export default {
           },
         },{
           type: 'line',
-          smooth: true,
-          showAllSymbol: true,
+          smooth: 1,
+          showAllSymbol: 'auto',
           name:"上行",
-          symbol: 'emptyCircle',
+          symbol: 'pin',
           symbolSize: 4,
           xAxisIndex: 0,
           yAxisIndex: 0,
@@ -524,9 +525,9 @@ export default {
           },
         },{
           type: 'line',
-          smooth: true,
+          smooth: 1,
           showAllSymbol: true,
-          symbol: 'emptyCircle',
+          symbol: 'none',
           symbolSize: 4,
           xAxisIndex: 1,
           yAxisIndex: 1,
@@ -693,20 +694,24 @@ export default {
           metricNames: "in_traffic, out_traffic",
           "dimensions.0.name": "vpnId",
           "dimensions.0.value": select1.value.split(' ')[0],
-          period: '1h'
+          period: '5m'
         }
       $.get(url, params, (res)=>{
+        let date = {}
+        let count = 0
         if(res.code == 0){
           console.log(res.data)
-          for(let i=0;i<res.data.length/2;i++){
-            vpnFlowDate.push(res.data[i].time.substring(11,16))
-            vpnFlowInData.push(res.data[i].in_traffic)
-            vpnFlowOutData.push(res.data[i].out_traffic)
-          }
-          for(let i=res.data.length/2;i<res.data.length;i++){
-            let j = i-res.data.length/2
-            vpnFlowInData[j] += res.data[i].in_traffic
-            vpnFlowOutData[j] += res.data[i].out_traffic
+          for(let i=0;i<res.data.length;i++){
+            if(res.data[i].time.substring(11,16) in date){
+              vpnFlowInData[date[res.data[i].time.substring(11,16)]] += res.data[i].in_traffic
+              vpnFlowOutData[date[res.data[i].time.substring(11,16)]] += res.data[i].out_traffic
+            }
+            else{
+              date[res.data[i].time.substring(11,16)] = count++
+              vpnFlowDate.push(res.data[i].time.substring(11,16))
+              vpnFlowInData.push(res.data[i].in_traffic)
+              vpnFlowOutData.push(res.data[i].out_traffic)
+            }
           }
         }
       })

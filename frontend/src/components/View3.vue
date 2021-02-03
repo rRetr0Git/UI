@@ -154,7 +154,6 @@ export default {
 
       let time = stringToDate(row.time).getTime()
       let timeNow = new Date().getTime()
-      console.log(timeNow - time)
       if(timeNow - time < 600000){
         return "update-row";
       }
@@ -179,15 +178,12 @@ export default {
     },
     init(){
       function transferBw(n){
-        let m = n/(1014*1024)
-        if(m<1024){
-          return m.toFixed(2)+'M'
-        }
-        else if(m>=1024 && m<1024*1024){
-          return (m/1024).toFixed(2) + 'G'
+        let m = n/1.00
+        if(m<1000){
+          return m.toFixed(2)+' M'
         }
         else{
-          return (m/(1024*1024)).toFixed(2) + 'T'
+          return (m/1000.00).toFixed(2) + ' G'
         }
       }
 
@@ -395,7 +391,6 @@ export default {
       var topRankName1 = [];
       var topRankValue2 = [];
       var topRankName2 = [];
-
       url = '/api/monitor/vpn/top',
         params={
           namespace: 'traffic',
@@ -405,6 +400,7 @@ export default {
         }
       $.get(url, params, (res)=>{
         if(res.code == 0){
+          console.log(res.data)
           for(let i=0;i<10;i++){
             if(i>=res.data.length){
               topRankName2.push("VPN-XXXX")
@@ -421,6 +417,7 @@ export default {
       url = '/api/monitor/te/top',
       $.get(url, params, (res)=>{
         if(res.code == 0){
+          console.log(res.data)
           for(let i=0;i<10;i++){
             if(i>=res.data.length){
               topRankName1.push("TunnelXXXX   =>   XX-XX-XXXX-XX")
@@ -443,7 +440,6 @@ export default {
           namespace: 'count',
         }
       $.get(url, params, (res)=>{
-        // console.log(res)
         if(res.code == 0){
           overview.PE = res.data.pe
           overview.TE = res.data.te

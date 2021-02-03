@@ -316,6 +316,7 @@ export default {
         return new Promise((resolve, reject)=>{
           $.get(url, params,
             function(res){
+              console.log(res.data)
               if(res.code == 0){
                 for(let i=0;i<res.data.length;i++){
                   teFlowDate.push(res.data[i].time.substring(11,16))
@@ -857,7 +858,7 @@ export default {
   mounted(){
    $.ajaxSetup({
       async:true,
-      timeout: 5000,
+      timeout: 10000,
     });
     this.init()
     this.getTableData2(false)

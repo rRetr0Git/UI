@@ -26,17 +26,25 @@ export default {
     init(){
 
       function transferBw(n){
-        let m = n/(1014*1024)
-        if(m<1024){
+        let m = n/(1000.00*1000.00)
+        if(m<1000){
           return m.toFixed(2)+' M'
         }
-        else if(m>=1024 && m<1024*1024){
-          return (m/1024).toFixed(2) + ' G'
-        }
         else{
-          return (m/(1024*1024)).toFixed(2) + ' T'
+          return (m/1000.00).toFixed(2) + ' G'
         }
       }
+
+      function transferBw2(n){
+        let m = n/1.00
+        if(m<1000){
+          return m.toFixed(2)+' M'
+        }
+        else{
+          return (m/1000.00).toFixed(2) + ' G'
+        }
+      }
+
 
       const  myCharts = this.$echarts.init(this.$refs.myCharts,'dark');
       // 指定图表的配置项和数据
@@ -97,7 +105,6 @@ export default {
           }
         }
       })
-
       let teFlowInData = []
       let teFlowOutData = []
       let teFlowDate = []
@@ -451,15 +458,20 @@ export default {
               let temp = mapData[i]['name'].substring(0,mapData[i]['name'].length-2) + 'L1'
               for(let j=0;j<topLevelNode.length;j++){
                 if(topLevelNode[j] == temp){
-                  mapData[i]['symbolSize'] = 26
-                  mapData[i]['itemStyle']['color'] = '#6DF6E9'
-                  break
+                  if(status[temp] == 'DOWN'){
+                    mapData[i]['itemStyle']['color'] = '#FF9C00'
+                    mapData[i]['symbolSize'] = 16
+                  }
+                  else{
+                    mapData[i]['symbolSize'] = 26
+                    mapData[i]['itemStyle']['color'] = '#6DF6E9'
+                  }
                 }
               }
             }
           }
-          console.log(mapData)
-          console.log(topLevelNode)
+          //console.log(mapData)
+          //console.log(topLevelNode)
           url = '/api/monitor/topology/physical',
             params={
             }
@@ -471,30 +483,61 @@ export default {
                 let item = res.data.topology[1].link[i]
                 let src = item.source
                 let dst = item.destination
-
                 if(dst['dest-node'].substring(dst['dest-node'].length-2) != 'L1' && dst['dest-node'].substring(dst['dest-node'].length-2) != 'L2'){
                   if(dst['dest-node'] in partMap){
-                    partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
+                    if(status[src['source-node']] == 'DOWN'){
+                      partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#FF9C00'}})
+                    }
+                    else{
+                      partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#A6DF8A'}})
+                    }
                     partMapLink[dst['dest-node']].push({source:src['source-node'],target:dst['dest-node'],lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                   }
                   else{
                     partMap[dst['dest-node']]=[]
-                    partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
-                    partMap[dst['dest-node']].push({name:dst['dest-node'],itemStyle:{color: '#00ffea'}})
+                    if(status[src['source-node']] == 'DOWN'){
+                      partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#FF9C00'}})
+                    }
+                    else{
+                      partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#A6DF8A'}})
+                    }
+                    if(status[src['dest-node']] == 'DOWN'){
+                      partMap[dst['dest-node']].push({name:dst['dest-node'],itemStyle:{color: '#FF9C00'}})
+                    }
+                    else{
+                      partMap[dst['dest-node']].push({name:dst['dest-node'],itemStyle:{color: '#A6DF8A'}})
+                    }
                     partMapLink[dst['dest-node']]=[]
                     partMapLink[dst['dest-node']].push({source:src['source-node'],target:dst['dest-node'],lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                   }
                   continue;
                 }
                 if(src['source-node'].substring(src['source-node'].length-2) != 'L1' && src['source-node'].substring(src['source-node'].length-2) != 'L2'){
+                  console.log(src)
+                  console.log(dst)
                   if(dst['dest-node'] in partMap){
-                    partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
+                    if(status[src['source-node']] == 'DOWN'){
+                      partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#FF9C00'}})
+                    }
+                    else{
+                      partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#A6DF8A'}})
+                    }
                     partMapLink[dst['dest-node']].push({source:src['source-node'],target:dst['dest-node'],lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                   }
                   else{
                     partMap[dst['dest-node']]=[]
-                    partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#00ffea'}})
-                    partMap[dst['dest-node']].push({name:dst['dest-node'],itemStyle:{color: '#00ffea'}})
+                    if(status[src['source-node']] == 'DOWN'){
+                      partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#FF9C00'}})
+                    }
+                    else{
+                      partMap[dst['dest-node']].push({name:src['source-node'],itemStyle:{color: '#A6DF8A'}})
+                    }
+                    if(status[src['dest-node']] == 'DOWN'){
+                      partMap[dst['dest-node']].push({name:dst['dest-node'],itemStyle:{color: '#FF9C00'}})
+                    }
+                    else{
+                      partMap[dst['dest-node']].push({name:dst['dest-node'],itemStyle:{color: '#A6DF8A'}})
+                    }
                     partMapLink[dst['dest-node']]=[]
                     partMapLink[dst['dest-node']].push({source:src['source-node'],target:dst['dest-node'],lineStyle:{width: 3,curveness: 0.2,type:'dotted',color:'#00ffea'}})
                   }
@@ -698,7 +741,7 @@ export default {
                   return [point[0]+5,point[1]+5]
                 },
                 formatter: function (params) {
-                  return transferBw(params.data)
+                  return transferBw2(params.data)
                 }
               },
               z:1000,
