@@ -12,7 +12,7 @@
   "dependencies": {
     "babel-plugin-transform-remove-strict-mode": "0.0.2",
     "bootstrap": "^4.4.1",
-    "bootstrap-table": "^1.16.0",
+    "bootstrap-table": "^1.20.2",
     "echarts": "^4.9.0",
     "echarts-gl": "^1.1.1",
     "element-ui": "^2.13.0",
